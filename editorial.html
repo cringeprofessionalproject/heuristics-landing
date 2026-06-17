@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heuristics | Editorial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="editorial.css">
+</head>
+<body>
+    <a href="/" class="back-link">&larr; Назад к индексу</a>
+
+    <header class="masthead">
+        <div class="masthead-top">
+            <span class="date-line">ВЫПУСК №1 &mdash; ИЮНЬ 2026</span>
+            <span class="edition">HEURISTICS.RU</span>
+            <span class="date-line">МОСКВА, РОССИЯ</span>
+        </div>
+        <div class="masthead-title">
+            <h1>HEURISTICS</h1>
+            <div class="masthead-rule"></div>
+            <p class="masthead-tagline">Технологии эвристического анализа для российской дистрибуции</p>
+        </div>
+    </header>
+
+    <main class="layout">
+        <article class="lead-story">
+            <div class="lead-meta">
+                <span class="category">ТЕХНОЛОГИИ</span>
+                <span class="read-time">Чтение: 4 мин</span>
+            </div>
+            <h2 class="lead-headline">«Мы не ищем текст.<br>Мы понимаем физику<br>каждого кабеля.»</h2>
+            <div class="lead-body">
+                <p class="drop-cap">Компания Heuristics Group разработала принципиально новый подход к B2B-дистрибуции: систему, которая анализирует не названия товаров, а их физические свойства — сечение, материал изоляции, класс пожарной безопасности, рабочее напряжение.</p>
+                <p>Когда инженер ПТО получает смету конкурента с 500 позициями, ему больше не нужно вручную искать аналоги в 1С. Система SPLASH делает это за 2 минуты с точностью 99.8%, опираясь на эвристические алгоритмы и векторные эмбеддинги.</p>
+            </div>
+        </article>
+
+        <aside class="sidebar">
+            <div class="sidebar-card stats-card">
+                <div class="sidebar-heading">В ЦИФРАХ</div>
+                <div class="stat-row">
+                    <div class="stat-big">14.2M</div>
+                    <div class="stat-desc">артикулов в нашей базе знаний</div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-big">99.8%</div>
+                    <div class="stat-desc">точность автоматического подбора аналогов</div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-big">48ч</div>
+                    <div class="stat-desc">от подписания договора до интеграции с ERP</div>
+                </div>
+            </div>
+        </aside>
+
+        <section class="columns-section">
+            <div class="col-header">
+                <div class="col-rule"></div>
+                <h3>ТРИ ПРИНЦИПА</h3>
+                <div class="col-rule"></div>
+            </div>
+            <div class="three-cols">
+                <div class="column">
+                    <h4>I. Семантика</h4>
+                    <p>Алгоритм извлекает из названия товара его ключевые свойства: тип конструкции, марку, параметры. Это не полнотекстовый поиск — это инженерный анализ.</p>
+                </div>
+                <div class="column">
+                    <h4>II. Векторы</h4>
+                    <p>Каждый артикул превращается в точку в многомерном пространстве. Ближайшие соседи в этом пространстве — ваши аналоги. Точно и математически обосновано.</p>
+                </div>
+                <div class="column">
+                    <h4>III. Разведка</h4>
+                    <p>Gap-анализ в реальном времени: мы знаем, чего нет у конкурента, прежде чем он это осознает сам. Ваш ассортимент всегда на шаг впереди.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-feature">
+            <div class="pf-image">
+                <div class="pf-mock">
+                    <div class="mock-line">$ splash analyze --input smeta.pdf</div>
+                    <div class="mock-line dim">[INFO] Parsing 487 line items...</div>
+                    <div class="mock-line dim">[INFO] Vector search initiated...</div>
+                    <div class="mock-line accent">[DONE] 485/487 matches found (99.6%)</div>
+                    <div class="mock-line">$ splash export --format xlsx --erp 1c</div>
+                    <div class="mock-line accent">[DONE] Exported to /output/КП_готовое.xlsx</div>
+                </div>
+            </div>
+            <div class="pf-text">
+                <span class="category">ПРОДУКТ</span>
+                <h2>Система SPLASH</h2>
+                <p>Флагманский продукт для кабельной индустрии. Принимает PDF и Excel-сметы конкурентов и за минуты превращает их в коммерческие предложения с вашими позициями.</p>
+                <p>Интеграция через REST API. Совместимость с 1С, SAP, Axapta. Поддержка ГОСТ-стандартов кабельной продукции.</p>
+                <a href="#" class="cta">Запросить демонстрацию &rarr;</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-rule"></div>
+        <div class="footer-content">
+            <span>&copy; 2026 Heuristics Group</span>
+            <span>heuristics.ru</span>
+        </div>
+    </footer>
+</body>
+</html>

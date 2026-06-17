@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heuristics — εὑρίσκω</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="institution.css">
+</head>
+<body>
+    <a href="/" class="back-link">&larr; Index</a>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-epsilon">ε</span>
+                <span class="logo-text">HEURISTICS</span>
+            </div>
+            <nav class="nav">
+                <a href="#method">Метод</a>
+                <a href="instruments.html">Инструменты</a>
+                <a href="publications.html">Публикации</a>
+                <a href="#contact">Контакт</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ═══ HERO ═══ -->
+        <section class="hero">
+            <div class="hero-inner">
+                <div class="hero-left">
+                    <div class="hero-eyebrow">εὑρίσκω — «нахожу, открываю»</div>
+                    <h1>Формализация<br>процесса<br>открытия.</h1>
+                    <div class="hero-rule"></div>
+                    <p class="hero-sub">Частная исследовательская группа. Мы разрабатываем алгоритмы приближённого решения задач, неразрешимых точно — и применяем их к реальным рынкам.</p>
+                    <div class="hero-meta">
+                        <span>Осн. 2024</span>
+                        <span class="meta-dot"></span>
+                        <span>Москва</span>
+                        <span class="meta-dot"></span>
+                        <span>heuristics.ru</span>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div class="formula-block">
+                        <div class="fb-label">Осевой скоринг — реальная формула</div>
+                        <div class="formula">
+                            <span class="math">S(a, b) = </span>
+                            <span class="math-frac">
+                                <span class="frac-top">Σ wᵢ · score(axisᵢ(a), axisᵢ(b))</span>
+                                <span class="frac-bot">Σ wᵢ</span>
+                            </span>
+                        </div>
+                        <div class="fb-note">Сравнение артикулов по физическим осям:<br>сечение, материал, ГОСТ, класс. Вес оси wᵢ ∈ {critical, high, medium, low}</div>
+                    </div>
+                    <div class="formula-block">
+                        <div class="fb-label">Правила сравнения осей</div>
+                        <div class="formula formula-sm">
+                            <span class="math">
+                                exact: &nbsp;1.0 | 0.0<br>
+                                upgrade_ok: &nbsp;1.0 − 0.1·d<br>
+                                substitute_ok: &nbsp;1.0 − 0.15·|d|
+                            </span>
+                        </div>
+                        <div class="fb-note">d — расстояние в цепочке апгрейда.<br>При critical failure — кандидат отклоняется.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ВИЗУАЛИЗАЦИЯ ═══ -->
+        <section class="viz-section">
+            <div class="viz-inner">
+                <div class="viz-header">
+                    <div class="section-marker">Рис. 1</div>
+                    <h2>Визуализация эвристического матчинга</h2>
+                    <p class="viz-caption">Концептуальная модель: множество объектов слева → оценка расстояний → нахождение ближайших пар справа. <span class="gap-mark">Красные — объекты без пары (гэпы).</span></p>
+                </div>
+                <canvas id="matchingViz"></canvas>
+                <div class="viz-legend">
+                    <span class="legend-item"><span class="dot dot-source"></span> Исходный объект</span>
+                    <span class="legend-item"><span class="dot dot-match"></span> Пара найдена</span>
+                    <span class="legend-item"><span class="dot dot-gap"></span> Гэп (нет пары)</span>
+                    <span class="legend-item"><span class="dot dot-search"></span> Вектор поиска</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ МЕТОД ═══ -->
+        <section class="method" id="method">
+            <div class="method-inner">
+                <div class="section-marker">§ I — Метод</div>
+                <div class="method-grid">
+                    <div class="method-card">
+                        <div class="mc-num">α</div>
+                        <div class="mc-title">Извлечение признаков</div>
+                        <div class="mc-code">
+                            <span class="code-comment">// входной артикул</span><br>
+                            "ВВГНГ(А)-LS 3×2.5 ГОСТ 31996"<br><br>
+                            <span class="code-comment">// извлечённые оси</span><br>
+                            <span class="code-key">тип</span>: силовой_кабель<br>
+                            <span class="code-key">жилы</span>: 3<br>
+                            <span class="code-key">сечение</span>: 2.5 мм²<br>
+                            <span class="code-key">класс</span>: нг(А)-LS<br>
+                            <span class="code-key">стандарт</span>: ГОСТ_31996
+                        </div>
+                        <p>Не текстовый поиск. Извлечение физического смысла из произвольной строки.</p>
+                    </div>
+                    <div class="method-card">
+                        <div class="mc-num">β</div>
+                        <div class="mc-title">Осевой скоринг</div>
+                        <div class="mc-code">
+                            <span class="code-comment">// матрица совпадений осей</span><br>
+                            <span class="code-key">сечение</span>&nbsp;2.5 = 2.5 → <span class="code-match">1.0</span> critical<br>
+                            <span class="code-key">класс</span>&nbsp;&nbsp;LS ≠ FR &nbsp;→ <span class="code-gap">0.0</span> critical<br>
+                            <span class="code-key">жилы</span>&nbsp;&nbsp;&nbsp;3 = 3 &nbsp;&nbsp;→ <span class="code-match">1.0</span> high<br>
+                            <span class="code-key">ГОСТ</span>&nbsp;&nbsp;&nbsp;= &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <span class="code-match">1.0</span> medium<br><br>
+                            <span class="code-comment">// critical fail → <span class="code-gap">ОТКЛОНЁН</span></span>
+                        </div>
+                        <p>Каждая ось имеет вес и правило. Провал по критической оси = жёсткий отказ.</p>
+                    </div>
+                    <div class="method-card">
+                        <div class="mc-num">γ</div>
+                        <div class="mc-title">Обнаружение гэпов</div>
+                        <div class="mc-code">
+                            <span class="code-comment">// кросс-анализ ассортимента</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;МЫ&nbsp;&nbsp;ОНИ&nbsp;ДЕЛЬТА<br>
+                            кат_1&nbsp;&nbsp;[<span class="code-val">342</span>&nbsp;&nbsp;298&nbsp;&nbsp;<span class="code-match">+44</span>]<br>
+                            кат_2&nbsp;&nbsp;[187&nbsp;&nbsp;<span class="code-val">241</span>&nbsp;&nbsp;<span class="code-gap">-54</span>]<br>
+                            кат_3&nbsp;&nbsp;[<span class="code-val">156</span>&nbsp;&nbsp;103&nbsp;&nbsp;<span class="code-match">+53</span>]<br><br>
+                            <span class="code-comment">// кат_2: они опережают на 54 позиции</span>
+                        </div>
+                        <p>Видим, чего нет у нас и чего нет у них. Рыночный дефицит как возможность.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ РЕЗУЛЬТАТЫ ═══ -->
+        <section class="results">
+            <div class="results-inner">
+                <div class="section-marker">§ II — Результаты</div>
+                <h2>Экспериментальные данные</h2>
+                <p class="results-caption">Измерено на реальных данных кабельной отрасли, 11 категорий СКС, база 14.2M артикулов.</p>
+                <div class="results-grid">
+                    <div class="result-block">
+                        <div class="rb-val">99.8<span class="rb-unit">%</span></div>
+                        <div class="rb-bar"><div class="rb-fill" style="width: 99.8%"></div></div>
+                        <div class="rb-label">Точность при k=1</div>
+                        <div class="rb-note">точность первого предложенного аналога</div>
+                    </div>
+                    <div class="result-block">
+                        <div class="rb-val">2.4<span class="rb-unit">с</span></div>
+                        <div class="rb-bar"><div class="rb-fill" style="width: 24%"></div></div>
+                        <div class="rb-label">Задержка / 100K запросов</div>
+                        <div class="rb-note">время полного прохода по базе</div>
+                    </div>
+                    <div class="result-block">
+                        <div class="rb-val">14.2<span class="rb-unit">M</span></div>
+                        <div class="rb-bar"><div class="rb-fill" style="width: 71%"></div></div>
+                        <div class="rb-label">Размер базы знаний</div>
+                        <div class="rb-note">артикулов проиндексировано</div>
+                    </div>
+                    <div class="result-block">
+                        <div class="rb-val">48<span class="rb-unit">ч</span></div>
+                        <div class="rb-bar"><div class="rb-fill" style="width: 12%"></div></div>
+                        <div class="rb-label">Время интеграции</div>
+                        <div class="rb-note">от договора до первого запроса через API</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ИНСТРУМЕНТ (тизер) ═══ -->
+        <section class="instrument" id="instrument">
+            <div class="instrument-inner">
+                <div class="section-marker">§ III — Инструмент</div>
+                <div class="inst-grid">
+                    <div class="inst-text">
+                        <div class="inst-label">Инструмент № 1</div>
+                        <h2>SPLASH</h2>
+                        <p class="inst-subtitle">СПЛЭШ</p>
+                        <p class="inst-full">SKU Profiling, Linking, Assessment,<br>Search & Heuristics</p>
+                        <div class="inst-rule"></div>
+                        <p>Первый прикладной продукт, порождённый нашими исследованиями. CI-платформа для кабельной отрасли: парсинг PDF-смет конкурентов, автоматический подбор аналогов, gap-анализ.</p>
+                        <a href="instruments.html" class="contact-link" style="margin-top: 16px; display: inline-block;">Все инструменты &rarr;</a>
+                    </div>
+                    <div class="inst-terminal">
+                        <div class="term-chrome">
+                            <span class="term-dot td-r"></span>
+                            <span class="term-dot td-y"></span>
+                            <span class="term-dot td-g"></span>
+                            <span class="term-path">~/splash-cli</span>
+                        </div>
+                        <div class="term-body">
+                            <div class="tl"><span class="t-p">$</span> splash analyze смета_конкурент.pdf</div>
+                            <div class="tl dim">[ИНФО] Извлечение признаков из 487 позиций...</div>
+                            <div class="tl dim">[ИНФО] Осевой скоринг по 11 категориям...</div>
+                            <div class="tl match">[ГОТОВО] 485/487 сматчено (точность 0.996)</div>
+                            <div class="tl gap">[ВНИМАНИЕ] 2 позиции: аналог не найден (гэп)</div>
+                            <div class="tl"><span class="cursor">█</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ КОНТАКТ ═══ -->
+        <section class="contact" id="contact">
+            <div class="contact-inner">
+                <div class="section-marker">§ V</div>
+                <h2>Запросить доступ</h2>
+                <p>Мы работаем с ограниченным числом партнёров в каждой отрасли. Оставьте запрос — и мы покажем, как это работает на ваших данных.</p>
+                <a href="#" class="contact-link">Связаться с нами &rarr;</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="logo-epsilon sm">ε</span>
+                <span>&copy; 2026 Heuristics Group</span>
+            </div>
+            <div class="footer-right">
+                <span>εὑρίσκω — «нахожу, открываю»</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // ══ Matching visualization ══
+    const canvas = document.getElementById('matchingViz');
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = 360;
+    }
+
+    const sourcePoints = [];
+    const matchPoints = [];
+    const gapPoints = [];
+    const connections = [];
+    let frame = 0;
+
+    function init() {
+        resize();
+        sourcePoints.length = 0;
+        matchPoints.length = 0;
+        gapPoints.length = 0;
+        connections.length = 0;
+
+        const w = canvas.width;
+        const h = canvas.height;
+        const leftX = w * 0.15;
+        const rightX = w * 0.85;
+        const count = 28;
+
+        for (let i = 0; i < count; i++) {
+            const sy = 30 + (h - 60) * (i / (count - 1));
+            const sx = leftX + (Math.random() - 0.5) * 60;
+            sourcePoints.push({ x: sx, y: sy });
+
+            if (i < count - 2) {
+                const mx = rightX + (Math.random() - 0.5) * 60;
+                const my = 30 + (h - 60) * ((i + Math.random() * 0.5) / (count - 1));
+                matchPoints.push({ x: mx, y: my });
+                connections.push({ si: i, mi: matchPoints.length - 1, delay: i * 8 });
+            } else {
+                gapPoints.push({ x: sx, y: sy });
+            }
+        }
+    }
+
+    function draw() {
+        frame++;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // grid
+        ctx.strokeStyle = 'rgba(0,0,0,0.04)';
+        ctx.lineWidth = 0.5;
+        for (let x = 0; x < canvas.width; x += 40) {
+            ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+        }
+        for (let y = 0; y < canvas.height; y += 40) {
+            ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+        }
+
+        // connections
+        connections.forEach(c => {
+            const progress = Math.min(1, Math.max(0, (frame - c.delay) / 40));
+            if (progress <= 0) return;
+            const s = sourcePoints[c.si];
+            const m = matchPoints[c.mi];
+            const ex = s.x + (m.x - s.x) * progress;
+            const ey = s.y + (m.y - s.y) * progress;
+
+            ctx.beginPath();
+            ctx.moveTo(s.x, s.y);
+            ctx.lineTo(ex, ey);
+            ctx.strokeStyle = `rgba(0, 180, 140, ${0.15 * progress})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            if (progress > 0 && progress < 1) {
+                ctx.beginPath();
+                ctx.arc(ex, ey, 3, 0, Math.PI * 2);
+                ctx.fillStyle = '#00B48C';
+                ctx.fill();
+            }
+        });
+
+        // source
+        sourcePoints.forEach(p => {
+            ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+            ctx.fillStyle = '#1c1917'; ctx.fill();
+        });
+
+        // match
+        matchPoints.forEach(p => {
+            ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+            ctx.fillStyle = '#00B48C'; ctx.fill();
+        });
+
+        // gap
+        gapPoints.forEach(p => {
+            ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
+            ctx.fillStyle = 'transparent';
+            ctx.strokeStyle = '#c74634'; ctx.lineWidth = 2; ctx.stroke();
+            const pulse = 8 + Math.sin(frame * 0.05) * 4;
+            ctx.beginPath(); ctx.arc(p.x, p.y, pulse, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(199, 70, 52, ${0.3 - (pulse - 8) * 0.03})`;
+            ctx.lineWidth = 1; ctx.stroke();
+        });
+
+        // labels
+        ctx.font = '11px "JetBrains Mono", monospace';
+        ctx.fillStyle = '#a8a29e'; ctx.textAlign = 'center';
+        ctx.fillText('ОБЪЕКТЫ A', canvas.width * 0.15, 18);
+        ctx.fillText('ОБЪЕКТЫ B', canvas.width * 0.85, 18);
+
+        if (frame < 400) requestAnimationFrame(draw);
+        else { frame = 0; init(); requestAnimationFrame(draw); }
+    }
+
+    init(); draw();
+    window.addEventListener('resize', () => { init(); });
+    </script>
+</body>
+</html>

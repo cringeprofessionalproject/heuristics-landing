@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heuristics | Cosmos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="cosmos.css">
+</head>
+<body>
+    <canvas id="constellation"></canvas>
+
+    <a href="/" class="back-link">&larr; Назад</a>
+
+    <header class="header">
+        <div class="logo">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle cx="14" cy="14" r="13" stroke="url(#g1)" stroke-width="1.5"/>
+                <circle cx="14" cy="14" r="4" fill="url(#g1)"/>
+                <line x1="14" y1="1" x2="14" y2="10" stroke="url(#g1)" stroke-width="1"/>
+                <line x1="14" y1="18" x2="14" y2="27" stroke="url(#g1)" stroke-width="1"/>
+                <line x1="1" y1="14" x2="10" y2="14" stroke="url(#g1)" stroke-width="1"/>
+                <line x1="18" y1="14" x2="27" y2="14" stroke="url(#g1)" stroke-width="1"/>
+                <defs>
+                    <linearGradient id="g1" x1="0" y1="0" x2="28" y2="28">
+                        <stop offset="0%" stop-color="#6366f1"/>
+                        <stop offset="100%" stop-color="#a78bfa"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span>Heuristics</span>
+        </div>
+        <nav class="nav">
+            <a href="#">Платформа</a>
+            <a href="#">Технологии</a>
+            <button class="btn-glow">Демо</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-chip">
+                <span class="pulse-dot"></span>
+                Система работает
+            </div>
+            <h1>Связываем данные.<br>Находим <span class="gradient-word">аналоги.</span></h1>
+            <p class="hero-desc">Наши эвристические алгоритмы анализируют миллионы артикулов и строят граф связей между ними. Вы загружаете смету — получаете точные аналоги из вашего склада.</p>
+            <div class="hero-actions">
+                <button class="btn-glow large">Начать работу</button>
+                <a href="#" class="link-arrow">Документация &rarr;</a>
+            </div>
+        </section>
+
+        <section class="metrics">
+            <div class="metric-card">
+                <div class="metric-value">14.2M</div>
+                <div class="metric-label">Артикулов в базе</div>
+            </div>
+            <div class="metric-card highlight">
+                <div class="metric-value">99.8%</div>
+                <div class="metric-label">Точность матчинга</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">2.4s</div>
+                <div class="metric-label">На 100K позиций</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">48h</div>
+                <div class="metric-label">До интеграции</div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 2L2 9L16 16L30 9L16 2Z" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M2 16L16 23L30 16" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M2 23L16 30L30 23" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <h3>Семантическое ядро</h3>
+                <p>Мы извлекаем физические свойства из названий товаров: сечение, материал, ГОСТ, тип исполнения. Не текстовый поиск, а понимание.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="24" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="16" cy="24" r="3" stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="10" y1="9.5" x2="14" y2="22" stroke="currentColor" stroke-width="1"/>
+                        <line x1="22" y1="9.5" x2="18" y2="22" stroke="currentColor" stroke-width="1"/>
+                        <line x1="11" y1="8" x2="21" y2="8" stroke="currentColor" stroke-width="1"/>
+                    </svg>
+                </div>
+                <h3>Граф связей</h3>
+                <p>Каждый товар — узел в огромном графе. Связи между узлами отражают совместимость, взаимозаменяемость и рыночную конкуренцию.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect x="2" y="2" width="28" height="28" rx="4" stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="2" y1="11" x2="30" y2="11" stroke="currentColor" stroke-width="1"/>
+                        <line x1="11" y1="11" x2="11" y2="30" stroke="currentColor" stroke-width="1"/>
+                    </svg>
+                </div>
+                <h3>Gap-матрица</h3>
+                <p>Кросс-анализ ассортимента конкурентов. Система подсвечивает дефицитные позиции и незанятые ценовые сегменты.</p>
+            </div>
+        </section>
+
+        <section class="splash-block">
+            <div class="splash-label">FLAGSHIP</div>
+            <h2>Система SPLASH</h2>
+            <p>Разработана специально для кабельной отрасли. Подключается к ERP по API. Парсит PDF-сметы. Находит аналоги из наличия на складе.</p>
+            <div class="splash-visual">
+                <div class="orbit">
+                    <div class="orbit-ring ring-1"></div>
+                    <div class="orbit-ring ring-2"></div>
+                    <div class="orbit-ring ring-3"></div>
+                    <div class="orbit-core">S</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span>&copy; 2026 Heuristics Group</span>
+        <span>heuristics.ru</span>
+    </footer>
+
+    <script>
+    // Constellation background
+    const canvas = document.getElementById('constellation');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const COUNT = 80;
+    const MAX_DIST = 140;
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = document.body.scrollHeight;
+    }
+
+    function init() {
+        resize();
+        particles = [];
+        for (let i = 0; i < COUNT; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                r: Math.random() * 1.5 + 0.5
+            });
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(99, 102, 241, 0.5)';
+            ctx.fill();
+
+            for (let j = i + 1; j < particles.length; j++) {
+                const p2 = particles[j];
+                const dx = p.x - p2.x;
+                const dy = p.y - p2.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < MAX_DIST) {
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.strokeStyle = `rgba(99, 102, 241, ${0.15 * (1 - dist / MAX_DIST)})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(draw);
+    }
+
+    init();
+    draw();
+    window.addEventListener('resize', () => { resize(); });
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Публикации — Heuristics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="institution.css">
+    <link rel="stylesheet" href="subpages.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-epsilon">ε</span>
+                <a href="institution.html" class="logo-text">HEURISTICS</a>
+            </div>
+            <nav class="nav">
+                <a href="institution.html#method">Метод</a>
+                <a href="instruments.html">Инструменты</a>
+                <a href="publications.html" class="nav-active">Публикации</a>
+                <a href="institution.html#contact">Контакт</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="page-hero-inner">
+                <div class="section-marker">§ IV — Публикации</div>
+                <h1>Исследования<br>и литература</h1>
+                <p class="page-hero-sub">Ведём открытый литературный обзор на стыке ИИ, эвристических методов и задач промышленной дистрибуции. Ниже — ключевые работы, на которые опирается наш метод, и наши собственные исследования.</p>
+            </div>
+        </section>
+
+        <!-- ═══ НАША РАБОТА ═══ -->
+        <section class="sp-section">
+            <div class="sp-inner">
+                <h2 class="sp-title">Наши исследования</h2>
+
+                <div class="pub-card pub-upcoming">
+                    <div class="pub-badge">В подготовке</div>
+                    <h3>Литературный обзор: ИИ и эвристические методы подбора аналогов в промышленной B2B-дистрибуции</h3>
+                    <p class="pub-authors">Heuristics Group</p>
+                    <p class="pub-meta">2026 · <em>готовится к публикации в рецензируемом журнале</em></p>
+                    <p class="pub-desc">Систематический обзор подходов к задаче product matching: от классических метрик сходства (Jaccard, cosine, Levenshtein) через ML-классификаторы к LLM-экстракции признаков. Сравнение на данных кабельной и электротехнической отрасли.</p>
+                    <div class="pub-tags">
+                        <span class="tag">product matching</span>
+                        <span class="tag">ИИ</span>
+                        <span class="tag">эвристика</span>
+                        <span class="tag">B2B</span>
+                        <span class="tag">литобзор</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ENTITY MATCHING ═══ -->
+        <section class="sp-section sp-alt">
+            <div class="sp-inner">
+                <h2 class="sp-title">Базовые работы по entity matching</h2>
+
+                <div class="pub-card">
+                    <h3>Deep Entity Matching with Pre-Trained Language Models</h3>
+                    <p class="pub-authors">Li, Y., Li, J., Suhara, Y., Doan, A., & Tan, W.-C.</p>
+                    <p class="pub-meta"><em>Proceedings of the VLDB Endowment</em>, Vol. 14, No. 1, pp. 50–60 · 2020</p>
+                    <p class="pub-desc">Система Ditto — SOTA-результат в entity matching на предобученных Transformer-моделях (BERT, RoBERTa). Ключевые техники: аугментация данных, суммаризация длинных строк, инъекция доменных знаний через тегирование.</p>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.14778/3421424.3421431" target="_blank" class="pub-doi">DOI: 10.14778/3421424.3421431</a>
+                        <a href="https://vldb.org/pvldb/vol14/p50-li.pdf" target="_blank" class="pub-pdf">PDF</a>
+                    </div>
+                </div>
+
+                <div class="pub-card">
+                    <h3>Neural Networks for Entity Matching: A Survey</h3>
+                    <p class="pub-authors">Barlaug, N. & Gulla, J. A.</p>
+                    <p class="pub-meta"><em>ACM Transactions on Knowledge Discovery from Data</em>, Vol. 15, No. 3, Art. 52 · 2021</p>
+                    <p class="pub-desc">Наиболее полный обзор нейросетевых подходов к entity matching. Таксономия моделей, сравнительный анализ архитектур, систематизация бенчмарков. Основной обзорный источник.</p>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1145/3442200" target="_blank" class="pub-doi">DOI: 10.1145/3442200</a>
+                    </div>
+                </div>
+
+                <div class="pub-card">
+                    <h3>Deep Learning for Entity Matching: A Design Space Exploration</h3>
+                    <p class="pub-authors">Mudgal, S., Li, H., Rekatsinas, T., Doan, A., et al.</p>
+                    <p class="pub-meta"><em>Proceedings of the 2018 International Conference on Management of Data (SIGMOD)</em> · 2018</p>
+                    <p class="pub-desc">Первое масштабное исследование пространства проектирования DL-систем для EM. Эмпирическое сравнение на структурированных, текстовых и «грязных» датасетах. Заложил фундамент для DeepMatcher.</p>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1145/3183713.3196926" target="_blank" class="pub-doi">DOI: 10.1145/3183713.3196926</a>
+                    </div>
+                </div>
+
+                <div class="pub-card">
+                    <h3>(Almost) All of Entity Resolution</h3>
+                    <p class="pub-authors">Binette, O. & Steorts, R. C.</p>
+                    <p class="pub-meta"><em>Science Advances</em>, Vol. 8, No. 12 · 2022</p>
+                    <p class="pub-desc">Определяющий обзор всей области Entity Resolution: от вероятностных моделей Fellegi–Sunter до байесовских подходов. Формализация задачи, метрики оценки, открытые проблемы.</p>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1126/sciadv.abi8021" target="_blank" class="pub-doi">DOI: 10.1126/sciadv.abi8021</a>
+                        <a href="https://www.science.org/doi/10.1126/sciadv.abi8021" target="_blank" class="pub-pdf">Science.org</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ LLM ═══ -->
+        <section class="sp-section">
+            <div class="sp-inner">
+                <h2 class="sp-title">LLM и product matching</h2>
+
+                <div class="pub-card">
+                    <h3>Match, Compare, or Select? An Investigation of Large Language Models for Entity Matching</h3>
+                    <p class="pub-authors">Fan, T., Li, J., et al.</p>
+                    <p class="pub-meta"><em>Proceedings of COLING 2025</em> · 2024 (preprint)</p>
+                    <p class="pub-desc">Три стратегии применения LLM к матчингу: бинарное сравнение пар, попарное ранжирование кандидатов, выбор из списка. Фреймворк ComEM объединяет подходы и показывает лучшую точность при меньших затратах на API.</p>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.48550/arXiv.2405.16884" target="_blank" class="pub-doi">DOI: 10.48550/arXiv.2405.16884</a>
+                        <a href="https://arxiv.org/abs/2405.16884" target="_blank" class="pub-pdf">arXiv</a>
+                    </div>
+                </div>
+
+                <div class="pub-card">
+                    <h3>Text-Based Product Matching — Semi-Supervised Clustering Approach</h3>
+                    <p class="pub-authors">Rößler, M. & Bizer, C.</p>
+                    <p class="pub-meta"><em>arXiv preprint</em> · 2024</p>
+                    <p class="pub-desc">Semi-supervised подход к product matching через кластеризацию (IDEC). Главный вклад — снижение зависимости от размеченных данных, что критично для B2B-среды, где ground truth почти не существует.</p>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.48550/arXiv.2402.10091" target="_blank" class="pub-doi">DOI: 10.48550/arXiv.2402.10091</a>
+                        <a href="https://arxiv.org/abs/2402.10091" target="_blank" class="pub-pdf">arXiv</a>
+                    </div>
+                </div>
+
+                <div class="pub-card">
+                    <h3>Deep Cross-Platform Product Matching in E-Commerce</h3>
+                    <p class="pub-authors">Ristoski, P., Petrovski, P. & Mika, P.</p>
+                    <p class="pub-meta"><em>Information Retrieval Journal</em>, Vol. 23, pp. 136–153 · 2020</p>
+                    <p class="pub-desc">Нейронная модель, использующая одновременно текст названий и структурированные атрибуты для кросс-платформенного матчинга каталогов. Близко к нашей задаче сопоставления номенклатур конкурентов.</p>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1007/s10791-019-09360-1" target="_blank" class="pub-doi">DOI: 10.1007/s10791-019-09360-1</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ПЛОЩАДКИ ═══ -->
+        <section class="sp-section sp-alt">
+            <div class="sp-inner">
+                <h2 class="sp-title">Индексация и площадки</h2>
+                <p class="sp-caption">Площадки, где мы публикуемся и отслеживаем литературу.</p>
+                <div class="pub-sources-row">
+                    <a href="https://www.webofscience.com" target="_blank" class="source-chip">📚 Web of Science</a>
+                    <a href="https://elibrary.ru" target="_blank" class="source-chip">🔬 eLibrary / РИНЦ</a>
+                    <a href="https://scholar.google.com" target="_blank" class="source-chip">🎓 Google Scholar</a>
+                    <a href="https://arxiv.org" target="_blank" class="source-chip">📄 arXiv</a>
+                    <a href="https://dblp.org" target="_blank" class="source-chip">🗃 DBLP</a>
+                    <a href="https://semanticscholar.org" target="_blank" class="source-chip">🔎 Semantic Scholar</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="logo-epsilon sm">ε</span>
+                <span>&copy; 2026 Heuristics Group</span>
+            </div>
+            <div class="footer-right">
+                <span>εὑρίσκω — «нахожу, открываю»</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

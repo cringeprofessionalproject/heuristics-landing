@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструменты — Heuristics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="institution.css">
+    <link rel="stylesheet" href="subpages.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-epsilon">ε</span>
+                <a href="institution.html" class="logo-text">HEURISTICS</a>
+            </div>
+            <nav class="nav">
+                <a href="institution.html#method">Метод</a>
+                <a href="instruments.html" class="nav-active">Инструменты</a>
+                <a href="publications.html">Публикации</a>
+                <a href="institution.html#contact">Контакт</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="page-hero-inner">
+                <div class="section-marker">§ III — Инструменты</div>
+                <h1>Инструменты<br>и проекты</h1>
+                <p class="page-hero-sub">Наши собственные разработки, а также open-source проекты и модели, которые мы используем, изучаем или на которые опираемся в исследованиях.</p>
+            </div>
+        </section>
+
+        <!-- ═══ НАШИ ПРОЕКТЫ ═══ -->
+        <section class="sp-section">
+            <div class="sp-inner">
+                <h2 class="sp-title">Наши проекты</h2>
+
+                <div class="tool-card tool-featured">
+                    <div class="tool-header">
+                        <div class="tool-icon">🔬</div>
+                        <div>
+                            <h3>SPLASH / СПЛЭШ</h3>
+                            <span class="tool-badge badge-own">Наш проект</span>
+                        </div>
+                    </div>
+                    <p class="tool-full">SKU Profiling, Linking, Assessment, Search & Heuristics</p>
+                    <p class="tool-desc">CI-платформа для кабельной отрасли. Парсинг PDF-смет конкурентов → извлечение физических осей из артикулов → осевой скоринг с весами → автоматический подбор аналогов из наличия. REST API для 1С/SAP.</p>
+                    <div class="tool-stack">
+                        <span class="stack-tag">Node.js</span>
+                        <span class="stack-tag">PostgreSQL</span>
+                        <span class="stack-tag">JSONB</span>
+                        <span class="stack-tag">REST API</span>
+                    </div>
+                    <div class="tool-links">
+                        <a href="https://github.com/heuristics-group/splash" target="_blank" class="tool-link tl-github">GitHub</a>
+                        <span class="tool-status">● Private repo — доступ по запросу</span>
+                    </div>
+                </div>
+
+                <div class="tool-card tool-featured">
+                    <div class="tool-header">
+                        <div class="tool-icon">🧩</div>
+                        <div>
+                            <h3>Heuristics MCP Server</h3>
+                            <span class="tool-badge badge-soon">Скоро</span>
+                        </div>
+                    </div>
+                    <p class="tool-desc">MCP-сервер (Model Context Protocol) с набором скиллов для автоматизации эвристических задач: подбор аналогов, gap-анализ, классификация SKU. Позволит подключать агентов к нашим алгоритмам через стандартный протокол.</p>
+                    <div class="tool-stack">
+                        <span class="stack-tag">TypeScript</span>
+                        <span class="stack-tag">MCP</span>
+                        <span class="stack-tag">JSON-RPC</span>
+                    </div>
+                    <div class="tool-links">
+                        <a href="https://modelcontextprotocol.io" target="_blank" class="tool-link tl-ext">Спецификация MCP</a>
+                        <span class="tool-status">● В разработке</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ENTITY MATCHING ═══ -->
+        <section class="sp-section sp-alt">
+            <div class="sp-inner">
+                <h2 class="sp-title">Entity matching и record linkage</h2>
+                <p class="sp-caption">Open-source инструменты для задач сопоставления записей, дедупликации и entity resolution.</p>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🔗</div>
+                        <div>
+                            <h3>Splink</h3>
+                            <span class="tool-badge badge-oss">Open Source</span>
+                        </div>
+                    </div>
+                    <p class="tool-desc">Вероятностное связывание записей и дедупликация в масштабе. Работает на DuckDB, Spark, Athena, Postgres. Не требует обучающей выборки — Fellegi–Sunter модель с EM-алгоритмом.</p>
+                    <div class="tool-stack">
+                        <span class="stack-tag">Python</span>
+                        <span class="stack-tag">DuckDB</span>
+                        <span class="stack-tag">Spark</span>
+                    </div>
+                    <div class="tool-links">
+                        <a href="https://github.com/moj-analytical-services/splink" target="_blank" class="tool-link tl-github">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🧹</div>
+                        <div>
+                            <h3>Dedupe</h3>
+                            <span class="tool-badge badge-oss">Open Source</span>
+                        </div>
+                    </div>
+                    <p class="tool-desc">Fuzzy matching с активным обучением: модель учится на ваших метках, задавая вопросы «это одна и та же запись?». Идеален для структурированных данных с шумом.</p>
+                    <div class="tool-stack">
+                        <span class="stack-tag">Python</span>
+                        <span class="stack-tag">Active Learning</span>
+                    </div>
+                    <div class="tool-links">
+                        <a href="https://github.com/dedupeio/dedupe" target="_blank" class="tool-link tl-github">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🧠</div>
+                        <div>
+                            <h3>Ditto</h3>
+                            <span class="tool-badge badge-oss">Open Source</span>
+                        </div>
+                    </div>
+                    <p class="tool-desc">Entity matching на предобученных Transformer-моделях (BERT/RoBERTa). SOTA-результат: +29% F1 к предыдущим подходам. Аугментация, суммаризация, инъекция доменных знаний.</p>
+                    <div class="tool-stack">
+                        <span class="stack-tag">Python</span>
+                        <span class="stack-tag">PyTorch</span>
+                        <span class="stack-tag">Transformers</span>
+                    </div>
+                    <div class="tool-links">
+                        <a href="https://github.com/megagonlabs/ditto" target="_blank" class="tool-link tl-github">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🏛</div>
+                        <div>
+                            <h3>DeepMatcher</h3>
+                            <span class="tool-badge badge-oss">Open Source</span>
+                        </div>
+                    </div>
+                    <p class="tool-desc">Нейросетевой фреймворк для entity matching от группы AnHai (UW-Madison). Атрибутивные эмбеддинги, внимание, разнообразные архитектуры сравнения.</p>
+                    <div class="tool-stack">
+                        <span class="stack-tag">Python</span>
+                        <span class="stack-tag">PyTorch</span>
+                    </div>
+                    <div class="tool-links">
+                        <a href="https://github.com/anhaidgroup/deepmatcher" target="_blank" class="tool-link tl-github">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">⚡</div>
+                        <div>
+                            <h3>pyJedAI</h3>
+                            <span class="tool-badge badge-oss">Open Source</span>
+                        </div>
+                    </div>
+                    <p class="tool-desc">End-to-end фреймворк для entity resolution. Полный пайплайн: блокировка → сравнение → кластеризация. Интеграция с NLP/DL-моделями, работа без размеченных данных.</p>
+                    <div class="tool-stack">
+                        <span class="stack-tag">Python</span>
+                        <span class="stack-tag">NLP</span>
+                    </div>
+                    <div class="tool-links">
+                        <a href="https://github.com/AI-team-UoA/pyJedAI" target="_blank" class="tool-link tl-github">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">📊</div>
+                        <div>
+                            <h3>Python Record Linkage Toolkit</h3>
+                            <span class="tool-badge badge-oss">Open Source</span>
+                        </div>
+                    </div>
+                    <p class="tool-desc">Модульный набор для record linkage: индексирование, блокировка, сравнение, классификация. Интеграция с pandas и scikit-learn. Идеален для прототипирования.</p>
+                    <div class="tool-stack">
+                        <span class="stack-tag">Python</span>
+                        <span class="stack-tag">Pandas</span>
+                        <span class="stack-tag">Scikit-learn</span>
+                    </div>
+                    <div class="tool-links">
+                        <a href="https://github.com/J535D165/recordlinkage" target="_blank" class="tool-link tl-github">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ЭМБЕДДИНГИ И МОДЕЛИ ═══ -->
+        <section class="sp-section">
+            <div class="sp-inner">
+                <h2 class="sp-title">Модели и эмбеддинги</h2>
+                <p class="sp-caption">Предобученные модели и библиотеки для семантического поиска и векторного сравнения.</p>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🤗</div>
+                        <div>
+                            <h3>Sentence Transformers</h3>
+                            <span class="tool-badge badge-oss">Open Source</span>
+                        </div>
+                    </div>
+                    <p class="tool-desc">Стандартная библиотека для вычисления семантических эмбеддингов. Bi-Encoder для масштабного поиска, Cross-Encoder для точного попарного скоринга. 5000+ предобученных моделей на HuggingFace.</p>
+                    <div class="tool-stack">
+                        <span class="stack-tag">Python</span>
+                        <span class="stack-tag">PyTorch</span>
+                        <span class="stack-tag">HuggingFace</span>
+                    </div>
+                    <div class="tool-links">
+                        <a href="https://github.com/UKPLab/sentence-transformers" target="_blank" class="tool-link tl-github">GitHub</a>
+                        <a href="https://www.sbert.net" target="_blank" class="tool-link tl-ext">sbert.net</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">📐</div>
+                        <div>
+                            <h3>FAISS</h3>
+                            <span class="tool-badge badge-oss">Open Source</span>
+                        </div>
+                    </div>
+                    <p class="tool-desc">Библиотека Meta для быстрого поиска ближайших соседей в пространствах высокой размерности. GPU-ускорение, миллиарды векторов, десятки алгоритмов квантизации и индексации.</p>
+                    <div class="tool-stack">
+                        <span class="stack-tag">C++</span>
+                        <span class="stack-tag">Python</span>
+                        <span class="stack-tag">CUDA</span>
+                    </div>
+                    <div class="tool-links">
+                        <a href="https://github.com/facebookresearch/faiss" target="_blank" class="tool-link tl-github">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ИНФРАСТРУКТУРА ═══ -->
+        <section class="sp-section sp-alt">
+            <div class="sp-inner">
+                <h2 class="sp-title">Инфраструктура и протоколы</h2>
+                <p class="sp-caption">Протоколы, спецификации и инфраструктурные проекты, которые мы используем или планируем интегрировать.</p>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🔌</div>
+                        <div>
+                            <h3>Model Context Protocol (MCP)</h3>
+                            <span class="tool-badge badge-oss">Open Source</span>
+                        </div>
+                    </div>
+                    <p class="tool-desc">Открытый стандарт Anthropic для подключения ИИ-агентов к внешним инструментам и данным. «USB-C для ИИ» — единый протокол вместо кастомных интеграций. Планируем MCP-сервер для наших алгоритмов.</p>
+                    <div class="tool-stack">
+                        <span class="stack-tag">TypeScript</span>
+                        <span class="stack-tag">JSON-RPC</span>
+                        <span class="stack-tag">Спецификация</span>
+                    </div>
+                    <div class="tool-links">
+                        <a href="https://github.com/modelcontextprotocol/servers" target="_blank" class="tool-link tl-github">GitHub (серверы)</a>
+                        <a href="https://modelcontextprotocol.io" target="_blank" class="tool-link tl-ext">Спецификация</a>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🗂</div>
+                        <div>
+                            <h3>Awesome MCP Servers</h3>
+                            <span class="tool-badge badge-oss">Open Source</span>
+                        </div>
+                    </div>
+                    <p class="tool-desc">Курируемый каталог MCP-серверов от сообщества. Прокси, утилиты, интеграции с базами данных, внешними API, файловыми системами. Ориентир для нашего собственного MCP-сервера.</p>
+                    <div class="tool-links">
+                        <a href="https://github.com/punkpeye/awesome-mcp-servers" target="_blank" class="tool-link tl-github">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="logo-epsilon sm">ε</span>
+                <span>&copy; 2026 Heuristics Group</span>
+            </div>
+            <div class="footer-right">
+                <span>εὑρίσκω — «нахожу, открываю»</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

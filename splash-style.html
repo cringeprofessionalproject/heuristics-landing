@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heuristics | Splash Style</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="splash-style.css">
+</head>
+<body>
+    <!-- AoE pulse rings -->
+    <div class="aoe-bg">
+        <div class="aoe-ring ring-1"></div>
+        <div class="aoe-ring ring-2"></div>
+        <div class="aoe-ring ring-3"></div>
+    </div>
+
+    <a href="/" class="back-link">&larr; Назад</a>
+
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="16" r="4" fill="#00D4AA"/>
+                    <circle cx="16" cy="16" r="9" stroke="#00D4AA" stroke-width="1" opacity="0.6"/>
+                    <circle cx="16" cy="16" r="14" stroke="#00D4AA" stroke-width="0.7" opacity="0.3"/>
+                </svg>
+            </div>
+            <span class="logo-text">HEURISTICS</span>
+        </div>
+        <nav class="nav">
+            <a href="#">Платформа</a>
+            <a href="#">Технология</a>
+            <a href="#">Кейсы</a>
+        </nav>
+        <button class="btn-accent" id="themeToggle" onclick="toggleTheme()">
+            <span class="theme-icon">◐</span>
+        </button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                Система активна &middot; 14.2M артикулов
+            </div>
+            <h1>Подсветка <span class="accent">рынка.</span><br>Точность <span class="accent">решений.</span></h1>
+            <p class="hero-sub">Эвристические алгоритмы Heuristics Group превращают хаос рыночных данных в конкурентное преимущество. AI-сопоставление артикулов, gap-анализ и разведка — всё в одной платформе.</p>
+            <div class="hero-actions">
+                <button class="btn-primary">Запросить демо</button>
+                <button class="btn-ghost">Документация &rarr;</button>
+            </div>
+        </section>
+
+        <section class="kpi-strip">
+            <div class="kpi">
+                <div class="kpi-val">99.8<span class="kpi-unit">%</span></div>
+                <div class="kpi-label">Точность матчинга</div>
+            </div>
+            <div class="kpi-sep"></div>
+            <div class="kpi">
+                <div class="kpi-val">2.4<span class="kpi-unit">сек</span></div>
+                <div class="kpi-label">На 100K артикулов</div>
+            </div>
+            <div class="kpi-sep"></div>
+            <div class="kpi">
+                <div class="kpi-val">48<span class="kpi-unit">ч</span></div>
+                <div class="kpi-label">До интеграции</div>
+            </div>
+            <div class="kpi-sep"></div>
+            <div class="kpi">
+                <div class="kpi-val">9<span class="kpi-unit">кат</span></div>
+                <div class="kpi-label">Категорий СКС</div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-header">
+                    <span class="feature-tag match">MATCH</span>
+                    <span class="feature-num">01</span>
+                </div>
+                <h3>Семантический матчинг</h3>
+                <p>Система не ищет текст. Она извлекает физические свойства — сечение, материал, ГОСТ — и находит аналоги по смыслу, а не по символам.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-header">
+                    <span class="feature-tag gap">GAP</span>
+                    <span class="feature-num">02</span>
+                </div>
+                <h3>Gap-анализ рынка</h3>
+                <p>Кросс-анализ ассортимента трёх крупнейших дистрибьюторов. Подсветка дефицитных позиций и незанятых ценовых ниш.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-header">
+                    <span class="feature-tag found">FOUND</span>
+                    <span class="feature-num">03</span>
+                </div>
+                <h3>Мгновенная интеграция</h3>
+                <p>REST API для 1С, SAP и Axapta. Загрузка PDF и Excel-смет. Результат — готовое коммерческое предложение с вашими аналогами.</p>
+            </div>
+        </section>
+
+        <section class="product-block">
+            <div class="product-text">
+                <span class="product-label">ФЛАГМАН</span>
+                <h2>Система SPLASH</h2>
+                <p>CI-платформа для кабельной отрасли. Подсвечивает весь рынок: что есть у конкурентов, чего нет у тебя, и чем заменить.</p>
+                <div class="product-list">
+                    <div class="pl-item"><span class="found-dot"></span> Парсинг PDF-смет конкурентов</div>
+                    <div class="pl-item"><span class="found-dot"></span> Автоподбор аналогов из наличия</div>
+                    <div class="pl-item"><span class="found-dot"></span> Экспорт в ERP за 1 клик</div>
+                </div>
+            </div>
+            <div class="product-terminal">
+                <div class="term-bar">
+                    <span class="term-dot"></span>
+                    <span class="term-dot"></span>
+                    <span class="term-dot"></span>
+                    <span class="term-title">splash-cli</span>
+                </div>
+                <div class="term-body">
+                    <div class="term-line"><span class="t-prompt">$</span> splash analyze smeta_competitor.pdf</div>
+                    <div class="term-line dim">[INFO] Парсинг 487 позиций...</div>
+                    <div class="term-line dim">[INFO] Векторный поиск аналогов...</div>
+                    <div class="term-line accent">[DONE] <span class="found-text">485 аналогов найдено</span> (99.6%)</div>
+                    <div class="term-line gap-text">[WARN] 2 позиции без аналога (гэп)</div>
+                    <div class="term-line"><span class="t-prompt">$</span> splash export --format xlsx</div>
+                    <div class="term-line accent">[DONE] КП_готовое.xlsx сохранён</div>
+                    <div class="term-cursor">█</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span>&copy; 2026 Heuristics Group</span>
+        <span>heuristics.ru</span>
+    </footer>
+
+    <script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+    }
+    </script>
+</body>
+</html>

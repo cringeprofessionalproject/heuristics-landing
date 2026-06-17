@@ -1,0 +1,226 @@
+:root {
+    --bg-color: #000000;
+    --primary: #00ff41;
+    --secondary: #008f11;
+    --alert: #ff003c;
+    --border: #333333;
+    --font-term: 'Share Tech Mono', monospace;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--primary);
+    font-family: var(--font-term);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+/* CRT Effect Overlay */
+body::after {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 999;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+}
+
+::selection {
+    background: var(--primary);
+    color: var(--bg-color);
+}
+
+.back-nav {
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+.back-nav a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.back-nav a:hover {
+    background: var(--primary);
+    color: var(--bg-color);
+}
+
+.terminal-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.sys-header {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid var(--primary);
+    padding: 10px;
+    margin-bottom: 20px;
+    background: var(--secondary);
+    color: var(--bg-color);
+    font-weight: bold;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 20px;
+}
+
+.block {
+    border: 1px solid var(--border);
+    padding: 20px;
+    position: relative;
+    background: rgba(0,255,65,0.02);
+}
+
+.block-title {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background: var(--bg-color);
+    padding: 0 10px;
+    font-size: 0.8rem;
+    color: var(--secondary);
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.nav-menu li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px dashed var(--border);
+}
+
+.nav-menu li:hover, .nav-menu li.active {
+    background: var(--primary);
+    color: var(--bg-color);
+}
+
+.mt-auto { margin-top: auto; }
+
+.metric {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid var(--border);
+    padding: 5px;
+}
+
+.hero {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 4rem;
+    margin: 0 0 20px 0;
+    line-height: 1;
+}
+
+.glitch {
+    position: relative;
+    color: var(--primary);
+}
+
+.sys-text {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    font-family: var(--font-term);
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 2px solid var(--primary);
+    background: var(--primary);
+    color: var(--bg-color);
+    text-transform: uppercase;
+}
+
+.btn.outline {
+    background: transparent;
+    color: var(--primary);
+}
+
+.btn:hover {
+    background: var(--bg-color);
+    color: var(--primary);
+}
+
+.btn.outline:hover {
+    background: var(--primary);
+    color: var(--bg-color);
+}
+
+.data-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.feed-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    font-size: 0.9rem;
+}
+
+.feed-list li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #111;
+    padding-bottom: 5px;
+}
+
+.time { color: var(--secondary); margin-right: 10px; }
+.log { font-weight: bold; }
+.log.warn { color: var(--alert); }
+.acc { float: right; color: var(--secondary); }
+
+.sys-subtitle {
+    font-size: 1.5rem;
+    margin: 10px 0 20px 0;
+    border-bottom: 2px solid var(--primary);
+    display: inline-block;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.data-table td {
+    padding: 10px;
+    border: 1px solid var(--border);
+}
+
+@media (max-width: 900px) {
+    .grid-layout { grid-template-columns: 1fr; }
+    .data-split { grid-template-columns: 1fr; }
+    h1 { font-size: 2.5rem; }
+}
