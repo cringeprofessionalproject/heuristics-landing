@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heuristics Group | Дизайн-концепты</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #0a0a0a;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 5rem 2rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 4rem;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        .card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-4px);
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .card-num {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #555;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .card h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0 0 0.75rem 0;
+            letter-spacing: -0.5px;
+        }
+        
+        .card p {
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.6;
+            color: #888;
+        }
+        
+        .badge-new {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: #6366f1;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        
+        @media (max-width: 900px) {
+            .cards { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .cards { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Heuristics Group</h1>
+    <p class="subtitle">13 дизайн-концепций &mdash; выберите свою</p>
+    
+    <div class="cards">
+        <a href="/scientific.html" class="card">
+            <div class="card-num">Концепт 01</div>
+            <h2>Deep Science</h2>
+            <p>Научная организация. Миллиметровка, моноширинные шрифты, академический минимализм.</p>
+        </a>
+        
+        <a href="/premium.html" class="card">
+            <div class="card-num">Концепт 02</div>
+            <h2>Premium AI</h2>
+            <p>AI-холдинг. Графитовая тьма, матовое стекло, градиентные свечения.</p>
+        </a>
+        
+        <a href="/terminal.html" class="card">
+            <div class="card-num">Концепт 03</div>
+            <h2>B2B Terminal</h2>
+            <p>Bloomberg-доминатор. CRT-монитор, неон, лог матчинга в реальном времени.</p>
+        </a>
+
+        <a href="/brutal.html" class="card">
+            <div class="card-num">Концепт 04</div>
+            <h2>Neo-Brutalism</h2>
+            <p>Дерзкий и уверенный. Жирные обводки, жесткие тени, желтый + синий.</p>
+        </a>
+
+        <a href="/blueprint.html" class="card">
+            <div class="card-num">Концепт 05</div>
+            <h2>Blueprint</h2>
+            <p>Инженерный чертеж. Синька, оси, перекрестия. Для тех, кто строит системы.</p>
+        </a>
+
+        <a href="/swiss.html" class="card">
+            <div class="card-num">Концепт 06</div>
+            <h2>Swiss Grid</h2>
+            <p>Швейцарская типографика. Огромные шрифты, воздух, красный акцент.</p>
+        </a>
+
+        <a href="/noir.html" class="card">
+            <div class="card-num">Концепт 07</div>
+            <h2>Noir Luxury</h2>
+            <p>Ультра-премиум. Чёрное пространство, антиквенный шрифт, золотые акценты. Как Balenciaga, только для B2B.</p>
+        </a>
+
+        <a href="/cosmos.html" class="card">
+            <div class="card-num">Концепт 08</div>
+            <h2>Cosmos</h2>
+            <p>Живой интерактив. Созвездия частиц на фоне, орбитальные анимации, индиго-фиолетовая палитра.</p>
+        </a>
+
+        <a href="/editorial.html" class="card">
+            <div class="card-num">Концепт 09</div>
+            <h2>Editorial</h2>
+            <p>Журнал MIT Technology Review. Тёплая бумага, антиквенные заголовки, буквица, колонки.</p>
+        </a>
+
+        <a href="/splash-style.html" class="card">
+            <div class="card-num">Концепт 10</div>
+            <h2>Splash Native <span class="badge-new">NEW</span></h2>
+            <p>Стиль из брендбука СПЛЭШ. Fira Sans, бирюзовый #00D4AA, AoE-пульс, тёмная/светлая тема. Родной дизайн.</p>
+        </a>
+
+        <a href="/oracle-style.html" class="card">
+            <div class="card-num">Концепт 11</div>
+            <h2>Oracle Enterprise <span class="badge-new">NEW</span></h2>
+            <p>Стиль Oracle. Utility bar, хлебные крошки, красный акцент, корпоративный футер на 4 колонки. Серьёзный бизнес.</p>
+        </a>
+
+        <a href="/precision.html" class="card">
+            <div class="card-num">Концепт 12</div>
+            <h2>Precision Tech <span class="badge-new">NEW</span></h2>
+            <p>Европа × Япония. Шрифт Outfit, иероглифы, гексагональные формы, сканирующие линии. Инженерная точность.</p>
+        </a>
+
+        <a href="/institution.html" class="card" style="grid-column: 1 / -1; border-color: rgba(139, 58, 42, 0.3);">
+            <div class="card-num" style="color: #8b3a2a;">Концепт 13 — Рекомендация</div>
+            <h2>Institution <span class="badge-new" style="background: #8b3a2a;">★</span></h2>
+            <p>Архаичная институция. Древнегреческий корень εὑρίσκω, мраморная палитра, терракотовый акцент, параграфы §, греческие буквы αβγ. Как если бы Платон основал tech-компанию. Самый серьёзный вариант.</p>
+        </a>
+    </div>
+</body>
+</html>
