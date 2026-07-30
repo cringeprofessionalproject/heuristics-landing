@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPLASH External API — Heuristics</title>
-    <meta name="description" content="Документация SPLASH External Module API. Подключайте свои модули к SPLASH 2.0: чтение каталога, LLM-прокси, изолированное хранение результатов.">
+    <meta name="description" content="Документация SPLASH External Module API. Полный доступ к датасету SPLASH 2.0: консолидированные данные о продуктах, LLM-прокси, хранение результатов.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -111,6 +111,16 @@
             line-height: 1.2;
             margin-bottom: 20px;
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .doc-section h2 .sec-icon {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+            opacity: 0.5;
         }
 
         .doc-section h3 {
@@ -254,6 +264,16 @@
             font-size: 1.05rem;
             font-weight: 500;
             margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .arch-card h4 svg {
+            width: 18px;
+            height: 18px;
+            opacity: 0.5;
+            flex-shrink: 0;
         }
 
         .arch-card p {
@@ -405,6 +425,7 @@
                 <a href="/#method">Метод</a>
                 <a href="instruments.html">Инструменты</a>
                 <a href="publications.html">Публикации</a>
+                <a href="api.html" class="nav-active">API</a>
                 <a href="/#contact">Контакт</a>
             </nav>
         </div>
@@ -415,7 +436,7 @@
             <div class="page-hero-inner">
                 <div class="section-marker">§ IV — API Reference</div>
                 <h1>SPLASH<br>External API</h1>
-                <p class="page-hero-sub">Подключайте свои модули к SPLASH&nbsp;2.0. Полный read-only доступ к каталогу, LLM-прокси с автоматическим failover, изолированное хранение результатов.</p>
+                <p class="page-hero-sub">Полный доступ к датасету SPLASH&nbsp;2.0: консолидированные данные о продуктах, технические параметры, конкурентные аналоги, LLM-прокси и хранение результатов.</p>
             </div>
         </section>
 
@@ -426,17 +447,20 @@
                 <a href="#quickstart">Быстрый старт</a>
                 <a href="#architecture" class="toc-sub">Архитектура</a>
                 <a href="#auth">Аутентификация</a>
-                <a href="#products">Каталог товаров</a>
-                <a href="#products-list" class="toc-sub">Список товаров</a>
-                <a href="#products-detail" class="toc-sub">Детали товара</a>
+                <a href="#dataset">Датасет</a>
+                <a href="#dataset-list" class="toc-sub">Список продуктов</a>
+                <a href="#dataset-detail" class="toc-sub">Детали продукта</a>
+                <a href="#dataset-categories" class="toc-sub">Метакатегории</a>
                 <a href="#llm">LLM Proxy</a>
                 <a href="#cards">Карточки</a>
                 <a href="#data">Хранилище</a>
-                <a href="#params">Параметры</a>
                 <a href="#errors">Ошибки</a>
                 <a href="#example">Пример на Python</a>
                 <a href="#ai-context">Контекст для AI</a>
-                <button class="toc-copy-btn" onclick="copyAiContext()">📋 Скопировать AI-контекст</button>
+                <button class="toc-copy-btn" onclick="copyAiContext()">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;margin-right:4px"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                    Скопировать AI-контекст
+                </button>
             </aside>
 
             <!-- ═══ CONTENT ═══ -->
@@ -444,8 +468,11 @@
 
                 <!-- QUICKSTART -->
                 <div class="doc-section" id="quickstart">
-                    <h2>Быстрый старт</h2>
-                    <p>Все запросы требуют заголовок <code>X-API-Key</code>. Ключ выдаётся администратором системы.</p>
+                    <h2>
+                        <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        Быстрый старт
+                    </h2>
+                    <p>Все запросы требуют заголовок <code>X-API-Key</code>. Ключ выдаётся администратором.</p>
 
                     <div class="callout callout-base">
                         <strong>Base URL:</strong> <code>https://splash.heuristics.ru/api/ext/v1</code>
@@ -453,11 +480,11 @@
 
                     <div class="code-block">
                         <div class="code-label">bash</div>
-                        <pre><code># Проверить ключ
+                        <pre><code># Проверить ключ и лимиты
 curl -H "X-API-Key: ext_ваш_ключ" \
   https://splash.heuristics.ru/api/ext/v1/me
 
-# Получить товары
+# Получить первые 5 продуктов
 curl -H "X-API-Key: ext_ваш_ключ" \
   "https://splash.heuristics.ru/api/ext/v1/products?limit=5"</code></pre>
                         <button class="code-copy" onclick="copyCode(this)">copy</button>
@@ -466,61 +493,72 @@ curl -H "X-API-Key: ext_ваш_ключ" \
 
                 <!-- ARCHITECTURE -->
                 <div class="doc-section" id="architecture">
-                    <h2>Архитектура</h2>
-                    <p>Три изолированных канала с&nbsp;разным уровнем доступа:</p>
+                    <h2>
+                        <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                        Архитектура
+                    </h2>
+                    <p>API предоставляет три канала доступа к системе:</p>
 
                     <div class="arch-grid">
                         <div class="arch-card">
-                            <h4>📖 Чтение</h4>
-                            <p>Read-only доступ к каталогу SUPRLAN: товары, параметры, аналоги, метакатегории. Основная БД не затрагивается.</p>
+                            <h4>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                                Датасет
+                            </h4>
+                            <p>Консолидированные данные: stock + product_meta + content + аналоги + линейка. Read-only.</p>
                         </div>
                         <div class="arch-card">
-                            <h4>🤖 LLM Proxy</h4>
-                            <p>Промпты через наш API — нейросеть с автоматическим переключением на резервную при сбое. Rate limit: 50 запросов/час.</p>
+                            <h4>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M4.22 4.22l2.83 2.83m9.9 9.9l2.83 2.83M1 12h4m14 0h4M4.22 19.78l2.83-2.83m9.9-9.9l2.83-2.83"/></svg>
+                                LLM Proxy
+                            </h4>
+                            <p>Промпты через единый API — нейросеть с автоматическим failover при сбое провайдера.</p>
                         </div>
                         <div class="arch-card">
-                            <h4>💾 Запись</h4>
-                            <p>Результаты сохраняются в изолированную БД <code>splash_modules</code>. Основная система полностью защищена.</p>
+                            <h4>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                                Хранение
+                            </h4>
+                            <p>Сохраняйте результаты генерации — карточки привязаны к вашему ключу и модулю.</p>
                         </div>
                     </div>
 
                     <div class="code-block">
                         <div class="code-label">схема</div>
-                        <pre><code>Ваш модуль ──► X-API-Key ──► ext-auth ──► Rate Limiter
-                                         │
-                       ┌─────────────────┼─────────────────┐
-                       ▼                 ▼                 ▼
-                 splash2 DB        LLM (DS/Wormsoft)  splash_modules DB
-                 (SELECT only)     (proxy + failover)  (INSERT/UPDATE/DELETE)</code></pre>
+                        <pre><code>Ваш модуль ──► X-API-Key ──► ext-auth middleware
+                                    │
+                  ┌─────────────────┼─────────────────┐
+                  ▼                 ▼                 ▼
+            SPLASH 2.0 DB     LLM (DeepSeek       Module Storage
+            (read-only)        + Wormsoft)         (read / write)
+            ├─ stock           (auto failover)     ├─ module_cards
+            ├─ product_meta                        └─ module_data
+            ├─ product_content
+            └─ analog_candidates</code></pre>
                     </div>
                 </div>
 
                 <!-- AUTH -->
                 <div class="doc-section" id="auth">
-                    <h2>Аутентификация</h2>
-                    <p>Каждый запрос должен содержать заголовок <code>X-API-Key</code> со значением ключа.</p>
-                    <p>Ключ начинается с префикса <code>ext_</code> и содержит 48 hex-символов. На сервере хранится только SHA-256 хеш — если ключ утерян, нужно создать новый.</p>
+                    <h2>
+                        <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                        Аутентификация
+                    </h2>
+                    <p>Каждый запрос должен содержать заголовок <code>X-API-Key</code>. Ключ начинается с <code>ext_</code>, содержит 48 hex-символов. На сервере хранится только SHA-256 хеш.</p>
 
                     <div class="code-block">
-                        <div class="code-label">request</div>
-                        <pre><code>GET /api/ext/v1/me HTTP/1.1
-Host: splash.heuristics.ru
-X-API-Key: ext_6b59c4561c69467922f9b6524415b6d5...</code></pre>
-                    </div>
-
-                    <div class="code-block">
-                        <div class="code-label">response — 200</div>
+                        <div class="code-label">GET /me — response</div>
                         <pre><code>{
-  "name": "Иван Петров",
+  "name": "Module Author",
   "email": "dev@example.com",
   "rate_limit": {
-    "llm_per_hour": 50,
-    "max_tokens_per_request": 16000
+    "llm_per_hour": 500,
+    "max_tokens_per_request": 128000
   },
   "usage": {
     "requests_last_hour": 3,
     "llm_requests_last_hour": 1,
-    "llm_remaining": 49,
+    "llm_remaining": 499,
     "total_requests": 127,
     "total_tokens": 45000
   }
@@ -528,24 +566,28 @@ X-API-Key: ext_6b59c4561c69467922f9b6524415b6d5...</code></pre>
                     </div>
                 </div>
 
-                <!-- PRODUCTS -->
-                <div class="doc-section" id="products">
-                    <h2>Каталог товаров</h2>
-                    <p>Read-only доступ к базе SUPRLAN и конкурентов. Все эндпоинты не учитываются в LLM rate limit.</p>
+                <!-- DATASET -->
+                <div class="doc-section" id="dataset">
+                    <h2>
+                        <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                        Датасет
+                    </h2>
+                    <p>Консолидированный read-only доступ ко всем данным SPLASH 2.0. Каждый продукт — это объединение таблиц <code>stock</code> (цена, остатки), <code>product_meta</code> (категория, технические параметры), <code>product_content</code> (описание, изображения) и <code>analog_candidates</code> (конкурентные аналоги со скоринговыми оценками).</p>
 
                     <table class="api-table">
                         <thead>
                             <tr><th>Метод</th><th>Путь</th><th>Описание</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td><span class="method m-get">GET</span></td><td><code>/me</code></td><td>Ваш ключ, лимиты, текущее использование</td></tr>
-                            <tr><td><span class="method m-get">GET</span></td><td><code>/categories</code></td><td>Справочник метакатегорий (slug + display_name)</td></tr>
-                            <tr><td><span class="method m-get">GET</span></td><td><code>/products</code></td><td>Список товаров — пагинация, поиск, фильтр</td></tr>
-                            <tr><td><span class="method m-get">GET</span></td><td><code>/products/:article</code></td><td>Полные данные: параметры, описание, конкуренты, линейка</td></tr>
+                            <tr><td><span class="method m-get">GET</span></td><td><code>/me</code></td><td>Статус ключа, лимиты, текущее использование</td></tr>
+                            <tr><td><span class="method m-get">GET</span></td><td><code>/categories</code></td><td>Справочник метакатегорий (slug + display_name + items_count)</td></tr>
+                            <tr><td><span class="method m-get">GET</span></td><td><code>/products</code></td><td>Список продуктов — пагинация, поиск, фильтр по категории</td></tr>
+                            <tr><td><span class="method m-get">GET</span></td><td><code>/products/:article</code></td><td>Полные консолидированные данные по одному продукту</td></tr>
                         </tbody>
                     </table>
 
-                    <h3 id="products-list">GET /products</h3>
+                    <h3 id="dataset-list">GET /products</h3>
+                    <p>Возвращает список продуктов с базовыми полями из stock + product_meta.</p>
 
                     <table class="api-table">
                         <thead>
@@ -554,13 +596,26 @@ X-API-Key: ext_6b59c4561c69467922f9b6524415b6d5...</code></pre>
                         <tbody>
                             <tr><td><code>limit</code></td><td>int</td><td>50</td><td>Кол-во записей (max 200)</td></tr>
                             <tr><td><code>offset</code></td><td>int</td><td>0</td><td>Смещение для пагинации</td></tr>
-                            <tr><td><code>search</code></td><td>string</td><td>—</td><td>Поиск по артикулу или наименованию</td></tr>
+                            <tr><td><code>search</code></td><td>string</td><td>—</td><td>Поиск по артикулу или наименованию (ILIKE)</td></tr>
                             <tr><td><code>category</code></td><td>string</td><td>—</td><td>Фильтр по slug метакатегории</td></tr>
                         </tbody>
                     </table>
 
-                    <h3 id="products-detail">GET /products/:article</h3>
-                    <p>Возвращает всё для генерации описания: параметры, конкурентов, линейку.</p>
+                    <div class="code-block">
+                        <div class="code-label">response — каждый элемент products[]</div>
+                        <pre><code>{
+  "article": "01-0214-5",
+  "name": "SUPRLAN Premium UTP 5e 2x2x0,51 Cu PVC In. 500м",
+  "price": 12500,
+  "stock_qty": 340,
+  "meta_category": "lan_cable",
+  "key_params": { "category_range": "Cat.5e", "pairs": "2x2", "shielding": "UTP" },
+  "extracted_params": { "conductor": "Cu", "jacket": "PVC" }
+}</code></pre>
+                    </div>
+
+                    <h3 id="dataset-detail">GET /products/:article</h3>
+                    <p>Полные данные продукта: объединение stock + product_meta + product_content + аналоги + линейка (товары той же категории). Всё, что нужно для генерации описания.</p>
 
                     <div class="code-block">
                         <div class="code-label">response — 200</div>
@@ -569,13 +624,17 @@ X-API-Key: ext_6b59c4561c69467922f9b6524415b6d5...</code></pre>
   "name": "Коннекторы 8P8C FTP 5e 3U (RJ-45) уп. 100шт",
   "brand": "SUPRLAN",
   "price": 1489,
+  "stock_qty": 2500,
   "meta_category": "rj45_connector",
   "key_params": {
     "shielding": "FTP",
     "category_range": "Cat.5e",
     "conductor_type": "Universal"
   },
-  "raw_description": "Коннекторы RJ-45 SUPRLAN для монтажа...",
+  "extracted_params": { ... },
+  "class_signature": "rj45_connector:FTP:Cat.5e:Universal",
+  "raw_description": "Полное описание со страницы сайта (до 5000 символов)...",
+  "images": ["https://suprlan.ru/upload/image1.jpg"],
   "competitors": [
     {
       "article": "RJ45-FTP-5E",
@@ -583,40 +642,50 @@ X-API-Key: ext_6b59c4561c69467922f9b6524415b6d5...</code></pre>
       "name": "Коннекторы RJ45 FTP Cat.5e",
       "price": 1200,
       "score": 0.95,
+      "status": "approved",
+      "axis_scores": { "shielding": 1.0, "category_range": 1.0 },
       "key_params": { "shielding": "FTP", "category_range": "Cat.5e" }
     }
   ],
   "lineup": [
-    { "article": "10-0202", "name": "Коннекторы 8P8C UTP 5e", "price": 989 }
+    { "article": "10-0202", "name": "Коннекторы 8P8C UTP 5e", "price": 989, "key_params": {...} },
+    { "article": "10-0301", "name": "Коннекторы 8P8C FTP 6", "price": 2100, "key_params": {...} }
   ]
 }</code></pre>
                         <button class="code-copy" onclick="copyCode(this)">copy</button>
+                    </div>
+
+                    <h3 id="dataset-categories">GET /categories</h3>
+                    <p>Справочник всех метакатегорий. Каждая категория имеет <code>slug</code> (для фильтрации), <code>display_name</code> и <code>items_count</code>.</p>
+
+                    <div class="code-block">
+                        <div class="code-label">response</div>
+                        <pre><code>{
+  "categories": [
+    { "slug": "lan_cable", "display_name": "LAN Cable", "items_count": 245 },
+    { "slug": "patch_cords", "display_name": "Патч-корды", "items_count": 180 },
+    { "slug": "rj45_connector", "display_name": "Коннекторы RJ-45", "items_count": 42 }
+  ]
+}</code></pre>
                     </div>
                 </div>
 
                 <!-- LLM -->
                 <div class="doc-section" id="llm">
-                    <h2>LLM Proxy</h2>
-                    <p>Отправляйте промпт — получайте ответ от нейросети. При сбое основного провайдера система автоматически переключается на резервный.</p>
+                    <h2>
+                        <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M4.22 4.22l2.83 2.83m9.9 9.9l2.83 2.83M1 12h4m14 0h4M4.22 19.78l2.83-2.83m9.9-9.9l2.83-2.83"/></svg>
+                        LLM Proxy
+                    </h2>
+                    <p>Единый эндпоинт для генерации текстов. При сбое основного провайдера — автоматическое переключение на резервный, без изменений на стороне клиента.</p>
 
-                    <table class="api-table">
-                        <thead>
-                            <tr><th>Метод</th><th>Путь</th><th>Описание</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><span class="method m-post">POST</span></td><td><code>/llm/chat</code></td><td>Промпт → ответ от нейросети</td></tr>
-                        </tbody>
-                    </table>
-
-                    <h3>Тело запроса</h3>
                     <table class="api-table">
                         <thead>
                             <tr><th>Поле</th><th>Тип</th><th>Обяз.</th><th>Описание</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td><code>prompt</code></td><td>string</td><td>✅</td><td>Текст промпта</td></tr>
+                            <tr><td><code>prompt</code></td><td>string</td><td>✓</td><td>Текст промпта</td></tr>
                             <tr><td><code>system</code></td><td>string</td><td>—</td><td>Системный промпт</td></tr>
-                            <tr><td><code>max_tokens</code></td><td>int</td><td>—</td><td>Максимум токенов (default 8000, max 16000)</td></tr>
+                            <tr><td><code>max_tokens</code></td><td>int</td><td>—</td><td>Максимум токенов ответа (default 8000)</td></tr>
                             <tr><td><code>temperature</code></td><td>float</td><td>—</td><td>Температура генерации (0–1, default 0)</td></tr>
                         </tbody>
                     </table>
@@ -646,16 +715,15 @@ X-API-Key: ext_ваш_ключ
   "time_ms": 8500
 }</code></pre>
                     </div>
-
-                    <div class="callout callout-warn">
-                        <strong>⏱ Rate Limit:</strong> 50 LLM-запросов в час. Заголовки ответа <code>X-RateLimit-Limit</code> и <code>X-RateLimit-Remaining</code> показывают остаток.
-                    </div>
                 </div>
 
                 <!-- CARDS -->
                 <div class="doc-section" id="cards">
-                    <h2>Карточки</h2>
-                    <p>Сохраняйте результаты генерации в изолированную БД. Ключ уникальности: <code>(api_key_id, article, module_name)</code>. Повторный POST обновит существующую карточку.</p>
+                    <h2>
+                        <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                        Карточки
+                    </h2>
+                    <p>Сохраняйте результаты генерации. Ключ уникальности: <code>(api_key_id, article, module_name)</code>. Повторный POST с теми же article + module_name обновит существующую карточку (upsert).</p>
 
                     <table class="api-table">
                         <thead>
@@ -670,18 +738,19 @@ X-API-Key: ext_ваш_ключ
                     </table>
 
                     <div class="code-block">
-                        <div class="code-label">POST /cards — request</div>
+                        <div class="code-label">POST /cards — request body</div>
                         <pre><code>{
   "article": "10-0201",
   "module_name": "my_generator_v1",
   "sections": {
     "A1": "# Полное описание\nПрофессиональный коннектор...",
-    "C1": "Коннектор SUPRLAN RJ-45 FTP Cat.5e",
+    "C1": "Коннектор SUPRLAN RJ-45 FTP Cat.5e — краткое описание",
     "C2": "Надёжное экранированное подключение"
   },
   "metadata": {
     "version": "1.0",
-    "generation_time_ms": 45000
+    "generation_time_ms": 45000,
+    "model": "deepseek-v4-pro"
   }
 }</code></pre>
                         <button class="code-copy" onclick="copyCode(this)">copy</button>
@@ -690,15 +759,18 @@ X-API-Key: ext_ваш_ключ
 
                 <!-- DATA STORE -->
                 <div class="doc-section" id="data">
-                    <h2>Хранилище данных</h2>
-                    <p>Произвольное key-value хранилище для конфигов, состояния, промежуточных результатов модуля.</p>
+                    <h2>
+                        <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        Хранилище данных
+                    </h2>
+                    <p>Key-value хранилище для конфигурации модуля, промежуточных результатов и состояния.</p>
 
                     <table class="api-table">
                         <thead>
                             <tr><th>Метод</th><th>Путь</th><th>Описание</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td><span class="method m-put">PUT</span></td><td><code>/data/:key</code></td><td>Сохранить JSON-данные</td></tr>
+                            <tr><td><span class="method m-put">PUT</span></td><td><code>/data/:key</code></td><td>Сохранить JSON-данные по ключу</td></tr>
                             <tr><td><span class="method m-get">GET</span></td><td><code>/data/:key</code></td><td>Получить сохранённые данные</td></tr>
                         </tbody>
                     </table>
@@ -709,29 +781,12 @@ X-API-Key: ext_ваш_ключ
                     </div>
                 </div>
 
-                <!-- PARAMS -->
-                <div class="doc-section" id="params">
-                    <h2>Общие параметры</h2>
-
-                    <h3>Пагинация</h3>
-                    <p>Эндпоинты <code>/products</code> и <code>/cards</code> поддерживают параметры <code>limit</code> (max 200) и <code>offset</code>. В ответе возвращается <code>total</code>.</p>
-
-                    <h3>Rate Limit заголовки</h3>
-                    <p>LLM-эндпоинт возвращает заголовки:</p>
-                    <table class="api-table">
-                        <thead>
-                            <tr><th>Заголовок</th><th>Описание</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><code>X-RateLimit-Limit</code></td><td>Максимум LLM-запросов в час (50)</td></tr>
-                            <tr><td><code>X-RateLimit-Remaining</code></td><td>Осталось запросов в текущем окне</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
                 <!-- ERRORS -->
                 <div class="doc-section" id="errors">
-                    <h2>Ошибки</h2>
+                    <h2>
+                        <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+                        Ошибки
+                    </h2>
                     <p>Все ошибки возвращают JSON <code>{ "error": "описание" }</code>.</p>
 
                     <table class="api-table">
@@ -739,18 +794,22 @@ X-API-Key: ext_ваш_ключ
                             <tr><th>Код</th><th>Значение</th><th>Когда</th></tr>
                         </thead>
                         <tbody>
+                            <tr><td><span class="dot-err status-dot"></span><code>400</code></td><td>Bad Request</td><td>Отсутствуют обязательные поля (например, <code>prompt</code>)</td></tr>
                             <tr><td><span class="dot-err status-dot"></span><code>401</code></td><td>Unauthorized</td><td>Нет заголовка <code>X-API-Key</code> или ключ не найден</td></tr>
                             <tr><td><span class="dot-err status-dot"></span><code>403</code></td><td>Forbidden</td><td>Ключ деактивирован</td></tr>
-                            <tr><td><span class="dot-err status-dot"></span><code>404</code></td><td>Not Found</td><td>Товар или карточка не найдены</td></tr>
-                            <tr><td><span class="dot-warn status-dot"></span><code>429</code></td><td>Rate Limited</td><td>Превышен лимит LLM-запросов (50/час)</td></tr>
-                            <tr><td><span class="dot-err status-dot"></span><code>500</code></td><td>Server Error</td><td>Внутренняя ошибка (БД, LLM, сеть)</td></tr>
+                            <tr><td><span class="dot-err status-dot"></span><code>404</code></td><td>Not Found</td><td>Продукт или карточка не найдены</td></tr>
+                            <tr><td><span class="dot-warn status-dot"></span><code>429</code></td><td>Rate Limited</td><td>Превышен лимит LLM-запросов</td></tr>
+                            <tr><td><span class="dot-err status-dot"></span><code>500</code></td><td>Server Error</td><td>Внутренняя ошибка</td></tr>
                         </tbody>
                     </table>
                 </div>
 
                 <!-- PYTHON EXAMPLE -->
                 <div class="doc-section" id="example">
-                    <h2>Полный пример на Python</h2>
+                    <h2>
+                        <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        Полный пример на Python
+                    </h2>
 
                     <div class="code-block">
                         <div class="code-label">python</div>
@@ -764,7 +823,7 @@ H = {"X-API-Key": KEY}
 me = requests.get(f"{API}/me", headers=H).json()
 print(f"Подключен: {me['name']}, LLM осталось: {me['usage']['llm_remaining']}")
 
-# 2. Получить товары категории
+# 2. Получить продукты категории
 products = requests.get(f"{API}/products", headers=H, params={
     "category": "patch_cords", "limit": 10
 }).json()
@@ -772,7 +831,7 @@ products = requests.get(f"{API}/products", headers=H, params={
 for p in products["products"]:
     article = p["article"]
 
-    # 3. Полные данные
+    # 3. Полные данные (stock + meta + content + аналоги + линейка)
     data = requests.get(f"{API}/products/{article}", headers=H).json()
 
     # 4. Генерация через LLM
@@ -781,7 +840,9 @@ for p in products["products"]:
         "prompt": f"""Продукт: {data['name']}
 Категория: {data['meta_category']}
 Параметры: {data['key_params']}
+Описание: {data.get('raw_description', 'нет')}
 Конкуренты: {[c['name'] for c in data.get('competitors', [])]}
+Линейка: {[l['name'] for l in data.get('lineup', [])[:5]]}
 
 Создай маркетинговое описание для маркетплейса.""",
         "max_tokens": 4000
@@ -802,56 +863,72 @@ for p in products["products"]:
 
                 <!-- AI CONTEXT -->
                 <div class="doc-section" id="ai-context">
-                    <h2>Контекст для AI-агентов</h2>
-                    <p>Скопируйте блок ниже и передайте его AI-агенту (Claude, GPT, Gemini и др.) как системный контекст. Агент сможет подключиться к API без дополнительных инструкций.</p>
+                    <h2>
+                        <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a4 4 0 014 4c0 1.95-1.4 3.58-3.25 3.93V12h3.75a2.5 2.5 0 012.5 2.5V16a4 4 0 11-2 0v-1.5a.5.5 0 00-.5-.5H7.5a.5.5 0 00-.5.5V16a4 4 0 11-2 0v-1.5A2.5 2.5 0 017.5 12h3.75V9.93A4 4 0 018 6a4 4 0 014-4z"/></svg>
+                        Контекст для AI-агентов
+                    </h2>
+                    <p>Скопируйте этот блок и передайте AI-агенту (Claude, GPT, Gemini и др.) как системный контекст. Агент сможет программировать модуль без дополнительных инструкций.</p>
 
                     <div class="ai-context-block" id="aiContextText">## SPLASH External Module API
 
 Base URL: https://splash.heuristics.ru/api/ext/v1
-Auth: Header X-API-Key with provided key
+Auth: Header X-API-Key (provided separately)
 
-### Available Endpoints:
-- GET /me — check key status and usage
-- GET /categories — list product categories (slug + display_name)
-- GET /products?limit=N&offset=M&category=slug&search=text — list products
-- GET /products/:article — full product data (params, description, competitors, lineup)
-- POST /llm/chat {system, prompt, max_tokens, temperature} — send prompt to LLM
-- POST /cards {article, module_name, sections, metadata} — save generated card
-- GET /cards?limit=N&offset=M — list saved cards
-- GET /cards/:article?module_name=X — get specific card
-- DELETE /cards/:article?module_name=X — delete card
-- PUT /data/:key {value: any} — save arbitrary JSON config
-- GET /data/:key — retrieve saved data
+### Endpoints
 
-### Rate Limits:
-- LLM: 50 requests/hour, max 16000 tokens/request
-- Other endpoints: unlimited
-- Headers: X-RateLimit-Limit, X-RateLimit-Remaining
+GET  /me                              — key status, usage stats
+GET  /categories                      — list product categories (slug, display_name, items_count)
+GET  /products?limit=N&offset=M       — list products (filterable by category=slug, search=text)
+GET  /products/:article               — full consolidated product data
+POST /llm/chat                        — send prompt to LLM
+POST /cards                           — save/update generated card (upsert)
+GET  /cards?limit=N&offset=M          — list saved cards
+GET  /cards/:article?module_name=X    — get specific card
+DELETE /cards/:article?module_name=X  — delete card
+PUT  /data/:key                       — save arbitrary JSON config
+GET  /data/:key                       — retrieve saved config
 
-### Key Data Available Per Product:
-- article, name, brand, price, stock_qty
-- meta_category, key_params (technical specs), extracted_params
-- raw_description (scraped from website, up to 5000 chars)
-- competitors[] (analog products with prices and params and score)
-- lineup[] (same-category products from same brand for comparison)
+### Data Per Product (GET /products/:article)
 
-### Storage:
-- POST /cards saves to isolated DB (not main SPLASH)
-- Key uniqueness: (api_key_id, article, module_name)
-- Re-POST same article+module_name = UPDATE (upsert)
-- PUT /data/:key saves arbitrary JSON config per key
+Each product is a consolidated view across multiple tables:
+- article, name, brand, price, stock_qty (from stock table)
+- meta_category, key_params, extracted_params, class_signature (from product_meta)
+- raw_description (up to 5000 chars), images[] (from product_content)
+- competitors[] — analog products with score, axis_scores, key_params, price (from analog_candidates)
+- lineup[] — same-category products for comparison (up to 15)
 
-### Error Format:
-All errors return { "error": "description" }
-- 401: missing or invalid API key
-- 403: key deactivated
-- 404: product or card not found
-- 429: LLM rate limit exceeded (50/hour)
-- 500: internal error</div>
+### LLM (POST /llm/chat)
+
+Body: { "system": str, "prompt": str (required), "max_tokens": int, "temperature": float }
+Response: { "model": str, "content": str, "thinking": str|null, "tokens": {total, prompt, completion}, "time_ms": int }
+Auto-failover between providers. Default max_tokens=8000.
+
+### Saving Results (POST /cards)
+
+Body: { "article": str, "module_name": str, "sections": {key: value}, "metadata": {any} }
+Uniqueness key: (api_key_id, article, module_name)
+Re-POST same combo = UPDATE (upsert)
+
+### Key-Value Storage (PUT /data/:key)
+
+Body: { "value": any_json }
+Use for configs, state, intermediate results.
+
+### Errors
+
+All errors: { "error": "description" }
+400 = missing required fields, 401 = no/invalid key, 403 = deactivated,
+404 = not found, 429 = LLM rate limit, 500 = server error</div>
 
                     <div class="ai-btn-group">
-                        <button class="ai-btn ai-btn-primary" onclick="copyAiContext()">📋 Скопировать контекст</button>
-                        <button class="ai-btn ai-btn-secondary" onclick="downloadAiContext()">⬇ Скачать .md файл</button>
+                        <button class="ai-btn ai-btn-primary" onclick="copyAiContext()">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;margin-right:4px"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                            Скопировать контекст
+                        </button>
+                        <button class="ai-btn ai-btn-secondary" onclick="downloadAiContext()">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;margin-right:4px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            Скачать .md файл
+                        </button>
                     </div>
                 </div>
 
@@ -899,18 +976,20 @@ All errors return { "error": "description" }
         function copyAiContext() {
             const text = document.getElementById('aiContextText').textContent;
             navigator.clipboard.writeText(text).then(() => {
-                const btn = document.querySelector('.toc-copy-btn');
-                const origText = btn.textContent;
-                btn.textContent = '✓ Скопировано!';
-                btn.style.background = 'var(--teal)';
-                btn.style.color = '#fff';
-                btn.style.borderColor = 'var(--teal)';
-                setTimeout(() => {
-                    btn.textContent = origText;
-                    btn.style.background = '';
-                    btn.style.color = '';
-                    btn.style.borderColor = '';
-                }, 2000);
+                const btns = document.querySelectorAll('.toc-copy-btn, .ai-btn-primary');
+                btns.forEach(btn => {
+                    const origHTML = btn.innerHTML;
+                    btn.innerHTML = '✓ Скопировано';
+                    btn.style.background = 'var(--teal)';
+                    btn.style.color = '#fff';
+                    btn.style.borderColor = 'var(--teal)';
+                    setTimeout(() => {
+                        btn.innerHTML = origHTML;
+                        btn.style.background = '';
+                        btn.style.color = '';
+                        btn.style.borderColor = '';
+                    }, 2000);
+                });
             });
         }
 
