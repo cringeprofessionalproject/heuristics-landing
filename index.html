@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heuristics — εὑρίσκω</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="institution.css">
 </head>
 <body>
@@ -20,7 +18,8 @@
                 <a href="#method">Метод</a>
                 <a href="instruments.html">Инструменты</a>
                 <a href="publications.html">Публикации</a>
-                <a href="#contact">Контакт</a>
+                <a href="company.html">О компании</a>
+                <a href="privacy.html">ПДн</a>
             </nav>
         </div>
     </header>
@@ -145,10 +144,10 @@
                 <p class="results-caption">Измерено на реальных данных кабельной отрасли, 11 категорий СКС, база 14.2M артикулов.</p>
                 <div class="results-grid">
                     <div class="result-block">
-                        <div class="rb-val">99.8<span class="rb-unit">%</span></div>
-                        <div class="rb-bar"><div class="rb-fill" style="width: 99.8%"></div></div>
+                        <div class="rb-val">99<span class="rb-unit">%+</span></div>
+                        <div class="rb-bar"><div class="rb-fill" style="width: 99%"></div></div>
                         <div class="rb-label">Точность при k=1</div>
-                        <div class="rb-note">точность первого предложенного аналога</div>
+                        <div class="rb-note">точность при k=1 (тестовая выборка)</div>
                     </div>
                     <div class="result-block">
                         <div class="rb-val">2.4<span class="rb-unit">с</span></div>
@@ -185,7 +184,7 @@
                         <div class="inst-rule"></div>
                         <p>Первый прикладной продукт, порождённый нашими исследованиями. CI-платформа для кабельной отрасли: парсинг PDF-смет конкурентов, автоматический подбор аналогов, gap-анализ.</p>
                         <div style="margin-top: 16px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
-                            <a href="https://splash.heuristics.ru" target="_blank" class="contact-link">Открыть SPLASH &rarr;</a>
+                            <a href="access.html" class="contact-link">Получить доступ &rarr;</a>
                             <a href="instruments.html" class="contact-link" style="opacity: 0.6;">Все инструменты</a>
                         </div>
                     </div>
@@ -200,7 +199,7 @@
                             <div class="tl"><span class="t-p">$</span> splash analyze смета_конкурент.pdf</div>
                             <div class="tl dim">[ИНФО] Извлечение признаков из 487 позиций...</div>
                             <div class="tl dim">[ИНФО] Осевой скоринг по 11 категориям...</div>
-                            <div class="tl match">[ГОТОВО] 485/487 сматчено (точность 0.996)</div>
+                            <div class="tl match">[ГОТОВО] 485/487 сматчено (точность ≥0.99)</div>
                             <div class="tl gap">[ВНИМАНИЕ] 2 позиции: аналог не найден (гэп)</div>
                             <div class="tl"><span class="cursor">█</span></div>
                         </div>
@@ -209,24 +208,19 @@
             </div>
         </section>
 
-        <!-- ═══ КОНТАКТ ═══ -->
-        <section class="contact" id="contact">
-            <div class="contact-inner">
-                <div class="section-marker">§ V</div>
-                <h2>Запросить доступ</h2>
-                <p>Мы работаем с ограниченным числом партнёров в каждой отрасли. Оставьте запрос — и мы покажем, как это работает на ваших данных.</p>
-                <a href="#" class="contact-link">Связаться с нами &rarr;</a>
-            </div>
-        </section>
+
     </main>
 
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-left">
                 <span class="logo-epsilon sm">ε</span>
-                <span>&copy; 2026 Heuristics Group</span>
+                <span>&copy; 2026 ООО «Эвристические технологии» · ОГРН 1267700279110 · ИНН 9725210450</span>
             </div>
             <div class="footer-right">
+                <a href="mailto:info@heuristics.ru" style="color: inherit; margin-right: 16px; text-decoration: none;">info@heuristics.ru</a>
+                <a href="company.html" style="color: inherit; margin-right: 16px; text-decoration: none;">О компании</a>
+                <a href="privacy.html" style="color: inherit; margin-right: 16px; text-decoration: none;">Политика конфиденциальности</a>
                 <span>εὑρίσκω — «нахожу, открываю»</span>
             </div>
         </div>

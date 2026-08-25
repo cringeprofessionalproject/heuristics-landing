@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доступ к SPLASH — Heuristics</title>
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="institution.css">
+    <link rel="stylesheet" href="subpages.css">
+    <style>
+        .access-card {
+            background: var(--marble);
+            border: 1px solid var(--stone-light);
+            padding: 48px;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        .access-card h2 {
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--ink);
+        }
+        .access-card .subtitle {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--stone);
+            margin-bottom: 32px;
+        }
+        .token-input-wrap {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .token-input {
+            flex: 1;
+            font-family: var(--mono);
+            font-size: 1rem;
+            padding: 14px 18px;
+            border: 1px solid var(--stone-light);
+            background: var(--warm-white);
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.2s;
+            letter-spacing: 2px;
+        }
+        .token-input:focus {
+            border-color: var(--oxide);
+        }
+        .token-input::placeholder {
+            color: var(--stone);
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+        .token-btn {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 14px 24px;
+            background: var(--ink);
+            color: var(--marble);
+            border: 1px solid var(--ink);
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .token-btn:hover {
+            background: var(--oxide);
+            border-color: var(--oxide);
+        }
+        .token-note {
+            font-family: var(--sans);
+            font-size: 0.82rem;
+            color: var(--stone);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        .notice-box {
+            background: var(--teal-bg);
+            border: 1px solid var(--teal);
+            padding: 20px 24px;
+            margin-top: 32px;
+            font-family: var(--sans);
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: var(--ink-soft);
+        }
+        .notice-box strong {
+            color: var(--teal);
+        }
+        .divider {
+            border: none;
+            border-top: 1px solid var(--stone-light);
+            margin: 32px 0;
+        }
+        .request-section {
+            font-family: var(--sans);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: var(--ink-soft);
+        }
+        .request-section h3 {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            color: var(--ink);
+            margin-bottom: 12px;
+        }
+        .request-section a {
+            color: var(--oxide);
+            font-weight: 500;
+        }
+        .token-error {
+            display: none;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--oxide);
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-epsilon">ε</span>
+                <a href="/" class="logo-text">HEURISTICS</a>
+            </div>
+            <nav class="nav">
+                <a href="/#method">Метод</a>
+                <a href="instruments.html">Инструменты</a>
+                <a href="publications.html">Публикации</a>
+                <a href="company.html">О компании</a>
+                <a href="privacy.html">ПДн</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="page-hero-inner">
+                <div class="section-marker">Доступ к платформе</div>
+                <h1>SPLASH</h1>
+                <p class="page-hero-sub">Система автоматизированного подбора товарных аналогов</p>
+            </div>
+        </section>
+
+        <section class="sp-section">
+            <div class="sp-inner">
+                <div class="access-card">
+                    <h2>Вход по токену</h2>
+                    <div class="subtitle">Авторизация без персональных данных</div>
+
+                    <div class="token-input-wrap">
+                        <input type="text" class="token-input" id="tokenInput" placeholder="Введите токен доступа" autocomplete="off" spellcheck="false">
+                        <button class="token-btn" id="tokenBtn" onclick="handleToken()">Войти</button>
+                    </div>
+                    <p class="token-note">Токен доступа — это уникальный ключ, присваиваемый организации (по ИНН). Токен не содержит и не является персональными данными.</p>
+                    <div class="token-error" id="tokenError">Токен не распознан. Проверьте правильность ввода или запросите токен по email.</div>
+
+                    <div class="notice-box">
+                        <strong>Обратите внимание:</strong> для входа в систему не требуются логин, пароль или иные персональные данные. Токен выдаётся на организацию и не привязан к конкретному физическому лицу.
+                    </div>
+
+                    <hr class="divider">
+
+                    <div class="request-section">
+                        <h3>Нет токена?</h3>
+                        <p>Для получения тестового или коммерческого доступа напишите на <a href="mailto:info@heuristics.ru">info@heuristics.ru</a> с корпоративной электронной почты вашей организации.</p>
+                        <p>В запросе укажите:</p>
+                        <ul style="padding-left: 20px; margin-top: 8px;">
+                            <li>ИНН организации</li>
+                            <li>Краткое описание задачи</li>
+                        </ul>
+                        <p style="margin-top: 16px; font-size: 0.85rem; opacity: 0.7;">Мы взаимодействуем исключительно с юридическими лицами через корпоративные каналы связи. Персональные данные не запрашиваем — <a href="privacy.html">подробнее</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="logo-epsilon sm">ε</span>
+                <span>&copy; 2026 ООО «Эвристические технологии» · ОГРН 1267700279110 · ИНН 9725210450</span>
+            </div>
+            <div class="footer-right">
+                <a href="mailto:info@heuristics.ru" style="color: inherit; margin-right: 16px; text-decoration: none;">info@heuristics.ru</a>
+                <a href="company.html" style="color: inherit; margin-right: 16px; text-decoration: none;">О компании</a>
+                <a href="privacy.html" style="color: inherit; margin-right: 16px; text-decoration: none;">Конфиденциальность</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    function handleToken() {
+        const token = document.getElementById('tokenInput').value.trim();
+        const errorEl = document.getElementById('tokenError');
+        if (!token) {
+            errorEl.style.display = 'block';
+            errorEl.textContent = 'Введите токен доступа.';
+            return;
+        }
+        // For now, redirect to splash with token as query param
+        // In production this would validate the token first
+        errorEl.style.display = 'block';
+        errorEl.textContent = 'Система SPLASH находится в режиме закрытого тестирования. Для получения доступа свяжитесь с нами: info@heuristics.ru';
+    }
+    // Enter key handler
+    document.getElementById('tokenInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') handleToken();
+    });
+    </script>
+</body>
+</html>

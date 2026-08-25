@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Disallow: /_showcase.html
+Disallow: /cosmos.html
+Disallow: /noir.html
+Disallow: /swiss.html
+Disallow: /brutal.html
+Disallow: /blueprint.html
+Disallow: /editorial.html
+Disallow: /premium.html
+Disallow: /precision.html
+Disallow: /terminal.html
+Disallow: /scientific.html
+Disallow: /splash-style.html
+Disallow: /oracle-style.html
+Disallow: /institution.html
+
+Sitemap: https://heuristics.ru/sitemap.xml
