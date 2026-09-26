@@ -46,26 +46,25 @@
                 </div>
                 <div class="hero-right">
                     <div class="formula-block">
-                        <div class="fb-label">Осевой скоринг — реальная формула</div>
-                        <div class="formula">
-                            <span class="math">S(a, b) = </span>
-                            <span class="math-frac">
-                                <span class="frac-top">Σ wᵢ · score(axisᵢ(a), axisᵢ(b))</span>
-                                <span class="frac-bot">Σ wᵢ</span>
+                        <div class="fb-label">Осевой скоринг</div>
+                        <div class="formula formula-sm">
+                            <span class="math">
+                                сравнение артикулов по физическим осям:<br>
+                                сечение · материал · ГОСТ · класс
                             </span>
                         </div>
-                        <div class="fb-note">Сравнение артикулов по физическим осям:<br>сечение, материал, ГОСТ, класс. Вес оси wᵢ ∈ {critical, high, medium, low}</div>
+                        <div class="fb-note">Каждая ось имеет вес и правило сравнения.<br>Провал по критической оси — жёсткий отказ.</div>
                     </div>
                     <div class="formula-block">
                         <div class="fb-label">Правила сравнения осей</div>
                         <div class="formula formula-sm">
                             <span class="math">
-                                exact: &nbsp;1.0 | 0.0<br>
-                                upgrade_ok: &nbsp;1.0 − 0.1·d<br>
-                                substitute_ok: &nbsp;1.0 − 0.15·|d|
+                                точное совпадение — зачёт<br>
+                                допустимый апгрейд — зачёт с поправкой<br>
+                                допустимая замена — зачёт с поправкой
                             </span>
                         </div>
-                        <div class="fb-note">d — расстояние в цепочке апгрейда.<br>При critical failure — кандидат отклоняется.</div>
+                        <div class="fb-note">Поправка зависит от расстояния в цепочке апгрейда.<br>При провале критической оси — кандидат отклоняется.</div>
                     </div>
                 </div>
             </div>
@@ -114,11 +113,11 @@
                         <div class="mc-title">Осевой скоринг</div>
                         <div class="mc-code">
                             <span class="code-comment">// матрица совпадений осей</span><br>
-                            <span class="code-key">сечение</span>&nbsp;2.5 = 2.5 → <span class="code-match">1.0</span> critical<br>
-                            <span class="code-key">класс</span>&nbsp;&nbsp;LS ≠ FR &nbsp;→ <span class="code-gap">0.0</span> critical<br>
-                            <span class="code-key">жилы</span>&nbsp;&nbsp;&nbsp;3 = 3 &nbsp;&nbsp;→ <span class="code-match">1.0</span> high<br>
-                            <span class="code-key">ГОСТ</span>&nbsp;&nbsp;&nbsp;= &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <span class="code-match">1.0</span> medium<br><br>
-                            <span class="code-comment">// critical fail → <span class="code-gap">ОТКЛОНЁН</span></span>
+                            <span class="code-key">сечение</span>&nbsp;2.5 = 2.5 → <span class="code-match">совпадение</span><br>
+                            <span class="code-key">класс</span>&nbsp;&nbsp;LS ≠ FR &nbsp;→ <span class="code-gap">провал</span><br>
+                            <span class="code-key">жилы</span>&nbsp;&nbsp;&nbsp;3 = 3 &nbsp;&nbsp;→ <span class="code-match">совпадение</span><br>
+                            <span class="code-key">ГОСТ</span>&nbsp;&nbsp;&nbsp;= &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <span class="code-match">совпадение</span><br><br>
+                            <span class="code-comment">// провал критической оси → <span class="code-gap">ОТКЛОНЁН</span></span>
                         </div>
                         <p>Каждая ось имеет вес и правило. Провал по критической оси = жёсткий отказ.</p>
                     </div>
