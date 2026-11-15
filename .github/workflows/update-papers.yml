@@ -1,0 +1,41 @@
+name: Update Entity Matching Bibliography
+
+on:
+  schedule:
+    # Каждый понедельник в 07:00 UTC (10:00 МСК)
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  curate-papers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch and filter OpenAlex / arXiv papers
+        env:
+          OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+        run: |
+          python3 scripts/update_entity_matching_papers.py --since 2024-01-01 --max-add 2
+
+      - name: Commit updated bibliography if changed
+        run: |
+          if [[ -n "$(git status --porcelain data/entity-matching-papers.json)" ]]; then
+            git config user.name "heuristics-research-bot"
+            git config user.email "info@heuristics.ru"
+            git add data/entity-matching-papers.json
+            git commit -m "chore(publications): auto-curate new Entity Matching papers"
+            git push
+          fi

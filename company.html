@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
     <title>О компании — ООО «Эвристические технологии»</title>
-    <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="institution.css">
-    <link rel="stylesheet" href="subpages.css">
+    <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="fonts.css?v=20261115">
+    <link rel="stylesheet" href="institution.css?v=20261115">
+    <link rel="stylesheet" href="subpages.css?v=20261115">
+    <script src="theme.js?v=20261115"></script>
     <style>
         .company-grid {
             display: grid;
@@ -142,16 +145,22 @@
 <body>
     <header class="header">
         <div class="header-inner">
-            <div class="logo">
-                <span class="logo-epsilon">ε</span>
-                <a href="/" class="logo-text">HEURISTICS</a>
+            <div class="header-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-epsilon">ε</span>
+                    <span class="logo-text">HEURISTICS</span>
+                </a>
+                <div class="contour-switch" role="navigation" aria-label="Контуры Heuristics">
+                    <a href="index.html" class="contour-pill active" aria-current="page">heuristics.ru</a>
+                    <a href="https://edu.heuristics.ru" class="contour-pill" title="Интерактивные курсы и практикумы Heuristics · Edu">edu</a>
+                </div>
             </div>
             <nav class="nav">
-                <a href="/#method">Метод</a>
+                <a href="index.html#method">Метод</a>
+                <a href="projects.html">Проекты</a>
                 <a href="instruments.html">Инструменты</a>
                 <a href="publications.html">Публикации</a>
-                <a href="company.html">О компании</a>
-                <a href="privacy.html">ПДн</a>
+                <a href="company.html" class="nav-active">О компании</a>
             </nav>
         </div>
     </header>
@@ -190,15 +199,15 @@
 
                     <div class="method-card">
                         <div class="mc-num">02</div>
-                        <div class="mc-title">Научно-исследовательские работы (R&D)</div>
+                        <div class="mc-title">Научно-исследовательские работы (R&amp;D) и интерактивные тренажёры</div>
                         <div class="mc-code">
-                            <span class="code-comment">// исследования и методы</span><br>
-                            <span class="code-key">domain:</span> <span class="code-val">"heuristic_optimization"</span>,<br>
-                            <span class="code-key">algorithms:</span> <span class="code-match">["axial_scoring", "fuzzy_match"]</span>,<br>
-                            <span class="code-key">ai_engine:</span> <span class="code-match">["DeepSeek", "Ollama", "LLM"]</span>,<br>
-                            <span class="code-key">evaluation:</span> <span class="code-val">"multi_axis_distance"</span>
+                            <span class="code-comment">// исследования, ИИ и сценарные среды</span><br>
+                            <span class="code-key">domain:</span> <span class="code-val">["heuristic_scoring", "interactive_sim"]</span>,<br>
+                            <span class="code-key">simulation:</span> <span class="code-match">["Phaser 3", "Next.js 15", "WebAudio"]</span>,<br>
+                            <span class="code-key">ai_engine:</span> <span class="code-match">["Mistral 675B", "DeepSeek", "Ollama"]</span>,<br>
+                            <span class="code-key">artifacts:</span> <span class="code-val">"SKILL.md + MCP packages"</span>
                         </div>
-                        <p>Исследования и разработка специализированных алгоритмов приближённого решения задач дискретной оптимизации, осевого скоринга и интеграция языковых моделей в контуры классификации.</p>
+                        <p>Исследования в области дискретной оптимизации, разработка интерактивных сценарных практикумов с ролевыми ИИ-ассистентами и формализация предметных знаний в исполняемые пакеты.</p>
                     </div>
 
                     <div class="method-card">
@@ -223,17 +232,18 @@
                 <div class="section-marker">§ IV.2 — Программные продукты и РИД</div>
                 <div class="inst-grid">
                     <div class="inst-text">
-                        <div class="inst-label">Программный комплекс № 1</div>
+                        <div class="inst-label">Программный комплекс № 1 · Платформенная экономика</div>
                         <h2>SPLASH 2.0</h2>
                         <p class="inst-subtitle">СПЛЭШ</p>
-                        <p class="inst-full">Система автоматизированного подбора товарных аналогов</p>
+                        <p class="inst-full">Инфраструктурный инструмент платформенной экономики для подбора аналогов и анализа спецификаций</p>
                         <div class="inst-rule"></div>
-                        <p>Система автоматизированного подбора товарных аналогов и анализа сметных спецификаций. Программный комплекс извлекает физические характеристики (оси) из наименований промышленной продукции и проводит многокритериальный скоринг.</p>
+                        <p>Программный комплекс связывает разрозненные проектные сметы, каталоги производителей и дилерские прайс-листы в единое сопоставимое пространство, извлекая физические характеристики (оси) промышленной продукции и выполняя многокритериальный скоринг.</p>
                         <p style="font-family: var(--sans); font-size: 0.88rem; color: var(--ink-soft); line-height: 1.6; padding: 12px 16px; background: rgba(0,0,0,0.03); border-left: 2px solid var(--teal);">
                             <strong>Правовая охрана:</strong> Материалы подготовлены для государственной регистрации программы для ЭВМ и базы данных в Роспатенте (ФИПС) в соответствии со ст. 1262 ГК РФ.
                         </p>
                         <div style="margin-top: 20px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
                             <a href="access.html" class="contact-link">Получить доступ &rarr;</a>
+                            <a href="projects.html" class="contact-link" style="opacity: 0.85;">Все проекты компании (4) &rarr;</a>
                             <a href="api.html" class="contact-link" style="opacity: 0.7;">Документация API</a>
                         </div>
                     </div>
@@ -252,6 +262,40 @@
                             <div class="tl dim">[CANDIDATES] Найдено 417 кандидатов в каталоге SUPRLAN</div>
                             <div class="tl match">[SCORE] Точное совпадение по критическим осям</div>
                             <div class="tl match">[SUCCESS] Спецификация замещения сформирована</div>
+                            <div class="tl"><span class="cursor">█</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inst-grid" style="margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--stone-light);">
+                    <div class="inst-text">
+                        <div class="inst-label">Программный комплекс № 2 · Интерактивные практикумы</div>
+                        <h2>Heuristics · Edu</h2>
+                        <p class="inst-subtitle">СРЕДА СЦЕНАРНЫХ КУРСОВ И ТРЕНАЖЁРОВ</p>
+                        <p class="inst-full">Сюжетные отраслевые кейсы, разбор первоисточников и выгрузка рабочих пакетов SKILL.md</p>
+                        <div class="inst-rule"></div>
+                        <p>Собственная браузерная среда (Next.js 15 + Phaser 3), переводящая освоение сложных инженерных, продуктовых и правовых материалов из режима пассивного чтения в практику принятия решений на сквозных кейсах с формированием пакетов <code>SKILL.md</code>.</p>
+                        <div style="margin-top: 20px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                            <a href="https://edu.heuristics.ru/academy" target="_blank" rel="noopener" class="contact-link">Открыть интерактивный кампус &rarr;</a>
+                            <a href="https://edu.heuristics.ru" target="_blank" rel="noopener" class="contact-link" style="opacity: 0.85;">edu.heuristics.ru &rarr;</a>
+                            <a href="projects.html#edu" class="contact-link" style="opacity: 0.7;">Описание проекта</a>
+                        </div>
+                    </div>
+
+                    <div class="inst-terminal">
+                        <div class="term-chrome">
+                            <span class="term-dot td-r"></span>
+                            <span class="term-dot td-y"></span>
+                            <span class="term-dot td-g"></span>
+                            <span class="term-path">~/heuristics-edu/telemetry-audit</span>
+                        </div>
+                        <div class="term-body">
+                            <div class="tl"><span class="t-p">$</span> edu-engine --benchmark --window 14d --sessions 104</div>
+                            <div class="tl dim">[CONTOUR A] ◈ Интерактивный кампус (/academy) vs [CONTOUR B] Конспект</div>
+                            <div class="tl match">[BOUNCE &lt;15s] 12.1% (интерактив) vs 25.0% (текст) — снижение отказов в 2×</div>
+                            <div class="tl match">[SESSION AVG] 04m 30s vs 02m 41s (+68% глубина вовлечения)</div>
+                            <div class="tl dim">[AI ENGINE] Каскад Mistral-Large-3 (675B) → Gemma-4 → Heuristic-v1 (SLA 100%)</div>
+                            <div class="tl match">[SOURCES] Автоматический контроль целостности учебных материалов и норм</div>
                             <div class="tl"><span class="cursor">█</span></div>
                         </div>
                     </div>
@@ -409,6 +453,18 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="info-card" style="margin-top: 24px; border-left: 3px solid var(--oxide);">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 10px;">Правовые документы и режим обработки данных (152-ФЗ)</h3>
+                    <p class="text-block" style="margin-bottom: 14px;">
+                        На информационной витрине <code>heuristics.ru</code> персональные данные и маркетинговые cookie не собираются. Для авторизованных сервисов и личного кабинета <code>edu.heuristics.ru</code> действуют локальные нормативные акты и Политика обработки ПДн Оператора (ч. 2 ст. 18.1 152-ФЗ).
+                    </p>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <a href="privacy.html" class="btn-action secondary">Политика ПДн (heuristics.ru) →</a>
+                        <a href="https://edu.heuristics.ru/legal/privacy" class="btn-action secondary">Полная Политика ПДн на edu.heuristics.ru ↗</a>
+                        <a href="https://edu.heuristics.ru/sveden" class="btn-action secondary">Сведения об организации и документах ↗</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -421,8 +477,10 @@
             </div>
             <div class="footer-right">
                 <a href="mailto:info@heuristics.ru" style="color: inherit; margin-right: 16px; text-decoration: none;">info@heuristics.ru</a>
-                <a href="company.html">О компании</a>
-                <a href="privacy.html" style="color: inherit; margin-right: 16px; text-decoration: none;">Политика конфиденциальности</a>
+                <a href="https://edu.heuristics.ru" style="color: inherit; margin-right: 16px; text-decoration: none;">edu.heuristics.ru ↗</a>
+                <a href="company.html" style="color: inherit; margin-right: 16px; text-decoration: none;">О компании</a>
+                <a href="privacy.html" style="color: inherit; margin-right: 16px; text-decoration: none;">Политика ПДн (152-ФЗ)</a>
+                <span>εὑρίσκω — «нахожу, открываю»</span>
             </div>
         </div>
     </footer>

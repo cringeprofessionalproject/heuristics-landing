@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Конфиденциальность — ООО «Эвристические технологии»</title>
-    <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="institution.css">
-    <link rel="stylesheet" href="subpages.css">
+    <meta name="color-scheme" content="dark">
+    <title>Конфиденциальность и ПДн — ООО «Эвристические технологии»</title>
+    <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="fonts.css?v=20261115">
+    <link rel="stylesheet" href="institution.css?v=20261115">
+    <link rel="stylesheet" href="subpages.css?v=20261115">
+    <script src="theme.js?v=20261115"></script>
     <style>
         .legal-content {
             background: var(--marble);
@@ -47,36 +50,54 @@
         .status-banner p { margin: 0; }
         .status-banner strong { color: var(--teal); }
         .please-block {
-            background: rgba(139, 58, 42, 0.05);
+            background: var(--oxide-bg);
             border-left: 3px solid var(--oxide);
             padding: 20px 24px;
             margin: 24px 0;
         }
         .please-block strong { color: var(--oxide); }
-        .future-block {
-            background: var(--warm-white);
-            border: 1px dashed var(--stone-light);
-            padding: 24px 28px;
-            margin: 24px 0;
-            font-size: 0.9rem;
-            opacity: 0.85;
+        .contour-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin: 20px 0 28px;
         }
-        .future-block strong { color: var(--stone); }
+        .contour-card {
+            background: var(--warm-white);
+            border: 1px solid var(--stone-light);
+            padding: 20px 22px;
+        }
+        .contour-card h3 {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+        @media (max-width: 720px) {
+            .legal-content { padding: 26px 20px; }
+            .contour-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="header-inner">
-            <div class="logo">
-                <span class="logo-epsilon">ε</span>
-                <a href="/" class="logo-text">HEURISTICS</a>
+            <div class="header-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-epsilon">ε</span>
+                    <span class="logo-text">HEURISTICS</span>
+                </a>
+                <div class="contour-switch" role="navigation" aria-label="Контуры Heuristics">
+                    <a href="index.html" class="contour-pill active" aria-current="page">heuristics.ru</a>
+                    <a href="https://edu.heuristics.ru" class="contour-pill" title="Интерактивные курсы и практикумы Heuristics · Edu">edu</a>
+                </div>
             </div>
             <nav class="nav">
-                <a href="/#method">Метод</a>
+                <a href="index.html#method">Метод</a>
+                <a href="projects.html">Проекты</a>
                 <a href="instruments.html">Инструменты</a>
                 <a href="publications.html">Публикации</a>
                 <a href="company.html">О компании</a>
-                <a href="privacy.html">ПДн</a>
             </nav>
         </div>
     </header>
@@ -84,9 +105,9 @@
     <main>
         <section class="page-hero">
             <div class="page-hero-inner">
-                <div class="section-marker">Конфиденциальность</div>
-                <h1>Ваши данные<br>в безопасности</h1>
-                <p class="page-hero-sub">Потому что мы их не собираем.</p>
+                <div class="section-marker">Конфиденциальность и 152-ФЗ</div>
+                <h1>Режим работы<br>с данными</h1>
+                <p class="page-hero-sub">Разделение открытой витрины heuristics.ru и личного кабинета edu.heuristics.ru.</p>
             </div>
         </section>
 
@@ -97,84 +118,54 @@
                     <div class="status-banner">
                         <div class="sb-icon">🛡</div>
                         <div>
-                            <p><strong>Мы не собираем персональные данные.</strong></p>
-                            <p style="margin-top: 8px;">На этом сайте нет форм регистрации, подписки, обратной связи. Нет cookie-баннеров, потому что нет cookie. Нет Яндекс.Метрики, Google Analytics и любых других трекеров. Шрифты загружаются локально — ваш IP не уходит третьим лицам. Мы даже не знаем, что вы здесь.</p>
+                            <p><strong>На сайте heuristics.ru персональные данные посетителей не собираются.</strong></p>
+                            <p style="margin-top: 8px;">На информационной витрине <code>heuristics.ru</code> нет регистрации, подписок, аналитических cookie, Яндекс.Метрики, Google Analytics и рекламных трекеров. Шрифты подключены локально. В браузере сохраняется только технический выбор светлой или тёмной темы оформления без передачи на сервер.</p>
                         </div>
                     </div>
 
-                    <h2>Что мы не делаем</h2>
+                    <h2>Два контура сервисов ООО «Эвристические технологии»</h2>
+                    <p>Оператор <strong>ООО «Эвристические технологии»</strong> (ИНН 9725210450, ОГРН 1267700279110) разделяет публичную информационную витрину и прикладные веб-сервисы с авторизацией:</p>
+
+                    <div class="contour-grid">
+                        <div class="contour-card">
+                            <div style="font-family: var(--mono); font-size: 0.68rem; color: var(--teal); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">Контур 1 · Без ПДн</div>
+                            <h3>heuristics.ru (этот сайт)</h3>
+                            <p style="font-size: 0.88rem; margin-bottom: 0;">Статическая информационная витрина (описание метода, проектов, публикаций и стека). Форма рекомендации ссылки в разделе «Инструменты» не запрашивает ФИО, телефон или e-mail — принимается только адрес публичного репозитория/продукта и технический комментарий.</p>
+                        </div>
+                        <div class="contour-card">
+                            <div style="font-family: var(--mono); font-size: 0.68rem; color: var(--oxide); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">Контур 2 · 152-ФЗ (ч. 2 ст. 18.1)</div>
+                            <h3>edu.heuristics.ru (практикумы и кабинет)</h3>
+                            <p style="font-size: 0.88rem; margin-bottom: 10px;">Открытые материалы доступны без регистрации. При создании личного кабинета, сохранении прогресса или оформлении документов действует развёрнутая Политика обработки ПДн и файлов cookie на серверах в РФ:</p>
+                            <a href="https://edu.heuristics.ru/legal/privacy" style="font-size: 0.86rem; font-weight: 600; color: var(--oxide);">Открыть полную Политику на edu.heuristics.ru →</a>
+                        </div>
+                    </div>
+
+                    <h2>Что мы не делаем на витрине heuristics.ru</h2>
                     <ul>
-                        <li>Не собираем имена, телефоны, адреса электронной почты посетителей сайта;</li>
-                        <li>Не используем cookie-файлы для идентификации и отслеживания;</li>
-                        <li>Не подключаем системы аналитики и рекламные трекеры;</li>
-                        <li>Не загружаем ресурсы с внешних серверов (шрифты, скрипты, виджеты);</li>
-                        <li>Не передаём и не продаём какие-либо данные третьим лицам.</li>
+                        <li>Не запрашиваем имена, телефоны и адреса электронной почты через веб-формы;</li>
+                        <li>Не устанавливаем идентификационные и маркетинговые cookie-файлы;</li>
+                        <li>Не подключаем сторонние счётчики аналитики и внешние CDN шрифтов;</li>
+                        <li>Не осуществляем трансграничную передачу данных и не передаём данные рекламным сетям.</li>
                     </ul>
 
-                    <h2>Как мы работаем с клиентами</h2>
-                    <p>Доступ к нашим продуктам (СПЛЭШ 2.0, API) предоставляется <strong>юридическим лицам по ИНН организации</strong>. Мы работаем по B2B-модели и не запрашиваем персональные данные физических лиц.</p>
-
-                    <p>Для связи с нами напишите на <a href="mailto:info@heuristics.ru" style="color: var(--oxide); font-weight: 500;">info@heuristics.ru</a> с корпоративной электронной почты вашей организации. В запросе достаточно указать ИНН и описание задачи.</p>
+                    <h2>Взаимодействие с B2B-клиентами и обращения</h2>
+                    <p>Доступ к корпоративным программным продуктам (СПЛЭШ 2.0, API) предоставляется юридическим лицам и индивидуальным предпринимателям по реквизитам организации (ИНН). Для деловой связи напишите на <a href="mailto:info@heuristics.ru" style="color: var(--oxide); font-weight: 500;">info@heuristics.ru</a>.</p>
 
                     <div class="please-block">
-                        <strong>Просьба:</strong> Пожалуйста, не направляйте нам свои персональные данные (паспортные данные, личные телефоны, домашние адреса и т.п.). Нам это не нужно, и мы не хотим нести ответственность за их хранение. Для взаимодействия достаточно корпоративных реквизитов организации.
+                        <strong>Просьба при обращении по почте:</strong> в первичном запросе достаточно указать ИНН организации и описание задачи. Пожалуйста, не направляйте в незащищённых письмах избыточные персональные данные физических лиц (сканы паспортов, личные адреса и т.п.), если они не требуются для заключения и исполнения договора.
                     </div>
 
-                    <h2>Где размещены наши сервисы</h2>
+                    <h2>Базовые положения Оператора по 152-ФЗ</h2>
                     <ul>
-                        <li><strong>Этот сайт</strong> (heuristics.ru) — информационный лендинг, размещён на GitHub Pages. Не содержит форм и не обрабатывает данные.</li>
-                        <li><strong>Программные продукты</strong> (СПЛЭШ 2.0, API) — размещены на серверах в Российской Федерации. Данные клиентов (сметные спецификации, артикулы) обрабатываются в рамках договора и не содержат персональных данных.</li>
+                        <li><strong>Оператор:</strong> ООО «Эвристические технологии» (ИНН 9725210450, КПП 772501001, ОГРН 1267700279110, адрес: 115432, г. Москва, проезд Проектируемый 4062-й, д. 6, стр. 1, пом. 2Б/5).</li>
+                        <li><strong>Локализация (ч. 5 ст. 18 152-ФЗ):</strong> базы данных прикладных сервисов Оператора (<code>edu.heuristics.ru</code>, API СПЛЭШ 2.0) размещены исключительно на территории Российской Федерации.</li>
+                        <li><strong>Правовые основания при обращении или регистрации:</strong> согласие субъекта ПДн (п. 1 ч. 1 ст. 6, ст. 9 152-ФЗ) и исполнение договора (п. 5 ч. 1 ст. 6 152-ФЗ).</li>
+                        <li><strong>Права субъекта и отзыв согласия (ст. 14, 20, 21 152-ФЗ):</strong> запрос сведений об обработке, уточнении или уничтожении ПДн, а также отзыв согласия направляются на <a href="mailto:info@heuristics.ru" style="color: var(--oxide);">info@heuristics.ru</a> либо по юридическому адресу Оператора.</li>
                     </ul>
 
-                    <h2>На будущее</h2>
-
-                    <div class="future-block">
-                        <strong>Перспективные обязательства.</strong> Если в будущем мы решим добавить на сайт формы обратной связи, регистрацию или аналитику — мы обязуемся:
-                        <ul style="margin-top: 12px; margin-bottom: 0;">
-                            <li>Опубликовать полноценную Политику обработки ПДн (152-ФЗ);</li>
-                            <li>Уведомить Роскомнадзор (pd.rkn.gov.ru);</li>
-                            <li>Добавить cookie-баннер и механизм отзыва согласия;</li>
-                            <li>Назначить ответственное лицо за обработку ПДн.</li>
-                        </ul>
-                    </div>
-
-                    <p>Пока этот момент не наступил — расслабьтесь, вы в безопасности.</p>
-
-                    <h2>Контакты</h2>
-                    <ul>
-                        <li><strong>Email:</strong> <a href="mailto:info@heuristics.ru" style="color: var(--oxide);">info@heuristics.ru</a></li>
-                        <li><strong>Оператор:</strong> ООО «Эвристические технологии» (ИНН 9725210450, ОГРН 1267700279110)</li>
-                        <li><strong>Адрес:</strong> 115432, г. Москва, проезд Проектируемый 4062-й, д. 6, стр. 1, пом. 2Б/5</li>
-                    </ul>
-
-                    <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 32px; margin-bottom: 0;">Документ действует с 25 августа 2026 года. Актуальная версия: <a href="https://heuristics.ru/privacy.html" style="color: var(--oxide);">heuristics.ru/privacy.html</a></p>
-
-                    <div style="margin-top: 64px; padding-top: 48px; border-top: 2px solid var(--stone-light);">
-                        <div style="font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--stone); margin-bottom: 8px;">Приложение</div>
-                        <h2 style="margin-top: 0; opacity: 0.5;">Политика обработки персональных данных</h2>
-
-                        <div class="future-block" style="margin-top: 0;">
-                            <strong>Статус: НЕ АКТИВНА.</strong> Настоящая Политика подготовлена в соответствии с требованиями Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» и вступит в силу с момента начала сбора персональных данных Оператором. На текущий момент Оператор не осуществляет сбор, хранение и обработку персональных данных — Политика приводится справочно.
-                        </div>
-
-                        <p style="opacity: 0.6;"><strong>1. Общие положения.</strong> Оператор — ООО «Эвристические технологии» (ИНН 9725210450, ОГРН 1267700279110, адрес: 115432, г. Москва, проезд Проектируемый 4062-й, д. 6, стр. 1, пом. 2Б/5). Настоящая Политика определяет порядок обработки персональных данных и меры по обеспечению их безопасности.</p>
-
-                        <p style="opacity: 0.6;"><strong>2. Цели обработки.</strong> В случае начала сбора ПДн, обработка будет осуществляться для: (а) обеспечения работы форм обратной связи; (б) обработки запросов на доступ к продуктам; (в) ведения статистики посещаемости сайта; (г) исполнения договорных обязательств.</p>
-
-                        <p style="opacity: 0.6;"><strong>3. Состав ПДн.</strong> Могут обрабатываться: фамилия, имя, отчество; адрес электронной почты; номер телефона; IP-адрес; данные cookie-файлов; иные данные, предоставленные субъектом добровольно.</p>
-
-                        <p style="opacity: 0.6;"><strong>4. Правовые основания.</strong> Обработка ПДн будет осуществляться на основании: (а) согласия субъекта ПДн (ст. 6 ч. 1 п. 1 152-ФЗ); (б) исполнения договора (ст. 6 ч. 1 п. 5 152-ФЗ); (в) законных интересов оператора (ст. 6 ч. 1 п. 7 152-ФЗ).</p>
-
-                        <p style="opacity: 0.6;"><strong>5. Права субъекта ПДн.</strong> Субъект ПДн имеет право: получать информацию об обработке своих ПДн; требовать уточнения, блокирования или уничтожения ПДн; отозвать согласие на обработку ПДн путём направления письменного обращения на адрес: <a href="mailto:info@heuristics.ru" style="color: var(--oxide);">info@heuristics.ru</a> или по юридическому адресу Оператора.</p>
-
-                        <p style="opacity: 0.6;"><strong>6. Меры защиты.</strong> Оператор принимает необходимые правовые, организационные и технические меры для защиты ПДн от несанкционированного доступа, уничтожения, изменения, блокирования, копирования и распространения.</p>
-
-                        <p style="opacity: 0.6;"><strong>7. Трансграничная передача.</strong> Оператор не осуществляет трансграничную передачу персональных данных. Программные продукты размещены на серверах в Российской Федерации.</p>
-
-                        <p style="opacity: 0.6;"><strong>8. Срок хранения.</strong> ПДн хранятся не дольше, чем того требуют цели обработки. По достижении целей обработки или по запросу субъекта ПДн данные уничтожаются.</p>
-
-                        <p style="opacity: 0.6; font-size: 0.85rem; margin-top: 24px; padding-top: 16px; border-top: 1px dashed var(--stone-light);">Данная Политика будет активирована и опубликована в обновлённой редакции при начале сбора персональных данных. До этого момента документ носит информационный характер.</p>
-                    </div>
+                    <p style="font-size: 0.85rem; opacity: 0.72; margin-top: 32px; margin-bottom: 0;">
+                        Актуальная редакция страницы: <a href="https://heuristics.ru/privacy.html" style="color: var(--oxide);">heuristics.ru/privacy.html</a> · Полная Политика для пользователей личного кабинета и слушателей: <a href="https://edu.heuristics.ru/legal/privacy" style="color: var(--oxide);">edu.heuristics.ru/legal/privacy</a>
+                    </p>
                 </div>
             </div>
         </section>
@@ -188,8 +179,10 @@
             </div>
             <div class="footer-right">
                 <a href="mailto:info@heuristics.ru" style="color: inherit; margin-right: 16px; text-decoration: none;">info@heuristics.ru</a>
-                <a href="company.html">О компании</a>
-                <a href="privacy.html" style="color: inherit; margin-right: 16px; text-decoration: none;">Конфиденциальность</a>
+                <a href="https://edu.heuristics.ru" style="color: inherit; margin-right: 16px; text-decoration: none;">edu.heuristics.ru ↗</a>
+                <a href="company.html" style="color: inherit; margin-right: 16px; text-decoration: none;">О компании</a>
+                <a href="privacy.html" style="color: var(--ink); font-weight: 500; margin-right: 16px; text-decoration: none;">Политика ПДн (152-ФЗ)</a>
+                <span>εὑρίσκω — «нахожу, открываю»</span>
             </div>
         </div>
     </footer>

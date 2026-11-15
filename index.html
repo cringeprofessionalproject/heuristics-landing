@@ -1,25 +1,34 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
     <title>Heuristics — εὑρίσκω</title>
-    <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="institution.css">
+    <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="fonts.css?v=20261115">
+    <link rel="stylesheet" href="institution.css?v=20261115">
+    <script src="theme.js?v=20261115"></script>
 </head>
 <body>
     <header class="header">
         <div class="header-inner">
-            <div class="logo">
-                <span class="logo-epsilon">ε</span>
-                <span class="logo-text">HEURISTICS</span>
+            <div class="header-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-epsilon">ε</span>
+                    <span class="logo-text">HEURISTICS</span>
+                </a>
+                <div class="contour-switch" role="navigation" aria-label="Контуры Heuristics">
+                    <a href="index.html" class="contour-pill active" aria-current="page">heuristics.ru</a>
+                    <a href="https://edu.heuristics.ru" class="contour-pill" title="Интерактивные курсы и практикумы Heuristics · Edu">edu</a>
+                </div>
             </div>
             <nav class="nav">
                 <a href="#method">Метод</a>
+                <a href="projects.html">Проекты</a>
                 <a href="instruments.html">Инструменты</a>
                 <a href="publications.html">Публикации</a>
                 <a href="company.html">О компании</a>
-                <a href="privacy.html">ПДн</a>
             </nav>
         </div>
     </header>
@@ -33,10 +42,16 @@
                     <h1>Формализация<br>процесса<br>открытия.</h1>
                     <div class="hero-rule"></div>
                     <p class="hero-sub">Частная исследовательская группа. Мы разрабатываем алгоритмы приближённого решения задач, неразрешимых точно — и применяем их к реальным рынкам.</p>
+                    <div class="btn-row">
+                        <a href="projects.html" class="btn sm">Проекты компании (4)</a>
+                        <a href="#method" class="btn sm ghost">Архитектура метода</a>
+                    </div>
                     <div class="hero-meta">
                         <span>Осн. 2024</span>
                         <span class="meta-dot"></span>
                         <span>Москва</span>
+                        <span class="meta-dot"></span>
+                        <span>ОКВЭД 62.01</span>
                         <span class="meta-dot"></span>
                         <span>heuristics.ru</span>
                     </div>
@@ -135,56 +150,151 @@
             </div>
         </section>
 
-        <!-- ═══ РЕЗУЛЬТАТЫ ═══ -->
+        <!-- ═══ ЭКСПЕРИМЕНТАЛЬНЫЕ ДАННЫЕ ═══ -->
         <section class="results">
             <div class="results-inner">
-                <div class="section-marker">§ II — Результаты</div>
-                <h2>Экспериментальные данные</h2>
-                <p class="results-caption">Измерено на реальных данных кабельной отрасли, 11 категорий СКС, база 14.2M артикулов.</p>
+                <div class="section-marker">§ II — Экспериментальные данные</div>
+                <h2>Точность и производительность</h2>
+                <p class="results-caption">Измерено на реальных номенклатурных массивах кабельно-проводниковой и СКС-отрасли (11 мета-категорий, база 14.2M артикулов).</p>
                 <div class="results-grid">
                     <div class="result-block">
                         <div class="rb-val">99<span class="rb-unit">%+</span></div>
                         <div class="rb-bar"><div class="rb-fill" style="width: 99%"></div></div>
                         <div class="rb-label">Точность при k=1</div>
-                        <div class="rb-note">точность при k=1 (тестовая выборка)</div>
+                        <div class="rb-note">контроль по физическим осям</div>
                     </div>
                     <div class="result-block">
                         <div class="rb-val">2.4<span class="rb-unit">с</span></div>
                         <div class="rb-bar"><div class="rb-fill" style="width: 24%"></div></div>
                         <div class="rb-label">Задержка / 100K запросов</div>
-                        <div class="rb-note">время полного прохода по базе</div>
+                        <div class="rb-note">полный проход по индексной базе</div>
                     </div>
                     <div class="result-block">
                         <div class="rb-val">14.2<span class="rb-unit">M</span></div>
                         <div class="rb-bar"><div class="rb-fill" style="width: 71%"></div></div>
                         <div class="rb-label">Размер базы знаний</div>
-                        <div class="rb-note">артикулов проиндексировано</div>
+                        <div class="rb-note">нормализованных SKU и карточек</div>
                     </div>
                     <div class="result-block">
                         <div class="rb-val">48<span class="rb-unit">ч</span></div>
-                        <div class="rb-bar"><div class="rb-fill" style="width: 12%"></div></div>
+                        <div class="rb-bar"><div class="rb-fill" style="width: 16%"></div></div>
                         <div class="rb-label">Время интеграции</div>
-                        <div class="rb-note">от договора до первого запроса через API</div>
+                        <div class="rb-note">подключение внешнего контура по API</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ═══ ИНСТРУМЕНТ (тизер) ═══ -->
-        <section class="instrument" id="instrument">
+        <!-- ═══ ПРОЕКТЫ И ПРОДУКТЫ (4 направления компании) ═══ -->
+        <section class="instrument" id="projects-showcase">
             <div class="instrument-inner">
-                <div class="section-marker">§ III — Инструмент</div>
+                <div class="section-marker">§ III — Проекты и практика</div>
+                <h2>Где работают наши разработки</h2>
+                <p class="results-caption">Исследовательская команда применяет собственные алгоритмы и программные инструменты как в задачах внешних заказчиков, так и внутри собственных и партнёрских проектов.</p>
+
+                <div class="grid g2">
+                    <div class="card oxide">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 8px; flex-wrap: wrap;">
+                            <span class="school-badge">01 · СПЛЭШ (SPLASH 2.1)</span>
+                            <span class="tag teal">Платформенная экономика · B2B</span>
+                        </div>
+                        <h3>Система подбора аналогов и разбора спецификаций</h3>
+                        <p style="font-size: 1.05rem; color: var(--ink-soft); margin-bottom: 12px;">
+                            Инфраструктурный инструмент платформенной экономики для промышленного рынка: переводит разрозненные проектные сметы (PDF, XLSX), каталоги производителей и дилерские матрицы в единое сопоставимое пространство по строгим физическим осям.
+                        </p>
+                        <div class="focus-chips">
+                            <span class="focus-chip">Парсинг PDF / XLSX</span>
+                            <span class="focus-chip">11 категорий СКС и КПП</span>
+                            <span class="focus-chip">Справочник BOM250</span>
+                            <span class="focus-chip">External Module API</span>
+                        </div>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <a href="access.html" class="btn sm">Доступ к системе</a>
+                            <a href="api.html" class="btn sm ghost">API</a>
+                            <a href="projects.html#splash" class="btn sm ghost">Подробнее →</a>
+                        </div>
+                    </div>
+
+                    <div class="card oxide">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 8px; flex-wrap: wrap;">
+                            <span class="school-badge">02 · Heuristics · Edu</span>
+                            <span class="tag oxide">Интерактивные курсы и практикумы</span>
+                        </div>
+                        <h3>Сценарные курсы и работа с первоисточниками</h3>
+                        <p style="font-size: 1.05rem; color: var(--ink-soft); margin-bottom: 12px;">
+                            Прикладная среда обучения, где сложные учебные дисциплины, инженерные методики и тексты законов разбираются через сюжетные отраслевые кейсы, столкновение профессиональных ролей и сборку рабочих пакетов <code>SKILL.md</code>.
+                        </p>
+                        <div class="focus-chips">
+                            <span class="focus-chip">Интерактивный кампус</span>
+                            <span class="focus-chip">Сценарные кейсы</span>
+                            <span class="focus-chip">Первоисточники и нормы</span>
+                            <span class="focus-chip">Пакеты SKILL.md</span>
+                        </div>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <a href="https://edu.heuristics.ru/academy" target="_blank" rel="noopener" class="btn sm">◈ Интерактивный кампус</a>
+                            <a href="https://edu.heuristics.ru" target="_blank" rel="noopener" class="btn sm ghost">edu.heuristics.ru</a>
+                            <a href="projects.html#edu" class="btn sm ghost">Подробнее →</a>
+                        </div>
+                    </div>
+
+                    <div class="card oxide">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 8px; flex-wrap: wrap;">
+                            <span class="school-badge">03 · Аркадий Ильич (А.И.)</span>
+                            <span class="tag">Цифровой резидент · Медиа и проекты</span>
+                        </div>
+                        <h3>Редактор, директор курсов и продюсер</h3>
+                        <p style="font-size: 1.05rem; color: var(--ink-soft); margin-bottom: 12px;">
+                            Публичный аватар и соавтор группы: ведёт технические публикации, руководит учебными курсами Heuristics · Edu, продюсирует ИИ-музыкальные релизы и участвует в операционных экспериментах партнёрских бизнесов.
+                        </p>
+                        <div class="focus-chips">
+                            <span class="focus-chip">Статьи и редактура</span>
+                            <span class="focus-chip">Учебные программы</span>
+                            <span class="focus-chip">ИИ-музыка</span>
+                            <span class="focus-chip">Партнёрские бизнесы</span>
+                        </div>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <a href="projects.html#arkady" class="btn sm ghost">Подробнее →</a>
+                            <a href="mailto:info@heuristics.ru?subject=%D0%9F%D0%B8%D1%81%D1%8C%D0%BC%D0%BE%20%D0%90%D1%80%D0%BA%D0%B0%D0%B4%D0%B8%D1%8E%20%D0%98%D0%BB%D1%8C%D0%B8%D1%87%D1%83" class="btn sm ghost">Написать Аркадию →</a>
+                        </div>
+                    </div>
+
+                    <div class="card oxide">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 8px; flex-wrap: wrap;">
+                            <span class="school-badge">04 · A CUP · акап.рф</span>
+                            <span class="tag teal">B2B · Производство и сервис</span>
+                        </div>
+                        <h3>Кофейное снабжение офисов и загородный сервис</h3>
+                        <p style="font-size: 1.05rem; color: var(--ink-soft); margin-bottom: 12px;">
+                            Производственно-логистический B2B-проект: профильная обжарка зерна и контрактное снабжение офисов с прогнозом пополнения запасов, а также направление <strong>A CUP · Стройка</strong> — строительство, присмотр и уборка загородных домов.
+                        </p>
+                        <div class="focus-chips">
+                            <span class="focus-chip">Зерновой кофе · Лот 01</span>
+                            <span class="focus-chip">Автопополнение SCM</span>
+                            <span class="focus-chip">A CUP · Стройка</span>
+                        </div>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <a href="https://xn--80aa3av.xn--p1ai" target="_blank" rel="noopener" class="btn sm">Сайт акап.рф ↗</a>
+                            <a href="projects.html#acup" class="btn sm ghost">Подробнее →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ЯДРО В ДЕЙСТВИИ (ИНТЕРАКТИВНЫЙ ТЕРМИНАЛ) ═══ -->
+        <section class="results" id="instrument">
+            <div class="instrument-inner">
+                <div class="section-marker">§ IV — Промышленная эксплуатация</div>
                 <div class="inst-grid">
                     <div class="inst-text">
-                        <div class="inst-label">Инструмент № 1</div>
-                        <h2>SPLASH</h2>
-                        <p class="inst-subtitle">СПЛЭШ</p>
-                        <p class="inst-full">SKU Profiling, Linking, Assessment,<br>Search & Heuristics</p>
+                        <div class="inst-label">Флагманское ядро · SPLASH 2.1</div>
+                        <h2>От сметы в PDF<br>до спецификации</h2>
+                        <p class="inst-subtitle">Без ручного перебора тысяч позиций</p>
                         <div class="inst-rule"></div>
-                        <p>Первый прикладной продукт, порождённый нашими исследованиями. CI-платформа для кабельной отрасли: парсинг PDF-смет конкурентов, автоматический подбор аналогов, gap-анализ.</p>
-                        <div style="margin-top: 16px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
-                            <a href="access.html" class="contact-link">Получить доступ &rarr;</a>
-                            <a href="instruments.html" class="contact-link" style="opacity: 0.6;">Все инструменты</a>
+                        <p>Вместо нечёткого текстового поиска система выделяет строгие инженерные оси каждого изделия, сверяет допустимые цепочки апгрейда (например, <code>LS → FRLS</code> или <code>Cat 5e → Cat 6</code>) и формирует готовую ведомость замещения с выявлением дефицитных позиций (гэпов).</p>
+                        <div style="margin-top: 24px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                            <a href="instruments.html" class="contact-link">Технологический стек &rarr;</a>
+                            <a href="publications.html" class="contact-link" style="opacity: 0.8;">Публикации и R&amp;D &rarr;</a>
                         </div>
                     </div>
                     <div class="inst-terminal">
@@ -192,15 +302,16 @@
                             <span class="term-dot td-r"></span>
                             <span class="term-dot td-y"></span>
                             <span class="term-dot td-g"></span>
-                            <span class="term-path">~/splash-cli</span>
+                            <span class="term-path">~/heuristics/splash-engine — zsh</span>
                         </div>
                         <div class="term-body">
-                            <div class="tl"><span class="t-p">$</span> splash analyze смета_конкурент.pdf</div>
-                            <div class="tl dim">[ИНФО] Извлечение признаков из 487 позиций...</div>
-                            <div class="tl dim">[ИНФО] Осевой скоринг по 11 категориям...</div>
-                            <div class="tl match">[ГОТОВО] 485/487 сматчено (точность ≥0.99)</div>
-                            <div class="tl gap">[ВНИМАНИЕ] 2 позиции: аналог не найден (гэп)</div>
-                            <div class="tl"><span class="cursor">█</span></div>
+                            <div class="tl"><span class="t-p">$</span> splash match --input spec_tender_44fz.pdf --catalog suprlan</div>
+                            <div class="tl dim">[PARSE] Извлечено 156 позиций из 4 таблиц PDF (Docling + pdfplumber)</div>
+                            <div class="tl dim">[AXES] Нормализация: сечение · жилы · экран · категория · ГОСТ ПБ</div>
+                            <div class="tl match">[MATCH] U/UTP Cat 6 4×2×23AWG ZH нг(А)-HF → найдено 154/156 (точность ≥0.99)</div>
+                            <div class="tl gap">[GAP] 2 спецпозиции: аналог в целевом каталоге отсутствует</div>
+                            <div class="tl match">[EXPORT] Сформирована таблица замещения и отчёт по гэпам (2.1 с)</div>
+                            <div class="tl"><span class="t-p">$</span> <span class="cursor">█</span></div>
                         </div>
                     </div>
                 </div>
@@ -218,22 +329,40 @@
             </div>
             <div class="footer-right">
                 <a href="mailto:info@heuristics.ru" style="color: inherit; margin-right: 16px; text-decoration: none;">info@heuristics.ru</a>
+                <a href="https://edu.heuristics.ru" style="color: inherit; margin-right: 16px; text-decoration: none;">edu.heuristics.ru ↗</a>
                 <a href="company.html" style="color: inherit; margin-right: 16px; text-decoration: none;">О компании</a>
-                <a href="privacy.html" style="color: inherit; margin-right: 16px; text-decoration: none;">Политика конфиденциальности</a>
+                <a href="privacy.html" style="color: inherit; margin-right: 16px; text-decoration: none;">Политика ПДн (152-ФЗ)</a>
                 <span>εὑρίσκω — «нахожу, открываю»</span>
             </div>
         </div>
     </footer>
 
     <script>
-    // ══ Matching visualization ══
+    // ══ Matching visualization (Retina + interactive axial telemetry) ══
     const canvas = document.getElementById('matchingViz');
     const ctx = canvas.getContext('2d');
 
+    let logicalW = 800;
+    let logicalH = 360;
+
+    const sampleItems = [
+        { sku: 'ВВГнг(А)-LS 3×2.5 ГОСТ 31996', axes: 'жилы: 3 · сеч: 2.5 · класс: LS', status: 'MATCH' },
+        { sku: 'U/UTP Cat 6 4×2×23AWG ZH нг(А)-HF', axes: 'кат: 6 · пар: 4 · AWG: 23 · HF', status: 'MATCH' },
+        { sku: 'КПСнг(А)-FRLSLTx 2×2×0.75', axes: 'пар: 2 · сеч: 0.75 · FRLSLTx', status: 'MATCH' },
+        { sku: 'Патч-панель 19" 24p Cat 6 FTP 1U', axes: 'порты: 24 · кат: 6 · экран: FTP', status: 'MATCH' },
+        { sku: 'ОКГТ-Ц-16Г (72 кН) 14.2 мм', axes: 'волокон: 16 · растяж: 72кН', status: 'GAP' },
+        { sku: 'КГВВнг(А)-LS 5×6.0 ТУ 16.К71', axes: 'жилы: 5 · сеч: 6.0 · гибкий', status: 'MATCH' },
+        { sku: 'F/UTP Cat 6A 4×2×23AWG LSLTx', axes: 'кат: 6A · экран: F/UTP · LSLTx', status: 'GAP' }
+    ];
+
     function resize() {
         const rect = canvas.parentElement.getBoundingClientRect();
-        canvas.width = rect.width;
-        canvas.height = 360;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        logicalW = rect.width;
+        logicalH = 360;
+        canvas.width = logicalW * dpr;
+        canvas.height = logicalH * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
     const sourcePoints = [];
@@ -241,6 +370,7 @@
     const gapPoints = [];
     const connections = [];
     let frame = 0;
+    let hoveredSourceIdx = -1;
 
     function init() {
         resize();
@@ -249,100 +379,191 @@
         gapPoints.length = 0;
         connections.length = 0;
 
-        const w = canvas.width;
-        const h = canvas.height;
-        const leftX = w * 0.15;
-        const rightX = w * 0.85;
-        const count = 28;
+        const w = logicalW;
+        const h = logicalH;
+        const leftX = w * 0.16;
+        const rightX = w * 0.84;
+        const count = 26;
 
         for (let i = 0; i < count; i++) {
-            const sy = 30 + (h - 60) * (i / (count - 1));
-            const sx = leftX + (Math.random() - 0.5) * 60;
-            sourcePoints.push({ x: sx, y: sy });
+            const sy = 36 + (h - 76) * (i / (count - 1));
+            const sx = leftX + Math.sin(i * 1.7) * 26;
+            const isGap = (i === 9 || i === 21);
+            const meta = sampleItems[i % sampleItems.length];
+            sourcePoints.push({
+                x: sx,
+                y: sy,
+                isGap,
+                sku: isGap ? (i === 9 ? sampleItems[4].sku : sampleItems[6].sku) : meta.sku,
+                axes: isGap ? (i === 9 ? sampleItems[4].axes : sampleItems[6].axes) : meta.axes
+            });
 
-            if (i < count - 2) {
-                const mx = rightX + (Math.random() - 0.5) * 60;
-                const my = 30 + (h - 60) * ((i + Math.random() * 0.5) / (count - 1));
+            if (!isGap) {
+                const targetOrder = Math.min(count - 1, Math.max(0, i + ((i % 3) - 1)));
+                const my = 36 + (h - 76) * (targetOrder / (count - 1));
+                const mx = rightX + Math.cos(i * 1.3) * 26;
                 matchPoints.push({ x: mx, y: my });
-                connections.push({ si: i, mi: matchPoints.length - 1, delay: i * 8 });
+                connections.push({ si: i, mi: matchPoints.length - 1, delay: i * 7 });
             } else {
-                gapPoints.push({ x: sx, y: sy });
+                gapPoints.push({ x: sx, y: sy, si: i });
             }
         }
     }
 
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+        let closest = -1;
+        let minDist = 28;
+        sourcePoints.forEach((p, idx) => {
+            const d = Math.hypot(p.x - mx, p.y - my);
+            if (d < minDist) {
+                minDist = d;
+                closest = idx;
+            }
+        });
+        hoveredSourceIdx = closest;
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+        hoveredSourceIdx = -1;
+    });
+
+    function isDarkTheme() {
+        const attr = document.documentElement.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
     function draw() {
         frame++;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, logicalW, logicalH);
+        const dark = isDarkTheme();
 
-        // grid
-        ctx.strokeStyle = 'rgba(0,0,0,0.04)';
+        // Subtle grid
+        ctx.strokeStyle = dark ? 'rgba(255,255,255,0.045)' : 'rgba(0,0,0,0.04)';
         ctx.lineWidth = 0.5;
-        for (let x = 0; x < canvas.width; x += 40) {
-            ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+        for (let x = 0; x < logicalW; x += 40) {
+            ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, logicalH); ctx.stroke();
         }
-        for (let y = 0; y < canvas.height; y += 40) {
-            ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+        for (let y = 0; y < logicalH; y += 40) {
+            ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(logicalW, y); ctx.stroke();
         }
 
-        // connections
+        // Center axis divider (scoring plane)
+        const midX = logicalW * 0.5;
+        ctx.save();
+        ctx.setLineDash([4, 6]);
+        ctx.strokeStyle = dark ? 'rgba(222, 125, 91, 0.25)' : 'rgba(139, 58, 42, 0.2)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(midX, 28);
+        ctx.lineTo(midX, logicalH - 36);
+        ctx.stroke();
+        ctx.restore();
+
+        let activeInspectedIdx = hoveredSourceIdx;
+
+        // Connections
         connections.forEach(c => {
-            const progress = Math.min(1, Math.max(0, (frame - c.delay) / 40));
+            const progress = Math.min(1, Math.max(0, (frame - c.delay) / 42));
             if (progress <= 0) return;
             const s = sourcePoints[c.si];
             const m = matchPoints[c.mi];
             const ex = s.x + (m.x - s.x) * progress;
             const ey = s.y + (m.y - s.y) * progress;
+            const isHovered = (hoveredSourceIdx === c.si);
+
+            if (activeInspectedIdx === -1 && progress > 0.2 && progress < 0.95) {
+                activeInspectedIdx = c.si;
+            }
 
             ctx.beginPath();
             ctx.moveTo(s.x, s.y);
             ctx.lineTo(ex, ey);
-            ctx.strokeStyle = `rgba(0, 180, 140, ${0.15 * progress})`;
-            ctx.lineWidth = 1;
+            if (isHovered) {
+                ctx.strokeStyle = dark ? '#2dd4aa' : '#00b48c';
+                ctx.lineWidth = 2;
+            } else {
+                ctx.strokeStyle = dark ? `rgba(45, 212, 170, ${0.24 * progress})` : `rgba(0, 180, 140, ${0.18 * progress})`;
+                ctx.lineWidth = 1;
+            }
             ctx.stroke();
 
             if (progress > 0 && progress < 1) {
                 ctx.beginPath();
-                ctx.arc(ex, ey, 3, 0, Math.PI * 2);
-                ctx.fillStyle = '#00B48C';
+                ctx.arc(ex, ey, 3.2, 0, Math.PI * 2);
+                ctx.fillStyle = dark ? '#2dd4aa' : '#00B48C';
                 ctx.fill();
             }
         });
 
-        // source
-        sourcePoints.forEach(p => {
-            ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
-            ctx.fillStyle = '#1c1917'; ctx.fill();
+        // Source nodes
+        sourcePoints.forEach((p, idx) => {
+            const isHovered = (idx === hoveredSourceIdx);
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, isHovered ? 6 : 4, 0, Math.PI * 2);
+            ctx.fillStyle = p.isGap
+                ? (dark ? '#e56b55' : '#c74634')
+                : (dark ? '#ece7df' : '#1c1917');
+            ctx.fill();
         });
 
-        // match
+        // Match nodes
         matchPoints.forEach(p => {
-            ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
-            ctx.fillStyle = '#00B48C'; ctx.fill();
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+            ctx.fillStyle = dark ? '#2dd4aa' : '#00B48C';
+            ctx.fill();
         });
 
-        // gap
+        // Gap rings
         gapPoints.forEach(p => {
-            ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
-            ctx.fillStyle = 'transparent';
-            ctx.strokeStyle = '#c74634'; ctx.lineWidth = 2; ctx.stroke();
-            const pulse = 8 + Math.sin(frame * 0.05) * 4;
-            ctx.beginPath(); ctx.arc(p.x, p.y, pulse, 0, Math.PI * 2);
-            ctx.strokeStyle = `rgba(199, 70, 52, ${0.3 - (pulse - 8) * 0.03})`;
-            ctx.lineWidth = 1; ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 5.5, 0, Math.PI * 2);
+            ctx.strokeStyle = dark ? '#ef4444' : '#c74634';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            const pulse = 8 + Math.sin(frame * 0.06) * 4;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, pulse, 0, Math.PI * 2);
+            ctx.strokeStyle = dark ? `rgba(239, 68, 68, ${0.38 - (pulse - 8) * 0.03})` : `rgba(199, 70, 52, ${0.32 - (pulse - 8) * 0.03})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
         });
 
-        // labels
+        // Column headers
         ctx.font = '11px "JetBrains Mono", monospace';
-        ctx.fillStyle = '#a8a29e'; ctx.textAlign = 'center';
-        ctx.fillText('ОБЪЕКТЫ A', canvas.width * 0.15, 18);
-        ctx.fillText('ОБЪЕКТЫ B', canvas.width * 0.85, 18);
+        ctx.fillStyle = dark ? '#9a9389' : '#78716c';
+        ctx.textAlign = 'center';
+        ctx.fillText('МНОЖЕСТВО A (СПЕЦИФИКАЦИЯ)', logicalW * 0.16, 20);
+        ctx.fillText('ОСЕВОЙ ФИЛЬТР', midX, 20);
+        ctx.fillText('МНОЖЕСТВО B (БАЗА АНАЛОГОВ)', logicalW * 0.84, 20);
 
-        if (frame < 400) requestAnimationFrame(draw);
-        else { frame = 0; init(); requestAnimationFrame(draw); }
+        // Telemetry status bar at bottom
+        if (activeInspectedIdx === -1) activeInspectedIdx = 9;
+        const inspected = sourcePoints[activeInspectedIdx] || sourcePoints[0];
+        if (inspected) {
+            ctx.textAlign = 'left';
+            ctx.font = '11px "JetBrains Mono", monospace';
+            const statusText = inspected.isGap ? 'ГЭП (АНАЛОГ НЕ НАЙДЕН)' : 'СОВПАДЕНИЕ ПО ОСЯМ';
+            const statusColor = inspected.isGap ? (dark ? '#e56b55' : '#c74634') : (dark ? '#2dd4aa' : '#00b48c');
+            ctx.fillStyle = dark ? '#9a9389' : '#78716c';
+            ctx.fillText(`Позиция: ${inspected.sku}  |  [${inspected.axes}]  →  `, 16, logicalH - 12);
+            const prefixW = ctx.measureText(`Позиция: ${inspected.sku}  |  [${inspected.axes}]  →  `).width;
+            ctx.fillStyle = statusColor;
+            ctx.fillText(statusText, 16 + prefixW, logicalH - 12);
+        }
+
+        if (frame < 420) requestAnimationFrame(draw);
+        else { frame = 0; requestAnimationFrame(draw); }
     }
 
-    init(); draw();
+    init();
+    draw();
     window.addEventListener('resize', () => { init(); });
     </script>
 </body>

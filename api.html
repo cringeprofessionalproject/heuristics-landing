@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
     <title>SPLASH External API — Heuristics</title>
+    <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
     <meta name="description" content="Документация SPLASH External Module API. Полный доступ к датасету SPLASH 2.0: консолидированные данные о продуктах, LLM-прокси, хранение результатов.">
-    <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="institution.css">
-    <link rel="stylesheet" href="subpages.css">
+    <link rel="stylesheet" href="fonts.css?v=20261115">
+    <link rel="stylesheet" href="institution.css?v=20261115">
+    <link rel="stylesheet" href="subpages.css?v=20261115">
+    <script src="theme.js?v=20261115"></script>
     <style>
         /* ─── DOC LAYOUT ─── */
         .doc-layout {
@@ -292,9 +295,9 @@
         }
 
         .callout-warn {
-            background: rgba(180, 83, 9, 0.06);
-            border-left: 3px solid #b45309;
-            color: #92400e;
+            background: rgba(180, 83, 9, 0.1);
+            border-left: 3px solid #d97706;
+            color: var(--ink-soft);
         }
 
         .callout-info {
@@ -415,16 +418,22 @@
 <body>
     <header class="header">
         <div class="header-inner">
-            <div class="logo">
-                <span class="logo-epsilon">ε</span>
-                <a href="/" class="logo-text">HEURISTICS</a>
+            <div class="header-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-epsilon">ε</span>
+                    <span class="logo-text">HEURISTICS</span>
+                </a>
+                <div class="contour-switch" role="navigation" aria-label="Контуры Heuristics">
+                    <a href="index.html" class="contour-pill active" aria-current="page">heuristics.ru</a>
+                    <a href="https://edu.heuristics.ru" class="contour-pill" title="Интерактивные курсы и практикумы Heuristics · Edu">edu</a>
+                </div>
             </div>
             <nav class="nav">
-                <a href="/#method">Метод</a>
+                <a href="index.html#method">Метод</a>
+                <a href="projects.html">Проекты</a>
                 <a href="instruments.html">Инструменты</a>
                 <a href="publications.html">Публикации</a>
                 <a href="company.html">О компании</a>
-                <a href="privacy.html">ПДн</a>
             </nav>
         </div>
     </header>
@@ -941,9 +950,10 @@ All errors: { "error": "description" }
             </div>
             <div class="footer-right">
                 <a href="mailto:info@heuristics.ru" style="color: inherit; margin-right: 16px; text-decoration: none;">info@heuristics.ru</a>
-                <a href="company.html">О компании</a>
-                <a href="privacy.html" style="color: inherit; margin-right: 16px; text-decoration: none;">Политика конфиденциальности</a>
-                <span>εὑρίскω — «нахожу, открываю»</span>
+                <a href="https://edu.heuristics.ru" style="color: inherit; margin-right: 16px; text-decoration: none;">edu.heuristics.ru ↗</a>
+                <a href="company.html" style="color: inherit; margin-right: 16px; text-decoration: none;">О компании</a>
+                <a href="privacy.html" style="color: inherit; margin-right: 16px; text-decoration: none;">Политика ПДн (152-ФЗ)</a>
+                <span>εὑρίσκω — «нахожу, открываю»</span>
             </div>
         </div>
     </footer>

@@ -1,26 +1,201 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
     <title>Инструменты — Heuristics</title>
-    <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="institution.css">
-    <link rel="stylesheet" href="subpages.css">
+    <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+    <script src="theme.js?v=20261115"></script>
+    <link rel="stylesheet" href="fonts.css?v=20261115">
+    <link rel="stylesheet" href="institution.css?v=20261115">
+    <link rel="stylesheet" href="subpages.css?v=20261115">
+    <style>
+        .section-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+        .section-top-row .sp-caption {
+            margin-bottom: 0;
+        }
+        .mod-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            padding: 7px 13px;
+            background: var(--marble);
+            border: 1px solid var(--stone-light);
+            color: var(--ink);
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+            white-space: nowrap;
+        }
+        .mod-pill:hover {
+            border-color: var(--oxide);
+            color: var(--oxide);
+        }
+        .mod-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--teal);
+            box-shadow: 0 0 0 3px var(--teal-bg);
+            flex-shrink: 0;
+        }
+        .nominative-note {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--stone-light);
+            font-family: var(--sans);
+            font-size: 0.78rem;
+            color: var(--stone);
+            line-height: 1.6;
+        }
+        /* ─── COMPACT SUGGESTION CARD ─── */
+        .suggest-box {
+            max-width: 760px;
+            background: var(--warm-white);
+            border: 1px solid var(--stone-light);
+            border-left: 3px solid var(--oxide);
+            padding: 28px 32px;
+        }
+        .suggest-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .suggest-head h2 {
+            font-family: var(--serif);
+            font-size: 1.65rem;
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+        .suggest-sub {
+            font-family: var(--serif);
+            font-size: 1.06rem;
+            color: var(--ink-soft);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .compact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .c-input,
+        .c-textarea {
+            width: 100%;
+            font-family: var(--sans);
+            font-size: 0.88rem;
+            padding: 11px 14px;
+            border: 1px solid var(--stone-light);
+            background: var(--marble);
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.18s;
+            border-radius: 0;
+        }
+        .c-input:focus,
+        .c-textarea:focus {
+            border-color: var(--oxide);
+        }
+        .c-input::placeholder,
+        .c-textarea::placeholder {
+            color: var(--stone);
+            opacity: 0.8;
+        }
+        .c-textarea {
+            min-height: 70px;
+            resize: vertical;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+        .suggest-foot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .c-contact {
+            flex: 1;
+            min-width: 210px;
+        }
+        .submit-btn {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            padding: 11px 20px;
+            background: var(--ink);
+            color: var(--marble);
+            border: 1px solid var(--ink);
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .submit-btn:hover {
+            background: var(--oxide);
+            border-color: var(--oxide);
+            color: #faf8f5;
+        }
+        .form-error {
+            display: none;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            color: var(--gap-red);
+            margin-bottom: 10px;
+        }
+        .mod-success {
+            display: none;
+            padding-top: 6px;
+        }
+        .mod-success p {
+            font-family: var(--sans);
+            font-size: 0.86rem;
+            color: var(--ink-soft);
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+        @media (max-width: 720px) {
+            .compact-grid {
+                grid-template-columns: 1fr;
+            }
+            .suggest-box {
+                padding: 22px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
         <div class="header-inner">
-            <div class="logo">
-                <span class="logo-epsilon">ε</span>
-                <a href="/" class="logo-text">HEURISTICS</a>
+            <div class="header-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-epsilon">ε</span>
+                    <span class="logo-text">HEURISTICS</span>
+                </a>
+                <div class="contour-switch" role="navigation" aria-label="Контуры Heuristics">
+                    <a href="index.html" class="contour-pill active" aria-current="page">heuristics.ru</a>
+                    <a href="https://edu.heuristics.ru" class="contour-pill" title="Интерактивные курсы и практикумы Heuristics · Edu">edu</a>
+                </div>
             </div>
             <nav class="nav">
-                <a href="/#method">Метод</a>
+                <a href="index.html#method">Метод</a>
+                <a href="projects.html">Проекты</a>
                 <a href="instruments.html" class="nav-active">Инструменты</a>
                 <a href="publications.html">Публикации</a>
                 <a href="company.html">О компании</a>
-                <a href="privacy.html">ПДн</a>
             </nav>
         </div>
     </header>
@@ -28,265 +203,228 @@
     <main>
         <section class="page-hero">
             <div class="page-hero-inner">
-                <div class="section-marker">§ III — Инструменты</div>
-                <h1>Инструменты<br>и проекты</h1>
-                <p class="page-hero-sub">Наши собственные разработки, а также open-source проекты и модели, которые мы используем, изучаем или на которые опираемся в исследованиях.</p>
+                <div class="marker">§ Инструменты и технологический стек</div>
+                <h1>Инструменты</h1>
+                <div class="rule"></div>
+                <p class="lede">Собственные программные интерфейсы компании, а также внешние модели, библиотеки и среды разработки, проверенные нами в реальных проектах.</p>
             </div>
         </section>
 
-        <!-- ═══ НАШИ ПРОЕКТЫ ═══ -->
+        <!-- ═══ § I. НАШИ ИНСТРУМЕНТЫ И API ═══ -->
         <section class="sp-section">
             <div class="sp-inner">
-                <h2 class="sp-title">Наши проекты</h2>
+                <div class="marker">§ I — Собственные разработки</div>
+                <h2 class="sp-title">Программные интерфейсы и агентные пакеты</h2>
+                <p class="sp-caption">Описания отдельных систем и бизнесов вынесены в раздел <a href="projects.html">«Проекты»</a>.</p>
 
                 <div class="tool-card tool-featured">
                     <div class="tool-header">
-                        <div class="tool-icon">🔬</div>
-                        <div>
-                            <h3>SPLASH / СПЛЭШ</h3>
-                            <span class="tool-badge badge-own">Наш проект</span>
-                        </div>
+                        <span class="school-badge">01 · SPLASH External Module API (v2.1)</span>
+                        <span class="tag teal">Собственная разработка</span>
                     </div>
-                    <p class="tool-full">SKU Profiling, Linking, Assessment, Search & Heuristics</p>
-                    <p class="tool-desc">CI-платформа для кабельной отрасли. Парсинг PDF-смет конкурентов → извлечение физических осей из артикулов → осевой скоринг с весами → автоматический подбор аналогов из наличия. REST API для 1С/SAP.</p>
+                    <h3>REST API доступа к ядру осевого скоринга и номенклатурной базе</h3>
+                    <p class="tool-full">https://splash.heuristics.ru/api/ext/v1 · авторизация по X-API-Key</p>
+                    <p class="tool-desc">Унифицированный программный интерфейс для подключения внешних модулей, учётных систем и аналитических сервисов к данным СПЛЭШ: получение структурированных технических параметров продукции, проверенных конкурентных аналогов со скоринговыми оценками, встроенный LLM-прокси и хранилище карточек.</p>
                     <div class="tool-stack">
                         <span class="stack-tag">Node.js</span>
-                        <span class="stack-tag">PostgreSQL</span>
-                        <span class="stack-tag">JSONB</span>
+                        <span class="stack-tag">PostgreSQL · JSONB</span>
                         <span class="stack-tag">REST API</span>
+                        <span class="stack-tag">X-API-Key</span>
                     </div>
                     <div class="tool-links">
-                        <a href="access.html" class="contact-link">Получить доступ &rarr;</a>
-                        <a href="api.html" class="tool-link tl-github">API Docs →</a>
-                        <span class="tool-status">● Доступ по запросу</span>
+                        <a href="api.html" class="btn sm">Документация API</a>
+                        <a href="access.html" class="btn sm ghost">Запросить токен</a>
                     </div>
                 </div>
 
                 <div class="tool-card tool-featured">
                     <div class="tool-header">
-                        <div class="tool-icon">🧩</div>
-                        <div>
-                            <h3>Heuristics MCP Server</h3>
-                            <span class="tool-badge badge-soon">Скоро</span>
-                        </div>
+                        <span class="school-badge">02 · Пакеты SKILL.md и MCP-коннекторы</span>
+                        <span class="tag oxide">Собственная разработка</span>
                     </div>
-                    <p class="tool-desc">MCP-сервер (Model Context Protocol) с набором скиллов для автоматизации эвристических задач: подбор аналогов, gap-анализ, классификация SKU. Позволит подключать агентов к нашим алгоритмам через стандартный протокол.</p>
+                    <h3>Структурированные инструкции и справочники для ИИ-агентов</h3>
+                    <p class="tool-desc">Формат исполняемых методических пакетов (<code>SKILL.md</code> + выверенные справочные материалы в папке <code>references/</code>) для локальных и облачных ИИ-агентов. Применяется для проверки документов, расчёта спецификаций, разбора воронок и подготовки проектной документации.</p>
                     <div class="tool-stack">
-                        <span class="stack-tag">TypeScript</span>
-                        <span class="stack-tag">MCP</span>
-                        <span class="stack-tag">JSON-RPC</span>
+                        <span class="stack-tag">Model Context Protocol (MCP)</span>
+                        <span class="stack-tag">SKILL.md</span>
+                        <span class="stack-tag">Предметные справочники</span>
                     </div>
                     <div class="tool-links">
-                        <a href="https://modelcontextprotocol.io" target="_blank" class="tool-link tl-ext">Спецификация MCP</a>
-                        <span class="tool-status">● В разработке</span>
+                        <a href="https://edu.heuristics.ru" target="_blank" rel="noopener" class="btn sm ghost">Каталог на edu.heuristics.ru →</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ═══ ENTITY MATCHING ═══ -->
-        <section class="sp-section sp-alt">
+        <!-- ═══ § II. ПРОВЕРЕННЫЙ ОТКРЫТЫЙ И ПРИКЛАДНОЙ СТЕК ═══ -->
+        <section class="sp-section sp-alt" id="voice-ai">
             <div class="sp-inner">
-                <h2 class="sp-title">Рекомендуемые инструменты сообщества</h2>
-                <p class="sp-caption">Перечисленные ниже open-source инструменты <strong>не являются разработками ООО «Эвристические технологии»</strong>. Мы рекомендуем их как качественные решения для задач entity matching и record linkage и поддерживаем авторов проектов своей рекомендацией.</p>
+                <div class="marker">§ II — Применяемый внешний стек</div>
+                <h2 class="sp-title">Модели, библиотеки и среды в нашей работе</h2>
+                <div class="section-top-row">
+                    <p class="sp-caption">Решения исследовательских групп, open-source сообществ и технологических платформ, показавшие устойчивый результат в наших задачах.</p>
+                    <a href="#submit-tool" class="mod-pill">
+                        <span class="mod-dot"></span>
+                        <span id="topModBadgeText">На рассмотрении: 3 · Посоветовать ↓</span>
+                    </a>
+                </div>
 
                 <div class="tool-card">
                     <div class="tool-header">
-                        <div class="tool-icon">🔗</div>
-                        <div>
-                            <h3>Splink</h3>
-                            <span class="tool-badge badge-oss">Open Source</span>
-                        </div>
+                        <span class="school-badge">Синтез речи · TTS</span>
+                        <span class="tag teal">Open Weights</span>
                     </div>
-                    <p class="tool-desc">Вероятностное связывание записей и дедупликация в масштабе. Работает на DuckDB, Spark, Athena, Postgres. Не требует обучающей выборки — Fellegi–Sunter модель с EM-алгоритмом.</p>
+                    <h3>Fish Audio — Drama 3 (35B MoE) &amp; S2 Pro</h3>
+                    <p class="tool-full">fishaudio/drama-3 · fishaudio/s2-pro · 44.1 kHz · локальный запуск на Apple MLX</p>
+                    <p class="tool-desc">Инструмент для синтеза живой русской речи со сменой эмоционального регистра без плоской «дикторской начитки». Флагманская модель <code>Drama 3</code> (Mixture-of-Experts на 35 млрд параметров при 3 млрд активных) и версия <code>S2 Pro</code> (4B) поддерживают мульти-референсный промптинг и режиссёрские теги в тексте (<code>[sighs]</code>, <code>&lt;whisper&gt;</code>).</p>
                     <div class="tool-stack">
-                        <span class="stack-tag">Python</span>
-                        <span class="stack-tag">DuckDB</span>
-                        <span class="stack-tag">Spark</span>
+                        <span class="stack-tag">35B-A3B MoE</span>
+                        <span class="stack-tag">Apple MLX (4-bit)</span>
+                        <span class="stack-tag">44.1 kHz</span>
+                        <span class="stack-tag">Multi-Reference Cloning</span>
                     </div>
                     <div class="tool-links">
-                        <a href="https://github.com/moj-analytical-services/splink" target="_blank" class="tool-link tl-github">GitHub</a>
+                        <a href="https://github.com/fishaudio/fish-speech" target="_blank" rel="noopener" class="tool-link">GitHub (Fish Speech)</a>
+                        <a href="https://habr.com/ru/articles/1106246/" target="_blank" rel="noopener" class="tool-link">Наш разбор на Хабре →</a>
                     </div>
                 </div>
 
                 <div class="tool-card">
                     <div class="tool-header">
-                        <div class="tool-icon">🧹</div>
-                        <div>
-                            <h3>Dedupe</h3>
-                            <span class="tool-badge badge-oss">Open Source</span>
-                        </div>
+                        <span class="school-badge">Разбор PDF-документации</span>
+                        <span class="tag">Open Source · MIT</span>
                     </div>
-                    <p class="tool-desc">Fuzzy matching с активным обучением: модель учится на ваших метках, задавая вопросы «это одна и та же запись?». Идеален для структурированных данных с шумом.</p>
+                    <h3>IBM Docling &amp; pdfplumber</h3>
+                    <p class="tool-desc">Связка для извлечения многостраничных таблиц из проектных и тендерных спецификаций. <code>pdfplumber</code> обеспечивает быстрый геометрический разбор документов с векторной сеткой, а <code>Docling</code> восстанавливает структуру объединённых ячеек и заголовков на сложных макетах с выгрузкой в Markdown и JSON.</p>
                     <div class="tool-stack">
                         <span class="stack-tag">Python</span>
-                        <span class="stack-tag">Active Learning</span>
+                        <span class="stack-tag">Table Extraction</span>
+                        <span class="stack-tag">Layout Analysis</span>
                     </div>
                     <div class="tool-links">
-                        <a href="https://github.com/dedupeio/dedupe" target="_blank" class="tool-link tl-github">GitHub</a>
+                        <a href="https://github.com/DS4SD/docling" target="_blank" rel="noopener" class="tool-link">Docling (GitHub)</a>
+                        <a href="https://github.com/jsvine/pdfplumber" target="_blank" rel="noopener" class="tool-link">pdfplumber (GitHub)</a>
                     </div>
                 </div>
 
                 <div class="tool-card">
                     <div class="tool-header">
-                        <div class="tool-icon">🧠</div>
-                        <div>
-                            <h3>Ditto</h3>
-                            <span class="tool-badge badge-oss">Open Source</span>
-                        </div>
+                        <span class="school-badge">Веб-экстракция данных</span>
+                        <span class="tag">Open Source · Apache-2.0</span>
                     </div>
-                    <p class="tool-desc">Entity matching на предобученных Transformer-моделях (BERT/RoBERTa). SOTA-результат: +29% F1 к предыдущим подходам. Аугментация, суммаризация, инъекция доменных знаний.</p>
+                    <h3>Crawl4AI</h3>
+                    <p class="tool-desc">Асинхронный краулер на базе Playwright для сбора номенклатурных каталогов и прайс-листов с динамических витрин. Извлекает структурированные карточки по декларативным JSON/CSS-схемам без избыточных обращений к языковым моделям.</p>
                     <div class="tool-stack">
                         <span class="stack-tag">Python</span>
-                        <span class="stack-tag">PyTorch</span>
-                        <span class="stack-tag">Transformers</span>
+                        <span class="stack-tag">Playwright</span>
+                        <span class="stack-tag">Schema Extraction</span>
                     </div>
                     <div class="tool-links">
-                        <a href="https://github.com/megagonlabs/ditto" target="_blank" class="tool-link tl-github">GitHub</a>
+                        <a href="https://github.com/unclecode/crawl4ai" target="_blank" rel="noopener" class="tool-link">GitHub</a>
                     </div>
                 </div>
 
                 <div class="tool-card">
                     <div class="tool-header">
-                        <div class="tool-icon">🏛</div>
-                        <div>
-                            <h3>DeepMatcher</h3>
-                            <span class="tool-badge badge-oss">Open Source</span>
-                        </div>
+                        <span class="school-badge">Семантический поиск и RAG</span>
+                        <span class="tag">Open Source · MIT</span>
                     </div>
-                    <p class="tool-desc">Нейросетевой фреймворк для entity matching от группы AnHai (UW-Madison). Атрибутивные эмбеддинги, внимание, разнообразные архитектуры сравнения.</p>
+                    <h3>Sentence Transformers (BAAI/bge-m3) &amp; FAISS</h3>
+                    <p class="tool-desc">Связка для мультиязычного векторного поиска по нормативным актам и техническим справочникам. Модель <code>bge-m3</code> строит плотные и лексические представления русскоязычных технических текстов, а <code>FAISS</code> отвечает за быстрый отбор кандидатов по индексной базе.</p>
                     <div class="tool-stack">
                         <span class="stack-tag">Python</span>
-                        <span class="stack-tag">PyTorch</span>
+                        <span class="stack-tag">bge-m3</span>
+                        <span class="stack-tag">FAISS</span>
                     </div>
                     <div class="tool-links">
-                        <a href="https://github.com/anhaidgroup/deepmatcher" target="_blank" class="tool-link tl-github">GitHub</a>
+                        <a href="https://github.com/UKPLab/sentence-transformers" target="_blank" rel="noopener" class="tool-link">Sentence Transformers</a>
+                        <a href="https://github.com/facebookresearch/faiss" target="_blank" rel="noopener" class="tool-link">FAISS</a>
                     </div>
                 </div>
 
                 <div class="tool-card">
                     <div class="tool-header">
-                        <div class="tool-icon">⚡</div>
-                        <div>
-                            <h3>pyJedAI</h3>
-                            <span class="tool-badge badge-oss">Open Source</span>
-                        </div>
+                        <span class="school-badge">Интерактивные среды и визуальный продакшен</span>
+                        <span class="tag">Production Pipeline</span>
                     </div>
-                    <p class="tool-desc">End-to-end фреймворк для entity resolution. Полный пайплайн: блокировка → сравнение → кластеризация. Интеграция с NLP/DL-моделями, работа без размеченных данных.</p>
+                    <h3>Phaser 3 · Google Flow · GitHub Actions</h3>
+                    <p class="tool-desc">Инструменты сборки интерактивных и мультимедийных материалов: движок <code>Phaser 3</code> в связке с Next.js отвечает за сценарные практикумы в браузере, <code>Google Flow</code> используется для покадровой режиссуры видеороликов по эталонным референсам, а <code>GitHub</code> — для хранения кода и автоматических проверок.</p>
                     <div class="tool-stack">
-                        <span class="stack-tag">Python</span>
-                        <span class="stack-tag">NLP</span>
+                        <span class="stack-tag">Phaser 3 (MIT)</span>
+                        <span class="stack-tag">Google Flow</span>
+                        <span class="stack-tag">GitHub CI/CD</span>
                     </div>
                     <div class="tool-links">
-                        <a href="https://github.com/AI-team-UoA/pyJedAI" target="_blank" class="tool-link tl-github">GitHub</a>
+                        <a href="https://github.com/phaserjs/phaser" target="_blank" rel="noopener" class="tool-link">Phaser (GitHub)</a>
+                        <a href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener" class="tool-link">Google Flow</a>
                     </div>
                 </div>
 
                 <div class="tool-card">
                     <div class="tool-header">
-                        <div class="tool-icon">📊</div>
-                        <div>
-                            <h3>Python Record Linkage Toolkit</h3>
-                            <span class="tool-badge badge-oss">Open Source</span>
-                        </div>
+                        <span class="school-badge">Агентная оркестрация</span>
+                        <span class="tag">Open Ecosystem</span>
                     </div>
-                    <p class="tool-desc">Модульный набор для record linkage: индексирование, блокировка, сравнение, классификация. Интеграция с pandas и scikit-learn. Идеален для прототипирования.</p>
+                    <h3>Ollama · n8n · Model Context Protocol (MCP)</h3>
+                    <p class="tool-desc">Инфраструктурный набор для автономных агентов и внутренних регламентов: <code>Ollama</code> унифицирует запуск языковых моделей, <code>n8n</code> маршрутизирует события и расписания, а протокол <code>MCP</code> связывает агентов с базами данных и прикладными сервисами.</p>
                     <div class="tool-stack">
-                        <span class="stack-tag">Python</span>
-                        <span class="stack-tag">Pandas</span>
-                        <span class="stack-tag">Scikit-learn</span>
+                        <span class="stack-tag">Ollama</span>
+                        <span class="stack-tag">MCP JSON-RPC</span>
+                        <span class="stack-tag">n8n</span>
                     </div>
                     <div class="tool-links">
-                        <a href="https://github.com/J535D165/recordlinkage" target="_blank" class="tool-link tl-github">GitHub</a>
+                        <a href="https://ollama.com" target="_blank" rel="noopener" class="tool-link">Ollama</a>
+                        <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener" class="tool-link">Спецификация MCP</a>
                     </div>
                 </div>
+
+                <p class="nominative-note">
+                    Наименования сторонних библиотек, моделей и сервисов принадлежат их правообладателям и приведены в справочных целях для описания применяемого технологического стека.
+                </p>
             </div>
         </section>
 
-        <!-- ═══ ЭМБЕДДИНГИ И МОДЕЛИ ═══ -->
-        <section class="sp-section">
+        <!-- ═══ § III. ЛЁГКАЯ ФОРМА РЕКОМЕНДАЦИИ ИНСТРУМЕНТА ═══ -->
+        <section class="sp-section" id="submit-tool">
             <div class="sp-inner">
-                <h2 class="sp-title">Модели и эмбеддинги</h2>
-                <p class="sp-caption">Предобученные модели и библиотеки для семантического поиска и векторного сравнения.</p>
+                <div class="suggest-box">
+                    <div class="suggest-head">
+                        <h2>Посоветовать инструмент</h2>
+                        <span class="mod-pill" style="cursor: default;">
+                            <span class="mod-dot"></span>
+                            <span id="modQueueCount">На рассмотрении: 3</span>
+                        </span>
+                    </div>
+                    <p class="suggest-sub">
+                        Знаете сильную библиотеку, модель или сервис — свой или чужой? Киньте ссылку: посмотрим в деле и, если найдём применение, добавим в подборку.
+                    </p>
 
-                <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon">🤗</div>
-                        <div>
-                            <h3>Sentence Transformers</h3>
-                            <span class="tool-badge badge-oss">Open Source</span>
+                    <form id="toolSubmitForm" novalidate>
+                        <div class="compact-grid">
+                            <input class="c-input" type="text" id="toolName" required maxlength="100" placeholder="Название *">
+                            <input class="c-input" type="url" id="toolUrl" required maxlength="240" placeholder="Ссылка на GitHub или сайт *">
                         </div>
-                    </div>
-                    <p class="tool-desc">Стандартная библиотека для вычисления семантических эмбеддингов. Bi-Encoder для масштабного поиска, Cross-Encoder для точного попарного скоринга. 5000+ предобученных моделей на HuggingFace.</p>
-                    <div class="tool-stack">
-                        <span class="stack-tag">Python</span>
-                        <span class="stack-tag">PyTorch</span>
-                        <span class="stack-tag">HuggingFace</span>
-                    </div>
-                    <div class="tool-links">
-                        <a href="https://github.com/UKPLab/sentence-transformers" target="_blank" class="tool-link tl-github">GitHub</a>
-                        <a href="https://www.sbert.net" target="_blank" class="tool-link tl-ext">sbert.net</a>
-                    </div>
-                </div>
 
-                <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon">📐</div>
-                        <div>
-                            <h3>FAISS</h3>
-                            <span class="tool-badge badge-oss">Open Source</span>
+                        <textarea class="c-textarea" id="toolTask" maxlength="600" placeholder="В пару слов: чем хорош или в какой задаче выручает (необязательно)"></textarea>
+
+                        <div class="form-error" id="toolFormError"></div>
+
+                        <div class="suggest-foot">
+                            <span style="font-family: var(--sans); font-size: 0.76rem; color: var(--stone);">
+                                Без персональных данных — только ссылка и технический комментарий
+                            </span>
+                            <button type="submit" class="submit-btn">Отправить →</button>
                         </div>
-                    </div>
-                    <p class="tool-desc">Библиотека Meta для быстрого поиска ближайших соседей в пространствах высокой размерности. GPU-ускорение, миллиарды векторов, десятки алгоритмов квантизации и индексации.</p>
-                    <div class="tool-stack">
-                        <span class="stack-tag">C++</span>
-                        <span class="stack-tag">Python</span>
-                        <span class="stack-tag">CUDA</span>
-                    </div>
-                    <div class="tool-links">
-                        <a href="https://github.com/facebookresearch/faiss" target="_blank" class="tool-link tl-github">GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    </form>
 
-        <!-- ═══ ИНФРАСТРУКТУРА ═══ -->
-        <section class="sp-section sp-alt">
-            <div class="sp-inner">
-                <h2 class="sp-title">Инфраструктура и протоколы</h2>
-                <p class="sp-caption">Протоколы, спецификации и инфраструктурные проекты, которые мы используем или планируем интегрировать.</p>
-
-                <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon">🔌</div>
-                        <div>
-                            <h3>Model Context Protocol (MCP)</h3>
-                            <span class="tool-badge badge-oss">Open Source</span>
+                    <div class="mod-success" id="toolSubmitSuccess">
+                        <p>
+                            <strong style="color: var(--teal);">Добавлено на модерацию</strong> (<span id="modTicketCode">#MOD</span>). Если хотите, отправьте копию напрямую в почту группы одним кликом:
+                        </p>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <a href="#" id="modMailtoBtn" class="btn sm">Отправить копию на info@heuristics.ru</a>
+                            <button type="button" class="btn sm ghost" id="modResetBtn">Ещё одну ссылку</button>
                         </div>
-                    </div>
-                    <p class="tool-desc">Открытый стандарт Anthropic для подключения ИИ-агентов к внешним инструментам и данным. «USB-C для ИИ» — единый протокол вместо кастомных интеграций. Планируем MCP-сервер для наших алгоритмов.</p>
-                    <div class="tool-stack">
-                        <span class="stack-tag">TypeScript</span>
-                        <span class="stack-tag">JSON-RPC</span>
-                        <span class="stack-tag">Спецификация</span>
-                    </div>
-                    <div class="tool-links">
-                        <a href="https://github.com/modelcontextprotocol/servers" target="_blank" class="tool-link tl-github">GitHub (серверы)</a>
-                        <a href="https://modelcontextprotocol.io" target="_blank" class="tool-link tl-ext">Спецификация</a>
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon">🗂</div>
-                        <div>
-                            <h3>Awesome MCP Servers</h3>
-                            <span class="tool-badge badge-oss">Open Source</span>
-                        </div>
-                    </div>
-                    <p class="tool-desc">Курируемый каталог MCP-серверов от сообщества. Прокси, утилиты, интеграции с базами данных, внешними API, файловыми системами. Ориентир для нашего собственного MCP-сервера.</p>
-                    <div class="tool-links">
-                        <a href="https://github.com/punkpeye/awesome-mcp-servers" target="_blank" class="tool-link tl-github">GitHub</a>
                     </div>
                 </div>
             </div>
@@ -301,11 +439,122 @@
             </div>
             <div class="footer-right">
                 <a href="mailto:info@heuristics.ru" style="color: inherit; margin-right: 16px; text-decoration: none;">info@heuristics.ru</a>
-                <a href="company.html">О компании</a>
-                <a href="privacy.html" style="color: inherit; margin-right: 16px; text-decoration: none;">Политика конфиденциальности</a>
+                <a href="https://edu.heuristics.ru" style="color: inherit; margin-right: 16px; text-decoration: none;">edu.heuristics.ru ↗</a>
+                <a href="company.html" style="color: inherit; margin-right: 16px; text-decoration: none;">О компании</a>
+                <a href="privacy.html" style="color: inherit; margin-right: 16px; text-decoration: none;">Политика ПДн (152-ФЗ)</a>
                 <span>εὑρίσκω — «нахожу, открываю»</span>
             </div>
         </div>
     </footer>
+
+    <script>
+    (function () {
+        var STORAGE_KEY = 'heuristics_tool_moderation_submissions_v1';
+        var baseCount = 3;
+        var webhookUrl = '';
+
+        function getLocalSubmissions() {
+            try {
+                var raw = localStorage.getItem(STORAGE_KEY);
+                var parsed = raw ? JSON.parse(raw) : [];
+                return Array.isArray(parsed) ? parsed : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveLocalSubmission(item) {
+            var list = getLocalSubmissions();
+            list.unshift(item);
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(list.slice(0, 20)));
+            } catch (e) {}
+        }
+
+        function renderCounters() {
+            var total = baseCount + getLocalSubmissions().length;
+            var countEl = document.getElementById('modQueueCount');
+            var topEl = document.getElementById('topModBadgeText');
+            if (countEl) countEl.textContent = 'На рассмотрении: ' + total;
+            if (topEl) topEl.textContent = 'На рассмотрении: ' + total + ' · Посоветовать ↓';
+        }
+
+        fetch('data/tool-moderation.json', { cache: 'no-cache' })
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (data) {
+                if (data && typeof data.in_review_count === 'number') baseCount = data.in_review_count;
+                if (data && typeof data.webhook_url === 'string') webhookUrl = data.webhook_url.trim();
+                renderCounters();
+            })
+            .catch(function () { renderCounters(); });
+
+        renderCounters();
+
+        var form = document.getElementById('toolSubmitForm');
+        var errEl = document.getElementById('toolFormError');
+        var successBox = document.getElementById('toolSubmitSuccess');
+        var ticketEl = document.getElementById('modTicketCode');
+        var mailtoBtn = document.getElementById('modMailtoBtn');
+        var resetBtn = document.getElementById('modResetBtn');
+
+        if (form) {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                errEl.style.display = 'none';
+
+                var name = document.getElementById('toolName').value.trim();
+                var url = document.getElementById('toolUrl').value.trim();
+                var task = document.getElementById('toolTask').value.trim();
+
+                if (!name || !url || !/^https?:\/\/.+/i.test(url)) {
+                    errEl.textContent = 'Укажите название и ссылку (https://...)';
+                    errEl.style.display = 'block';
+                    return;
+                }
+
+                var ticketId = 'MOD-' + Math.floor(1000 + Math.random() * 9000);
+                var payload = {
+                    id: ticketId,
+                    name: name,
+                    url: url,
+                    note: task || '—',
+                    at: new Date().toISOString()
+                };
+
+                saveLocalSubmission(payload);
+                renderCounters();
+
+                if (webhookUrl) {
+                    fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    }).catch(function () {});
+                }
+
+                var subject = encodeURIComponent('Рекомендация в Инструменты: ' + name);
+                var body = encodeURIComponent(
+                    'Инструмент: ' + name + '\n' +
+                    'Ссылка: ' + url + '\n' +
+                    (task ? 'Комментарий: ' + task + '\n' : '')
+                );
+
+                if (ticketEl) ticketEl.textContent = '#' + ticketId;
+                if (mailtoBtn) mailtoBtn.setAttribute('href', 'mailto:info@heuristics.ru?subject=' + subject + '&body=' + body);
+
+                form.style.display = 'none';
+                successBox.style.display = 'block';
+            });
+        }
+
+        if (resetBtn) {
+            resetBtn.addEventListener('click', function () {
+                form.reset();
+                successBox.style.display = 'none';
+                form.style.display = 'block';
+            });
+        }
+    })();
+    </script>
 </body>
 </html>

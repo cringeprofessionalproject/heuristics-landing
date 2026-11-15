@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>Проекты — Heuristics</title>
+    <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+    <script src="theme.js?v=20261115"></script>
+    <link rel="stylesheet" href="fonts.css?v=20261115">
+    <link rel="stylesheet" href="institution.css?v=20261115">
+    <link rel="stylesheet" href="subpages.css?v=20261115">
+    <style>
+        .selector-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .selector-card {
+            text-align: left;
+            padding: 16px 18px;
+            border: 1px solid var(--stone-light);
+            background: var(--warm-white);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 8px;
+            color: var(--ink);
+        }
+        .selector-card:hover {
+            border-color: var(--oxide);
+        }
+        .selector-card.active {
+            border: 2px solid var(--oxide);
+            background: var(--paper);
+        }
+        .selector-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+        .selector-code {
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            color: var(--stone);
+            font-weight: 600;
+        }
+        .selector-card.active .selector-code {
+            color: var(--oxide);
+        }
+        .selector-pill {
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            padding: 2px 7px;
+            background: var(--marble);
+            color: var(--ink-soft);
+            border: 1px solid var(--stone-light);
+        }
+        .selector-card.active .selector-pill {
+            background: var(--oxide);
+            color: #faf8f5;
+            border-color: var(--oxide);
+        }
+        .selector-title {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--ink);
+            line-height: 1.25;
+        }
+        .selector-sub {
+            font-family: var(--sans);
+            font-size: 0.75rem;
+            color: var(--ink-soft);
+            line-height: 1.45;
+        }
+        .filter-bar {
+            margin-bottom: 24px;
+            padding: 12px 16px;
+            background: var(--warm-white);
+            border: 1px solid var(--stone-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .project-panel[hidden] {
+            display: none !important;
+        }
+        .project-card {
+            border: 1px solid var(--stone-light);
+            border-left: 3px solid var(--oxide);
+            background: var(--warm-white);
+            padding: 30px 32px;
+            margin-bottom: 24px;
+        }
+        .project-card-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .project-card h2 {
+            font-family: var(--serif);
+            font-size: 1.85rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--ink);
+        }
+        .project-subtitle {
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            color: var(--stone);
+            margin-bottom: 18px;
+        }
+        .project-prose {
+            font-family: var(--serif);
+            font-size: 1.12rem;
+            line-height: 1.75;
+            color: var(--ink);
+            margin-bottom: 20px;
+            max-width: 860px;
+        }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 20px;
+            font-family: var(--sans);
+            font-size: 0.86rem;
+        }
+        .spec-table th {
+            width: 24%;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--stone);
+            padding: 11px 14px;
+            border-bottom: 1px solid var(--stone-light);
+            background: var(--marble);
+            text-align: left;
+            vertical-align: top;
+        }
+        .spec-table td {
+            padding: 11px 14px;
+            border-bottom: 1px solid var(--stone-light);
+            color: var(--ink-soft);
+            line-height: 1.6;
+        }
+        .contour-subgrid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin: 14px 0 22px;
+        }
+        .contour-box {
+            background: var(--marble);
+            border: 1px solid var(--stone-light);
+            padding: 14px 16px;
+        }
+        .contour-box-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+        .contour-box-title {
+            font-family: var(--serif);
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .contour-box-status {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--stone);
+        }
+        .contour-box-status.live {
+            color: var(--teal);
+        }
+        .contour-box p {
+            font-family: var(--sans);
+            font-size: 0.82rem;
+            line-height: 1.55;
+            color: var(--ink-soft);
+        }
+        @media (max-width: 1024px) {
+            .selector-grid, .contour-subgrid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (max-width: 640px) {
+            .selector-grid, .contour-subgrid {
+                grid-template-columns: 1fr;
+            }
+            .spec-table th, .spec-table td {
+                display: block;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="header-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-epsilon">ε</span>
+                    <span class="logo-text">HEURISTICS</span>
+                </a>
+                <div class="contour-switch" role="navigation" aria-label="Контуры Heuristics">
+                    <a href="index.html" class="contour-pill active" aria-current="page">heuristics.ru</a>
+                    <a href="https://edu.heuristics.ru" class="contour-pill" title="Интерактивные курсы и практикумы Heuristics · Edu">edu</a>
+                </div>
+            </div>
+            <nav class="nav">
+                <a href="index.html#method">Метод</a>
+                <a href="projects.html" class="nav-active">Проекты</a>
+                <a href="instruments.html">Инструменты</a>
+                <a href="publications.html">Публикации</a>
+                <a href="company.html">О компании</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="page-hero-inner">
+                <div class="marker">§ Проекты и практика</div>
+                <h1>Проекты</h1>
+                <div class="rule"></div>
+                <p class="lede" style="max-width: 700px;">Исследовательская команда применяет собственные алгоритмы и наработки как в задачах внешних заказчиков, так и внутри собственных и партнёрских начинаний. Здесь собраны системы, медиа-проекты и бизнесы, где наши решения работают на практике.</p>
+            </div>
+        </section>
+
+        <section class="sp-section">
+            <div class="sp-inner">
+                <!-- Навигационные карточки (4 проекта) -->
+                <div class="selector-grid" role="tablist" aria-label="Выбор проекта">
+                    <button type="button" class="selector-card" data-project-tab="splash" role="tab" aria-selected="false">
+                        <div class="selector-top">
+                            <span class="selector-code">01</span>
+                            <span class="selector-pill">B2B · Ядро</span>
+                        </div>
+                        <div class="selector-title">СПЛЭШ</div>
+                        <div class="selector-sub">Инструмент платформенной экономики и разбор смет</div>
+                    </button>
+
+                    <button type="button" class="selector-card" data-project-tab="edu" role="tab" aria-selected="false">
+                        <div class="selector-top">
+                            <span class="selector-code">02</span>
+                            <span class="selector-pill">Курсы</span>
+                        </div>
+                        <div class="selector-title">Heuristics · Edu</div>
+                        <div class="selector-sub">Сценарные практикумы, интерактивный кампус и первоисточники</div>
+                    </button>
+
+                    <button type="button" class="selector-card" data-project-tab="arkady" role="tab" aria-selected="false">
+                        <div class="selector-top">
+                            <span class="selector-code">03</span>
+                            <span class="selector-pill">Аватар · А.И.</span>
+                        </div>
+                        <div class="selector-title">Аркадий Ильич</div>
+                        <div class="selector-sub">Редактор статей, директор курса, продюсер и координатор</div>
+                    </button>
+
+                    <button type="button" class="selector-card" data-project-tab="acup" role="tab" aria-selected="false">
+                        <div class="selector-top">
+                            <span class="selector-code">04</span>
+                            <span class="selector-pill">B2B · Сервис</span>
+                        </div>
+                        <div class="selector-title">A CUP · акап.рф</div>
+                        <div class="selector-sub">Кофейное снабжение офисов и загородный сервис A CUP · Стройка</div>
+                    </button>
+                </div>
+
+                <!-- Панель фильтрации -->
+                <div class="filter-bar">
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <button type="button" id="showAllBtn" class="btn sm" data-project-tab="all">
+                            Все проекты (4)
+                        </button>
+                        <span id="activeFilterLabel" style="font-family: var(--sans); font-size: 0.84rem; color: var(--ink-soft);">
+                            Показаны все действующие направления (4)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 01. СПЛЭШ -->
+                <article class="project-panel" data-project-id="splash" id="splash">
+                    <div class="project-card">
+                        <div class="project-card-head">
+                            <span class="school-badge">01 · СПЛЭШ (SPLASH 2.1)</span>
+                            <span class="tag teal">Инструмент платформенной экономики · B2B</span>
+                        </div>
+                        <h2>СПЛЭШ — система подбора товарных аналогов и анализа спецификаций</h2>
+                        <div class="project-subtitle">SKU Profiling, Linking, Assessment, Search &amp; Heuristics · splash.heuristics.ru</div>
+                        <p class="project-prose">
+                            Инфраструктурный инструмент платформенной экономики для кабельно-проводникового и электротехнического рынка. Система устраняет разрыв между разрозненными сметными таблицами проектировщиков, номенклатурой заводов и прайс-листами дистрибьюторов — извлекая из неструктурированных документов (PDF, XLSX) физические параметры изделия и сопоставляя разнородные каталоги в едином стандарте.
+                        </p>
+                        <table class="spec-table">
+                            <tbody>
+                                <tr>
+                                    <th>Принцип работы</th>
+                                    <td>Каждая позиция раскладывается на физические оси (сечение и диаметр проводника, материал жилы, экранирование, категория передачи, класс пожарной опасности по ГОСТ). При провале по критической оси кандидат исключается независимо от текстового сходства названий.</td>
+                                </tr>
+                                <tr>
+                                    <th>Состав контуров</th>
+                                    <td>Парсинг и нормализация сметных таблиц («Подбор»), мониторинг рыночных цен и дилерских матриц («Монитор»), проверка технической совместимости компонентов в сборке («Разбор»), эталонный справочник карточек (BOM250).</td>
+                                </tr>
+                                <tr>
+                                    <th>Интеграция</th>
+                                    <td>Доступ через веб-интерфейс по токену организации (ИНН) и через программный интерфейс <code>SPLASH External Module API</code>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="tool-links">
+                            <a href="access.html" class="btn sm">Доступ к системе</a>
+                            <a href="api.html" class="btn sm ghost">Документация API</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 02. Heuristics · Edu -->
+                <article class="project-panel" data-project-id="edu" id="edu">
+                    <div class="project-card">
+                        <div class="project-card-head">
+                            <span class="school-badge">02 · Heuristics · Edu</span>
+                            <span class="tag oxide">Интерактивные курсы и практикумы</span>
+                        </div>
+                        <h2>Heuristics · Edu — среда сценарных курсов и прикладных практикумов</h2>
+                        <div class="project-subtitle">Сюжетные кейсы, работа со сложными первоисточниками и рабочие ИИ-артефакты · edu.heuristics.ru</div>
+                        <p class="project-prose">
+                            Проект вырос из задачи уйти от скучных текстовых конспектов и монотонных говорящих голов. Мы переводим сложные дисциплины в <strong>проживание предметной истории и конфликта</strong>, где решение принимается внутри рабочей ситуации, а не заучивается по шпаргалке.
+                        </p>
+                        <table class="spec-table">
+                            <tbody>
+                                <tr>
+                                    <th>Сценарная драматургия</th>
+                                    <td>Каждая тема разворачивается вокруг конкретной практической коллизии — от разбора инженерных разработок, не нашедших сбыта на рынке, до прохождения регуляторного аудита. Диалог разных ролей (конструктор, заказчик, юрист, администратор) помогает увидеть цену ошибки до того, как она случится в реальной работе.</td>
+                                </tr>
+                                <tr>
+                                    <th>Редакторская работа с материалом</th>
+                                    <td>Курсы собираются как по объёмным учебным и методологическим материалам (разработка продукта, инженерные и управленческие дисциплины), так и по текстам действующих законов и стандартов — с очисткой от воды, проверкой актуальности фактуры и встроенным ИИ-разбором сложных мест.</td>
+                                </tr>
+                                <tr>
+                                    <th>Отчуждаемый результат (SKILL.md)</th>
+                                    <td>Вместе с курсом слушатель забирает структурированный пакет правил, проверочных листов и справочников (<code>SKILL.md</code>), который подключается к рабочим ИИ-агентам для повседневной проверки документов, гипотез и расчётов.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="tool-links">
+                            <a href="https://edu.heuristics.ru/academy" target="_blank" rel="noopener" class="btn sm">◈ Открыть интерактивный кампус ↗</a>
+                            <a href="https://edu.heuristics.ru" target="_blank" rel="noopener" class="btn sm ghost">Каталог курсов на edu.heuristics.ru</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 03. Аркадий Ильич (А.И.) -->
+                <article class="project-panel" data-project-id="arkady" id="arkady">
+                    <div class="project-card">
+                        <div class="project-card-head">
+                            <span class="school-badge">03 · Аркадий Ильич (А.И.)</span>
+                            <span class="tag">Цифровой резидент группы</span>
+                        </div>
+                        <h2>Аркадий Ильич — редактор, директор курсов и продюсер</h2>
+                        <div class="project-subtitle">Публичный аватар и соавтор проектов «Эвристических технологий»</div>
+                        <p class="project-prose">
+                            Цифровой персонаж с собственным голосом, характером и биографией (инициалы «А.И.» отсылают к <em>AI</em>), объединяющий вокруг себя образовательные, медийные и прикладные начинания команды. Главная тема Аркадия Ильича — нестандартная подача сложных и вполне земных вещей.
+                        </p>
+
+                        <table class="spec-table">
+                            <tbody>
+                                <tr>
+                                    <th>Редактор и соавтор статей</th>
+                                    <td>Готовит и редактирует прикладные инженерные разборы команды — от локального синтеза речи и работы со звуком до алгоритмов сопоставления данных (<a href="https://habr.com/ru/users/arkady_ilych/" target="_blank" rel="noopener">профиль на Хабре ↗</a>).</td>
+                                </tr>
+                                <tr>
+                                    <th>Директор учебного курса</th>
+                                    <td>Выступает ректором и ведущим лектором в интерактивном кампусе <a href="https://edu.heuristics.ru/academy" target="_blank" rel="noopener">Heuristics · Edu</a>: выстраивает структуру модулей, ведёт разбор сквозных кейсов и рецензирует работы участников.</td>
+                                </tr>
+                                <tr>
+                                    <th>Музыкальный продюсер</th>
+                                    <td>Продюсирует цифровых музыкальных исполнителей (в том числе проект <em>«Иван Заграничный»</em>) — от работы со звучанием и текстами до выпуска треков на стриминговых площадках и саундтреков к проектам группы.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="font-family: var(--mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; color: var(--stone); margin-bottom: 8px;">
+                            Партнёрские бизнесы и прикладные пилоты в орбите проекта
+                        </div>
+                        <div class="contour-subgrid">
+                            <div class="contour-box">
+                                <div class="contour-box-top">
+                                    <span class="contour-box-title">A CUP — кофе для офиса</span>
+                                    <a href="https://xn--80aa3av.xn--p1ai" target="_blank" rel="noopener" class="contour-box-status live" style="text-decoration: none;">акап.рф ↗</a>
+                                </div>
+                                <p>Контрактное B2B-снабжение московских офисов свежеобжаренным зерновым кофе с расчётом потребления и регулярным графиком поставок.</p>
+                            </div>
+                            <div class="contour-box">
+                                <div class="contour-box-top">
+                                    <span class="contour-box-title">A CUP · Стройка</span>
+                                    <span class="contour-box-status">в запуске</span>
+                                </div>
+                                <p>Единый загородный сервис: строительство и инженерная комплектация объектов, регулярный присмотр, уборка и обслуживание домов по регламентам.</p>
+                            </div>
+                            <div class="contour-box">
+                                <div class="contour-box-top">
+                                    <span class="contour-box-title">Кулинария и доставка</span>
+                                    <span class="contour-box-status">в запуске</span>
+                                </div>
+                                <p>Гастрономический сервис с проверкой продуктовых линеек и регулярной доставкой заказов.</p>
+                            </div>
+                        </div>
+
+                        <div class="tool-links">
+                            <a href="mailto:info@heuristics.ru?subject=%D0%9F%D0%B8%D1%81%D1%8C%D0%BC%D0%BE%20%D0%90%D1%80%D0%BA%D0%B0%D0%B4%D0%B8%D1%8E%20%D0%98%D0%BB%D1%8C%D0%B8%D1%87%D1%83" class="btn sm">Написать Аркадию Ильичу →</a>
+                            <a href="https://habr.com/ru/users/arkady_ilych/" target="_blank" rel="noopener" class="btn sm ghost">Профиль на Хабре ↗</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 04. A CUP (акап.рф) -->
+                <article class="project-panel" data-project-id="acup" id="acup">
+                    <div class="project-card">
+                        <div class="project-card-head">
+                            <span class="school-badge">04 · A CUP (акап.рф)</span>
+                            <span class="tag teal">B2B · Supply Chain Management</span>
+                        </div>
+                        <h2>A CUP — B2B-обжарка, фасовка и снабжение офисов кофе</h2>
+                        <div class="project-subtitle">Партнёрский производственно-логистический проект полного цикла · <a href="https://xn--80aa3av.xn--p1ai" target="_blank" rel="noopener">акап.рф</a></div>
+                        <p class="project-prose">
+                            Действующий B2B-проект снабжения московских офисов зерновым кофе с прозрачной контрактной экономикой («Лот 01», фиксированная ставка от 10 кг и согласованный график поставок). Выступает производственно-логистическим полигоном для отработки алгоритмов прогнозирования спроса и управления запасами (SCM).
+                        </p>
+                        <table class="spec-table">
+                            <tbody>
+                                <tr>
+                                    <th>Продукт и контрактная модель</th>
+                                    <td>Подбор лотов зелёного зерна, стабильный профиль обжарки под офисные суперавтоматы и рожковые станции, поставка в зерне или дрип-пакетах (включая СТМ заказчика) по фиксированной цене без скрытых сервисных наценок.</td>
+                                </tr>
+                                <tr>
+                                    <th>Автоматизация SCM</th>
+                                    <td>Расчёт темпа потребления по численности офиса, синхронизация графика клиентских отгрузок с расписанием обжарки и остатками упаковочных материалов, автоматическое напоминание и пополнение запасов до обнуления остатка.</td>
+                                </tr>
+                                <tr>
+                                    <th>A CUP · Стройка</th>
+                                    <td>Развивающееся загородное направление бренда: строительство и комплектация объектов, регулярный присмотр, уборка и регламентное обслуживание загородных домов (в стадии запуска).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="tool-links">
+                            <a href="https://xn--80aa3av.xn--p1ai" target="_blank" rel="noopener" class="btn sm">Перейти на акап.рф ↗</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="logo-epsilon sm">ε</span>
+                <span>&copy; 2026 ООО «Эвристические технологии» · ОГРН 1267700279110 · ИНН 9725210450</span>
+            </div>
+            <div class="footer-right">
+                <a href="mailto:info@heuristics.ru" style="color: inherit; margin-right: 16px; text-decoration: none;">info@heuristics.ru</a>
+                <a href="https://edu.heuristics.ru" style="color: inherit; margin-right: 16px; text-decoration: none;">edu.heuristics.ru ↗</a>
+                <a href="company.html" style="color: inherit; margin-right: 16px; text-decoration: none;">О компании</a>
+                <a href="privacy.html" style="color: inherit; margin-right: 16px; text-decoration: none;">Политика ПДн (152-ФЗ)</a>
+                <span>εὑρίσκω — «нахожу, открываю»</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    (function () {
+        var cards = document.querySelectorAll('.selector-card[data-project-tab]');
+        var showAllBtn = document.getElementById('showAllBtn');
+        var label = document.getElementById('activeFilterLabel');
+        var panels = document.querySelectorAll('[data-project-id]');
+        var currentKey = 'all';
+
+        var titles = {
+            splash: '01 · СПЛЭШ',
+            edu: '02 · Heuristics · Edu',
+            arkady: '03 · Аркадий Ильич',
+            acup: '04 · A CUP (акап.рф)'
+        };
+
+        function activateTab(key, updateHash) {
+            currentKey = key;
+            cards.forEach(function (c) {
+                var isMatch = c.getAttribute('data-project-tab') === key;
+                c.classList.toggle('active', isMatch);
+                c.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+            });
+            if (showAllBtn) {
+                showAllBtn.className = key === 'all' ? 'btn sm' : 'btn sm ghost';
+            }
+            if (label) {
+                label.innerHTML = key === 'all'
+                    ? 'Показаны все действующие направления (4)'
+                    : 'Выбран проект: <strong>' + (titles[key] || key) + '</strong>';
+            }
+            panels.forEach(function (p) {
+                var pid = p.getAttribute('data-project-id');
+                if (key === 'all' || pid === key) {
+                    p.removeAttribute('hidden');
+                } else {
+                    p.setAttribute('hidden', 'hidden');
+                }
+            });
+            if (updateHash) {
+                if (key === 'all') {
+                    history.replaceState(null, '', window.location.pathname);
+                } else {
+                    history.replaceState(null, '', '#' + key);
+                }
+            }
+        }
+
+        cards.forEach(function (c) {
+            c.addEventListener('click', function () {
+                var target = c.getAttribute('data-project-tab');
+                activateTab(currentKey === target ? 'all' : target, true);
+            });
+        });
+
+        if (showAllBtn) {
+            showAllBtn.addEventListener('click', function () {
+                activateTab('all', true);
+            });
+        }
+
+        var hash = (window.location.hash || '').replace(/^#/, '');
+        if (hash === 'coffee') hash = 'acup';
+        if (hash && titles[hash]) {
+            activateTab(hash, false);
+        }
+    })();
+    </script>
+</body>
+</html>

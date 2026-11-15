@@ -1,0 +1,28 @@
+{
+  "updated_at": "2026-11-15",
+  "source": "OpenAlex + arXiv API · двухступенчатый фильтр (CS/DB домен + релевантность ≥ 8/10)",
+  "items": [
+    {
+      "id": "10.1109/icdew67478.2025.00006",
+      "venue": "IEEE ICDEW · 2025",
+      "tag": "Product Matching · LLM Fine-Tuning",
+      "title": "Fine-Tuning Large Language Models for Entity Matching",
+      "meta": "Steiner, A., Peeters, R., & Bizer, C. (University of Mannheim) · IEEE ICDE Workshops 2025",
+      "desc": "Прикладное исследование группы Кристиана Бицера (авторов бенчмарка WDC Product Data) по дообучению открытых языковых моделей на задачах товарного матчинга: показано, как структурированное выделение атрибутов и отбор сложных негативных пар (hard negatives) позволяют компактным моделям превосходить универсальные облачные LLM при сопоставлении разнородных каталогов.",
+      "doi": "10.1109/icdew67478.2025.00006",
+      "url": "https://doi.org/10.1109/icdew67478.2025.00006",
+      "extra_url": "https://arxiv.org/abs/2410.05865",
+      "extra_label": "arXiv PDF →"
+    },
+    {
+      "id": "10.1109/icde60146.2024.00284",
+      "venue": "IEEE ICDE · 2024",
+      "tag": "Cost-Effective ER · Blocking",
+      "title": "Cost-Effective In-Context Learning for Entity Resolution: A Design Space Exploration",
+      "meta": "Fan, M., Han, X., Fan, J., Chai, C., Tang, N., Li, G., & Du, X. · IEEE 40th International Conference on Data Engineering (ICDE)",
+      "desc": "Системный разбор компромисса между стоимостью вызовов языковых моделей и точностью сопоставления на больших номенклатурных таблицах: пакетная группировка кандидатов и каскадная фильтрация снижают число запросов на порядок без потери полноты на граничных случаях.",
+      "doi": "10.1109/icde60146.2024.00284",
+      "url": "https://doi.org/10.1109/icde60146.2024.00284"
+    }
+  ]
+}
